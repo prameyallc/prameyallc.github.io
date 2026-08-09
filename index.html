@@ -1,1 +1,451 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prameya LLC — Expert knowledge for everyone</title>
+  <meta name="description" content="Prameya makes expert knowledge accessible, available, and useful to everyone — turning it into a commodity through a growing portfolio of apps." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg-elevated: #121214;
+      --bg-card: #18181b;
+      --border: #27272a;
+      --text: #fafafa;
+      --text-muted: #a1a1aa;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10, 10, 11, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 1.5rem 5rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 1.75rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Portfolio */
+    .portfolio-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: center;
+    }
+
+    #search {
+      flex: 1;
+      min-width: 220px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1.1rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #search:focus {
+      border-color: var(--accent);
+    }
+
+    #search::placeholder {
+      color: var(--text-muted);
+    }
+
+    .app-count {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-card:hover {
+      border-color: #3f3f46;
+      transform: translateY(-2px);
+    }
+
+    .app-card.hidden {
+      display: none;
+    }
+
+    .app-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .app-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .app-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      flex-grow: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    .app-card .card-btn {
+      align-self: flex-start;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .app-card .card-btn:hover {
+      border-color: var(--accent);
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    /* Vision */
+    .vision {
+      background: var(--bg-elevated);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .vision h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .vision p {
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding: 4rem 1.25rem 3.5rem;
+      }
+      .vision {
+        padding: 2rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">Prameya<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#vision">Vision</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>Expert knowledge<br><span class="highlight">for everyone.</span></h1>
+    <p>Making expert knowledge accessible, available, and useful — turning it into a commodity through a growing portfolio of apps.</p>
+    <a href="#apps" class="btn">Explore the Apps →</a>
+  </header>
+
+  <section id="apps">
+    <h2 class="section-title">App Portfolio</h2>
+    <p class="section-subtitle">A growing collection of tools that put specialized expertise into everyone’s hands.</p>
+
+    <div class="portfolio-controls">
+      <input type="search" id="search" placeholder="Search apps..." autocomplete="off" />
+      <span class="app-count" id="app-count"></span>
+    </div>
+
+    <div class="grid" id="app-grid">
+      <!-- App cards — duplicate any of these blocks to add more -->
+      <article class="app-card" data-name="Expert Advisor" data-desc="conversational domain experts">
+        <div class="app-icon">🧠</div>
+        <h3>Expert Advisor</h3>
+        <p>Chat with domain specialists powered by curated expert knowledge.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Knowledge Compressor" data-desc="summaries distillation">
+        <div class="app-icon">📚</div>
+        <h3>Knowledge Compressor</h3>
+        <p>Turn dense expert material into clear, actionable summaries in seconds.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Skill Accelerator" data-desc="learning mastery">
+        <div class="app-icon">⚡</div>
+        <h3>Skill Accelerator</h3>
+        <p>Structured learning paths that compress years of expertise into weeks.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Insight Engine" data-desc="analysis research">
+        <div class="app-icon">🔍</div>
+        <h3>Insight Engine</h3>
+        <p>Surface non-obvious insights from complex domains and data.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Decision Framework" data-desc="frameworks decision making">
+        <div class="app-icon">🧭</div>
+        <h3>Decision Framework</h3>
+        <p>Apply proven expert decision frameworks to your own problems.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Domain Deep Dive" data-desc="research deep dive">
+        <div class="app-icon">🌊</div>
+        <h3>Domain Deep Dive</h3>
+        <p>Go from novice to informed practitioner in any specialized field.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Expert Briefs" data-desc="briefings reports">
+        <div class="app-icon">📋</div>
+        <h3>Expert Briefs</h3>
+        <p>Daily and weekly briefings distilled from top domain experts.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Knowledge Graph Explorer" data-desc="graph relationships">
+        <div class="app-icon">🕸️</div>
+        <h3>Knowledge Graph Explorer</h3>
+        <p>Visualize and navigate the relationships between expert concepts.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Mentor Match" data-desc="mentorship matching">
+        <div class="app-icon">🤝</div>
+        <h3>Mentor Match</h3>
+        <p>Connect with the right expert guidance for your current challenge.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+
+      <article class="app-card" data-name="Practice Lab" data-desc="practice exercises">
+        <div class="app-icon">🏋️</div>
+        <h3>Practice Lab</h3>
+        <p>Hands-on exercises and simulations built from real expert workflows.</p>
+        <button class="card-btn">Coming soon</button>
+      </article>
+    </div>
+  </section>
+
+  <section id="vision">
+    <div class="vision">
+      <h2>Our Vision</h2>
+      <p>
+        To make expert knowledge accessible, available, and useful to everyone — 
+        and turn it into a commodity. We believe specialized expertise should not 
+        stay locked behind paywalls, jargon, or limited access. Through our portfolio 
+        of apps, we are democratizing what was once exclusive.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Prameya LLC · <a href="https://github.com/prameyallc">GitHub</a></p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const cards = document.querySelectorAll('.app-card');
+    const countEl = document.getElementById('app-count');
+
+    function updateCount() {
+      const visible = document.querySelectorAll('.app-card:not(.hidden)').length;
+      countEl.textContent = `${visible} app${visible !== 1 ? 's' : ''}`;
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const desc = card.dataset.desc.toLowerCase();
+        const match = !q || name.includes(q) || desc.includes(q);
+        card.classList.toggle('hidden', !match);
+      });
+      updateCount();
+    });
+
+    updateCount();
+  </script>
+</body>
+</html>
