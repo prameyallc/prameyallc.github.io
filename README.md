@@ -1,49 +1,45 @@
-# Prameya LLC — Landing Page
+# prameyallc.github.io
+
+The Prameya LLC landing page — <https://prameyallc.github.io/>
 
 **Expert knowledge for everyone.**
 
-This is a clean, modern, single-file landing page ready for your GitHub Pages site:
-https://github.com/prameyallc/prameyallc.github.io
+## What's here
 
-## How to upload
+| Path | What it is |
+|---|---|
+| `index.html` | The whole site. Single file, no build step, no external requests. |
+| `assets/icons/` | App icons, 256 px, generated from each app's own `OHBrand` accent. |
 
-### Option 1 — GitHub Web UI (easiest)
-1. Go to https://github.com/prameyallc/prameyallc.github.io
-2. Click on `index.html`
-3. Click the pencil icon (Edit)
-4. Delete all existing content
-5. Paste the entire contents of this `index.html`
-6. Scroll down → Commit changes
-7. Wait 30–60 seconds, then visit https://prameyallc.github.io
+Served by GitHub Pages from `main` at the repository root. Pushing to `main` publishes.
 
-### Option 2 — Git push
-```bash
-git clone https://github.com/prameyallc/prameyallc.github.io.git
-cd prameyallc.github.io
-# replace index.html with the one from this folder
-git add index.html
-git commit -m "Add Prameya landing page"
-git push
-```
+## The ten apps
 
-## How to add more apps (scale to 100)
+Grouped as they appear on the page. Each links back to a private repo where the strategy,
+regulatory posture and issue register live.
 
-Open `index.html` and find any `<article class="app-card" ...>` block.
+**Health & the body** — OmniSalub · OmniDent · OmniDerm · OmniRx
+**Professional knowledge** — OmniLex · OmniBuild · OmniWealth · OmniOps
+**Learning** — OmniMath · OmniPhysics
 
-Copy the entire block, paste it again, then change:
-- `data-name="..."` (used for search)
-- the emoji
-- the `<h3>` title
-- the `<p>` description
-- the button text / link
+## Rules this page is written under
 
-The search bar and responsive grid will automatically handle dozens or hundreds of cards.
+The portfolio has a standing discipline that the marketing copy inherits:
 
-## Customization tips
-- Change the accent color by editing the `--accent` CSS variable
-- Replace “Coming soon” buttons with real links when apps go live
-- Add categories later by adding data-category attributes + filter buttons if needed
+1. **No outcome claims.** Never "saves you $X", "improves your health", "faster approval".
+   Behaviour and capability only.
+2. **No professional-role claims.** No "certified", "diagnoses", "advises", "represents you".
+   Each app card states the line it does not cross.
+3. **No fabricated numbers.** No user counts, no market sizes, no ratings — nothing that
+   isn't verifiable.
+4. **Availability stated honestly.** All ten apps are in development. The page says so on every
+   card and again in the closing note; nothing implies an App Store listing that doesn't exist.
 
----
+When an app ships, change its `.status` badge and add the App Store link — leave the rest of
+the discipline intact.
 
-© 2026 Prameya LLC
+## Design
+
+No fonts, scripts, or assets are fetched from third parties, so the page cannot leak a visitor's
+IP to anyone but GitHub. Colours are each app's real accent from the portfolio design tokens
+(`OHBrand`), so the site and the App Store screenshots read as one product line.

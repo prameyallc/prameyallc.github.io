@@ -1,451 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prameya LLC — Expert knowledge for everyone</title>
-  <meta name="description" content="Prameya makes expert knowledge accessible, available, and useful to everyone — turning it into a commodity through a growing portfolio of apps." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0a0a0b;
-      --bg-elevated: #121214;
-      --bg-card: #18181b;
-      --border: #27272a;
-      --text: #fafafa;
-      --text-muted: #a1a1aa;
-      --accent: #6366f1;
-      --accent-hover: #818cf8;
-      --radius: 12px;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prameya — Expert knowledge for everyone</title>
+<meta name="description" content="A portfolio of on-device apps that put professional-grade knowledge — clinical, legal, financial, technical — into ordinary hands. No accounts. No servers. Sources you can check.">
+<meta property="og:title" content="Prameya — Expert knowledge for everyone">
+<meta property="og:description" content="Ten apps that hand you what a professional knows, on a device that keeps it to itself.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/OmniSalub.png">
+<style>
+  :root{
+    --bg:#0B0B0E; --bg2:#131318; --card:#17171D; --line:#26262F;
+    --ink:#F2F3F6; --dim:#9A9CA8; --faint:#63656F;
+    --sp-s:12px; --sp-m:16px; --sp-l:24px; --sp-xl:32px; --sp-xxl:48px;
+    --r-sheet:16px;
+    --max:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:400 17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--sp-l)}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  nav{position:sticky;top:0;z-index:50;background:rgba(11,11,14,.82);
+      backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;letter-spacing:-.02em;font-size:19px}
+  .brand span{color:#4DA3F0}
+  .navlinks{display:flex;gap:var(--sp-l);font-size:15px;color:var(--dim)}
+  .navlinks a:hover{color:var(--ink)}
+  @media(max-width:640px){.navlinks{display:none}}
 
-    html {
-      scroll-behavior: smooth;
-    }
+  header{padding:96px 0 72px;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:70vh;
+    background:radial-gradient(ellipse at 30% 0%,rgba(77,163,240,.20),transparent 60%),
+               radial-gradient(ellipse at 75% 20%,rgba(176,48,138,.13),transparent 55%);
+    pointer-events:none}
+  .eyebrow{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--dim);border:1px solid var(--line);border-radius:100px;padding:6px 14px;margin-bottom:var(--sp-l)}
+  h1{font-size:clamp(38px,6.4vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:700;max-width:16ch}
+  h1 em{font-style:normal;background:linear-gradient(100deg,#4DA3F0,#40D9F2 45%,#B0308A);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{margin-top:var(--sp-l);font-size:clamp(17px,2.1vw,21px);color:var(--dim);max-width:60ch;line-height:1.62}
+  .cta{margin-top:var(--sp-xl);display:flex;gap:var(--sp-s);flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 22px;border-radius:100px;font-size:15px;font-weight:600;
+       border:1px solid var(--line);transition:.18s}
+  .btn.primary{background:var(--ink);color:#0B0B0E;border-color:var(--ink)}
+  .btn.primary:hover{opacity:.88}
+  .btn.ghost:hover{border-color:var(--dim);background:var(--bg2)}
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+  section{padding:76px 0;border-top:1px solid var(--line)}
+  .kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:var(--sp-s)}
+  h2{font-size:clamp(27px,3.6vw,38px);letter-spacing:-.028em;line-height:1.16;font-weight:700}
+  .sub{margin-top:var(--sp-m);color:var(--dim);max-width:66ch;font-size:17px}
 
-    /* Navigation */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(10, 10, 11, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 1.5rem;
-    }
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--sp-m);margin-top:var(--sp-xl)}
+  .p{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sheet);padding:var(--sp-l)}
+  .p h3{font-size:17px;margin-bottom:6px;letter-spacing:-.01em}
+  .p p{font-size:15px;color:var(--dim);line-height:1.55}
 
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  .group{margin-top:var(--sp-xxl)}
+  .group-head{display:flex;align-items:baseline;gap:var(--sp-s);flex-wrap:wrap;margin-bottom:var(--sp-l);
+    padding-bottom:var(--sp-s);border-bottom:1px solid var(--line)}
+  .group-head h3{font-size:20px;letter-spacing:-.02em}
+  .group-head span{font-size:14px;color:var(--faint)}
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.25rem;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      text-decoration: none;
-    }
+  .apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--sp-m)}
+  .app{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sheet);
+       padding:var(--sp-l);position:relative;overflow:hidden;transition:.2s;display:block}
+  .app::after{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--a);opacity:.85}
+  .app:hover{transform:translateY(-2px);border-color:#33333E;background:#1A1A21}
+  .app-top{display:flex;align-items:center;gap:var(--sp-s);margin-bottom:var(--sp-m)}
+  .app-top img{width:46px;height:46px;border-radius:11px;flex:none;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+  .app-name{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+  .app-for{font-size:13px;color:var(--a);font-weight:600;letter-spacing:.01em}
+  .app p{font-size:15px;color:var(--dim);line-height:1.58}
+  .app ul{list-style:none;margin-top:var(--sp-m);display:flex;flex-wrap:wrap;gap:6px}
+  .app li{font-size:12.5px;color:var(--dim);background:#1F1F27;border:1px solid var(--line);
+    border-radius:100px;padding:4px 11px}
+  .status{display:inline-block;margin-bottom:var(--sp-m);font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint);border:1px solid var(--line);border-radius:100px;padding:3px 9px}
 
-    .logo span {
-      color: var(--accent);
-    }
+  .vision blockquote{margin-top:var(--sp-l);font-size:clamp(21px,3vw,29px);line-height:1.4;
+    letter-spacing:-.02em;max-width:22ch;font-weight:600}
+  .vision .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--sp-xl);margin-top:var(--sp-xl)}
+  .vision p{color:var(--dim);font-size:16px;line-height:1.66}
+  .vision strong{color:var(--ink);font-weight:600}
 
-    .nav-links {
-      display: flex;
-      gap: 1.75rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    /* Hero */
-    .hero {
-      padding: 6rem 1.5rem 5rem;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 3.75rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-    }
-
-    .hero h1 .highlight {
-      background: linear-gradient(135deg, #818cf8, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      max-width: 620px;
-      margin: 0 auto 2.5rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 0.9rem 1.75rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    /* Sections */
-    section {
-      padding: 4rem 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-subtitle {
-      color: var(--text-muted);
-      margin-bottom: 2.5rem;
-    }
-
-    /* Portfolio */
-    .portfolio-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      align-items: center;
-    }
-
-    #search {
-      flex: 1;
-      min-width: 220px;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.75rem 1.1rem;
-      border-radius: 9999px;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    #search:focus {
-      border-color: var(--accent);
-    }
-
-    #search::placeholder {
-      color: var(--text-muted);
-    }
-
-    .app-count {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .app-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.15s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .app-card:hover {
-      border-color: #3f3f46;
-      transform: translateY(-2px);
-    }
-
-    .app-card.hidden {
-      display: none;
-    }
-
-    .app-icon {
-      font-size: 1.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .app-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .app-card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      flex-grow: 1;
-      margin-bottom: 1.25rem;
-    }
-
-    .app-card .card-btn {
-      align-self: flex-start;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--accent);
-      background: transparent;
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.9rem;
-      border-radius: 9999px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .app-card .card-btn:hover {
-      border-color: var(--accent);
-      background: rgba(99, 102, 241, 0.1);
-    }
-
-    /* Vision */
-    .vision {
-      background: var(--bg-elevated);
-      border-radius: 16px;
-      padding: 3rem 2rem;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    .vision h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .vision p {
-      color: var(--text-muted);
-      max-width: 640px;
-      margin: 0 auto;
-      font-size: 1.05rem;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: var(--text);
-    }
-
-    @media (max-width: 640px) {
-      .nav-links {
-        display: none;
-      }
-      .hero {
-        padding: 4rem 1.25rem 3.5rem;
-      }
-      .vision {
-        padding: 2rem 1.25rem;
-      }
-    }
-  </style>
+  footer{border-top:1px solid var(--line);padding:var(--sp-xl) 0 var(--sp-xxl);color:var(--faint);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:var(--sp-m);flex-wrap:wrap}
+  footer a{color:var(--dim)} footer a:hover{color:var(--ink)}
+  .note{margin-top:var(--sp-xl);font-size:13px;color:var(--faint);max-width:74ch;line-height:1.65;
+    border-top:1px solid var(--line);padding-top:var(--sp-m)}
+</style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="logo">Prameya<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#apps">Apps</a></li>
-        <li><a href="#vision">Vision</a></li>
-      </ul>
+
+<nav><div class="wrap">
+  <div class="brand">Prameya<span>.</span></div>
+  <div class="navlinks">
+    <a href="#how">How they work</a><a href="#apps">Apps</a><a href="#vision">Vision</a>
+  </div>
+</div></nav>
+
+<header><div class="wrap">
+  <span class="eyebrow">Prameya LLC</span>
+  <h1>Expert knowledge, <em>for everyone</em>.</h1>
+  <p class="lede">
+    A doctor, a lawyer, a financial planner, a structural engineer — each carries knowledge most
+    people can only rent by the hour. We build apps that hand you that knowledge directly: in plain
+    language, with its sources, running entirely on your own device.
+  </p>
+  <div class="cta">
+    <a class="btn primary" href="#apps">See the portfolio</a>
+    <a class="btn ghost" href="#how">How they're built</a>
+  </div>
+</div></header>
+
+<section id="how"><div class="wrap">
+  <div class="kicker">The standard</div>
+  <h2>Four rules every app follows.</h2>
+  <p class="sub">Not marketing lines — constraints we build against. They decide what these apps are
+    allowed to say to you.</p>
+  <div class="principles">
+    <div class="p"><h3>Runs on your device</h3>
+      <p>No account, no server, no analytics. The models run locally. What you record simply stays
+         where you made it.</p></div>
+    <div class="p"><h3>Every claim has a source</h3>
+      <p>Where an app states something professional, it cites where that came from — and where a
+         source is missing, it says so instead of filling the gap.</p></div>
+    <div class="p"><h3>The knowledge layer is free</h3>
+      <p>"For everyone" would be hollow behind a paywall. Reference, education and safety content stay
+         free. Paid tiers buy depth and convenience, never access to knowing.</p></div>
+    <div class="p"><h3>It won't pretend to be your professional</h3>
+      <p>These apps prepare you, organise you and explain things. They don't diagnose you, represent
+         you or advise you. That line is drawn in the code, not the small print.</p></div>
+  </div>
+</div></section>
+
+<section id="apps"><div class="wrap">
+  <div class="kicker">The portfolio</div>
+  <h2>Ten apps. One idea.</h2>
+  <p class="sub">Each takes a field where expertise is expensive and asks the same question: what does
+    the professional actually know — and how much of it can you simply be handed?</p>
+
+  <div class="group">
+    <div class="group-head"><h3>Health &amp; the body</h3><span>What a good practice knows about you, kept by you.</span></div>
+    <div class="apps">
+
+      <div class="app" style="--a:#4DA3F0">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniSalub.png" alt="OmniSalub icon">
+          <div><div class="app-name">OmniSalub</div><div class="app-for">For people managing a condition</div></div></div>
+        <p>The record a clinic keeps about you — readings, history, what to raise next visit — kept on
+           your phone instead of behind a portal login. Walk into the appointment prepared rather than
+           trying to remember.</p>
+        <ul><li>Readings from your own cuff</li><li>Visit pack</li><li>Imaging history</li><li>iPhone · Mac · Watch</li></ul>
+      </div>
+
+      <div class="app" style="--a:#037C84">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniDent.png" alt="OmniDent icon">
+          <div><div class="app-name">OmniDent</div><div class="app-for">For households</div></div></div>
+        <p>The daily habits a hygienist actually asks about, tracked simply — with your own photo
+           history over time, and the questions worth raising at the next appointment.</p>
+        <ul><li>Daily routine</li><li>Photo journal</li><li>Family profiles</li></ul>
+      </div>
+
+      <div class="app" style="--a:#C2622F">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniDerm.png" alt="OmniDerm icon">
+          <div><div class="app-name">OmniDerm</div><div class="app-for">For anyone watching a change</div></div></div>
+        <p>A private journal for your skin. Photograph the same spot across months and keep the series
+           together, in your own words. The app records what you noticed — it never tells you what it is.</p>
+        <ul><li>Photo timeline</li><li>Your own notes</li><li>Visit prep</li></ul>
+      </div>
+
+      <div class="app" style="--a:#6D5AE0">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniRx.png" alt="OmniRx icon">
+          <div><div class="app-name">OmniRx</div><div class="app-for">For anyone on a prescription</div></div></div>
+        <p>What a class of medicine is for, in plain language drawn from published labelling — plus a
+           simple daily check and refill dates, so you reach the pharmacy counter knowing what to ask.</p>
+        <ul><li>Plain-language reference</li><li>Daily check</li><li>Refill dates</li></ul>
+      </div>
+
     </div>
-  </nav>
+  </div>
 
-  <header class="hero">
-    <h1>Expert knowledge<br><span class="highlight">for everyone.</span></h1>
-    <p>Making expert knowledge accessible, available, and useful — turning it into a commodity through a growing portfolio of apps.</p>
-    <a href="#apps" class="btn">Explore the Apps →</a>
-  </header>
+  <div class="group">
+    <div class="group-head"><h3>Professional knowledge</h3><span>Where an hour of advice costs more than a year of software.</span></div>
+    <div class="apps">
 
-  <section id="apps">
-    <h2 class="section-title">App Portfolio</h2>
-    <p class="section-subtitle">A growing collection of tools that put specialized expertise into everyone’s hands.</p>
+      <div class="app" style="--a:#4A6FB5">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniLex.png" alt="OmniLex icon">
+          <div><div class="app-name">OmniLex</div><div class="app-for">For people facing a legal process</div></div></div>
+        <p>The text of the law already belongs to everyone — it is simply unreadable. OmniLex puts
+           public legal codes into plain language with every passage cited, so you arrive at a
+           consultation already knowing the shape of your question.</p>
+        <ul><li>Public codes, cited</li><li>Plain-language guides</li><li>Private document vault</li></ul>
+      </div>
 
-    <div class="portfolio-controls">
-      <input type="search" id="search" placeholder="Search apps..." autocomplete="off" />
-      <span class="app-count" id="app-count"></span>
+      <div class="app" style="--a:#8A5A2B">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniBuild.png" alt="OmniBuild icon">
+          <div><div class="app-name">OmniBuild</div><div class="app-for">For landowners and homeowners</div></div></div>
+        <p>Building means permits, utility connections, inspections and trades — a maze that is mostly
+           procedure, not expertise. OmniBuild maps what applies to your project, with the public
+           standards cited, and is clear about which parts genuinely need a licensed professional.</p>
+        <ul><li>Permits &amp; utilities</li><li>OSHA · ADA · EPA reference</li><li>Project log</li></ul>
+      </div>
+
+      <div class="app" style="--a:#816B22">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniWealth.png" alt="OmniWealth icon">
+          <div><div class="app-name">OmniWealth</div><div class="app-for">For people learning how money works</div></div></div>
+        <p>How money concepts actually work, explained with sources you can check, plus tools to run
+           your own numbers. It never recommends a product or an allocation — that isn't the gap it fills.</p>
+        <ul><li>Cited learn library</li><li>Your own scenarios</li><li>No bank connection, ever</li></ul>
+      </div>
+
+      <div class="app" style="--a:#C25E00">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniOps.png" alt="OmniOps icon">
+          <div><div class="app-name">OmniOps</div><div class="app-for">For operators and team leads</div></div></div>
+        <p>Strip the deck away from a management consultant and what remains is discipline: structured
+           decisions, honest retrospectives, habits reviewed on a cadence. That is a practice you can
+           keep yourself — this is where you keep it.</p>
+        <ul><li>Decision journal</li><li>Work &amp; reflection log</li><li>Consistency, not scores</li></ul>
+      </div>
+
     </div>
+  </div>
 
-    <div class="grid" id="app-grid">
-      <!-- App cards — duplicate any of these blocks to add more -->
-      <article class="app-card" data-name="Expert Advisor" data-desc="conversational domain experts">
-        <div class="app-icon">🧠</div>
-        <h3>Expert Advisor</h3>
-        <p>Chat with domain specialists powered by curated expert knowledge.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
+  <div class="group">
+    <div class="group-head"><h3>Learning</h3><span>Subjects usually gated behind a tutor's hourly rate.</span></div>
+    <div class="apps">
 
-      <article class="app-card" data-name="Knowledge Compressor" data-desc="summaries distillation">
-        <div class="app-icon">📚</div>
-        <h3>Knowledge Compressor</h3>
-        <p>Turn dense expert material into clear, actionable summaries in seconds.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
+      <div class="app" style="--a:#B0308A">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniMathematics.png" alt="OmniMath icon">
+          <div><div class="app-name">OmniMath</div><div class="app-for">For the self-taught</div></div></div>
+        <p>Twenty-one chapters that build on each other, a cross-linked codex of concepts, and worked
+           proofs that never skip a line. What a good tutor really gives you is the step that was left
+           out — so none are.</p>
+        <ul><li>21 chapters</li><li>Interactive proofs</li><li>Works offline</li></ul>
+      </div>
 
-      <article class="app-card" data-name="Skill Accelerator" data-desc="learning mastery">
-        <div class="app-icon">⚡</div>
-        <h3>Skill Accelerator</h3>
-        <p>Structured learning paths that compress years of expertise into weeks.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
+      <div class="app" style="--a:#40D9F2">
+        <span class="status">In development</span>
+        <div class="app-top"><img src="assets/icons/OmniPhysics.png" alt="OmniPhysics icon">
+          <div><div class="app-name">OmniPhysics</div><div class="app-for">For the curious</div></div></div>
+        <p>Physics you can experiment with rather than only read. Change a value in the sandbox and
+           watch what it does — then follow the reasoning, step by step, from mechanics through to
+           modern physics.</p>
+        <ul><li>Sandbox lab</li><li>Worked reasoning</li><li>Concept map</li></ul>
+      </div>
 
-      <article class="app-card" data-name="Insight Engine" data-desc="analysis research">
-        <div class="app-icon">🔍</div>
-        <h3>Insight Engine</h3>
-        <p>Surface non-obvious insights from complex domains and data.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
-
-      <article class="app-card" data-name="Decision Framework" data-desc="frameworks decision making">
-        <div class="app-icon">🧭</div>
-        <h3>Decision Framework</h3>
-        <p>Apply proven expert decision frameworks to your own problems.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
-
-      <article class="app-card" data-name="Domain Deep Dive" data-desc="research deep dive">
-        <div class="app-icon">🌊</div>
-        <h3>Domain Deep Dive</h3>
-        <p>Go from novice to informed practitioner in any specialized field.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
-
-      <article class="app-card" data-name="Expert Briefs" data-desc="briefings reports">
-        <div class="app-icon">📋</div>
-        <h3>Expert Briefs</h3>
-        <p>Daily and weekly briefings distilled from top domain experts.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
-
-      <article class="app-card" data-name="Knowledge Graph Explorer" data-desc="graph relationships">
-        <div class="app-icon">🕸️</div>
-        <h3>Knowledge Graph Explorer</h3>
-        <p>Visualize and navigate the relationships between expert concepts.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
-
-      <article class="app-card" data-name="Mentor Match" data-desc="mentorship matching">
-        <div class="app-icon">🤝</div>
-        <h3>Mentor Match</h3>
-        <p>Connect with the right expert guidance for your current challenge.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
-
-      <article class="app-card" data-name="Practice Lab" data-desc="practice exercises">
-        <div class="app-icon">🏋️</div>
-        <h3>Practice Lab</h3>
-        <p>Hands-on exercises and simulations built from real expert workflows.</p>
-        <button class="card-btn">Coming soon</button>
-      </article>
     </div>
-  </section>
+  </div>
+</div></section>
 
-  <section id="vision">
-    <div class="vision">
-      <h2>Our Vision</h2>
-      <p>
-        To make expert knowledge accessible, available, and useful to everyone — 
-        and turn it into a commodity. We believe specialized expertise should not 
-        stay locked behind paywalls, jargon, or limited access. Through our portfolio 
-        of apps, we are democratizing what was once exclusive.
-      </p>
+<section id="vision" class="vision"><div class="wrap">
+  <div class="kicker">Why</div>
+  <blockquote>Expertise shouldn't be something you can only rent.</blockquote>
+  <div class="cols">
+    <div>
+      <p>Most professional knowledge isn't secret. It is <strong>public, written down, and largely
+      unreadable</strong> — scattered across codes and guidelines, in a register written for
+      colleagues rather than for the people it describes.</p>
+      <p style="margin-top:var(--sp-m)">What you actually pay a professional for is usually two things: the translation, and the
+      judgement. The judgement is real and worth paying for. <strong>The translation shouldn't cost
+      an hourly rate.</strong></p>
     </div>
-  </section>
+    <div>
+      <p>So each app takes one field and does the translation — carefully, with sources, and with a
+      hard line at the point where genuine professional judgement begins.</p>
+      <p style="margin-top:var(--sp-m)">The result is meant to make you a <strong>better client, not a substitute for one</strong>:
+      someone who walks in prepared, asks sharper questions, and knows which parts they can handle
+      themselves.</p>
+    </div>
+  </div>
+  <p class="note">All ten apps are in active development and are not yet available on the App Store.
+    Nothing on this page is medical, legal, financial or engineering advice. None of these apps
+    diagnoses a condition, represents you in a legal matter, or recommends an investment.</p>
+</div></section>
 
-  <footer>
-    <p>© 2026 Prameya LLC · <a href="https://github.com/prameyallc">GitHub</a></p>
-  </footer>
+<footer><div class="wrap">
+  <div>© 2026 Prameya LLC</div>
+  <div><a href="https://github.com/prameyallc">GitHub</a></div>
+</div></footer>
 
-  <script>
-    const searchInput = document.getElementById('search');
-    const cards = document.querySelectorAll('.app-card');
-    const countEl = document.getElementById('app-count');
-
-    function updateCount() {
-      const visible = document.querySelectorAll('.app-card:not(.hidden)').length;
-      countEl.textContent = `${visible} app${visible !== 1 ? 's' : ''}`;
-    }
-
-    searchInput.addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase().trim();
-      cards.forEach(card => {
-        const name = card.dataset.name.toLowerCase();
-        const desc = card.dataset.desc.toLowerCase();
-        const match = !q || name.includes(q) || desc.includes(q);
-        card.classList.toggle('hidden', !match);
-      });
-      updateCount();
-    });
-
-    updateCount();
-  </script>
 </body>
 </html>
