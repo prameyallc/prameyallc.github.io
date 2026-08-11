@@ -19,7 +19,7 @@ Grouped as they appear on the page. Each links back to a private repo where the 
 regulatory posture and issue register live.
 
 **Health & the body** — OmniSalub · OmniDent · OmniDerm · OmniRx
-**Professional knowledge** — OmniLex · OmniBuild · OmniWealth · OmniOps
+**Professional knowledge** — OmniLex · OmniBuild · OmniWealth
 **Learning** — OmniMath · OmniPhysics
 
 ## Rules this page is written under
