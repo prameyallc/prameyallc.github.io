@@ -1,6 +1,6 @@
 # prameyallc.github.io
 
-The Prameya LLC landing page — <https://prameyallc.github.io/>
+The Prameya LLC company site — <https://prameyallc.github.io/>
 
 **Expert knowledge for everyone.**
 
@@ -8,38 +8,42 @@ The Prameya LLC landing page — <https://prameyallc.github.io/>
 
 | Path | What it is |
 |---|---|
-| `index.html` | The whole site. Single file, no build step, no external requests. |
-| `assets/icons/` | App icons, 256 px, generated from each app's own `OHBrand` accent. |
+| `src/apps.json` | Canonical catalog: copy, accents, status, privacy URLs. |
+| `src/pages/` | Unique page bodies. |
+| `src/build_site.py` | Stdlib generator. Writes HTML at the repo root. |
+| `assets/css/site.css` | Design system. |
+| `assets/icons/` | App icons, 256 px, from each app's `OHBrand` accent. |
+| `AGENTS.md` | Marketing rules, privacy split, status protocol. |
+| `SITE.md` | Sitemap, domain cutover, how to add an app. |
 
-Served by GitHub Pages from `main` at the repository root. Pushing to `main` publishes.
+Served by GitHub Pages from `main` at the repository root. Pushing to `main` publishes. Generated HTML is committed; GitHub does not run the builder.
+
+```
+python3 src/build_site.py
+python3 -m unittest tests.test_site -v
+```
+
+Do not hand-edit generated HTML.
 
 ## The ten apps
 
-Grouped as they appear on the page. Each links back to a private repo where the strategy,
-regulatory posture and issue register live.
+**Health & the body** — OmniSalub · OmniDent · OmniDerm · OmniRx  
+**Professional knowledge** — OmniLex · OmniBuild · OmniWealth  
+**Learning** — OmniMath · OmniAero · OmniPhysics
 
-**Health & the body** — OmniSalub · OmniDent · OmniDerm · OmniRx
-**Professional knowledge** — OmniLex · OmniBuild · OmniWealth
-**Learning** — OmniMath · OmniPhysics
+OmniOps has a privacy policy on the [privacy hub](https://prameyallc.github.io/privacy/) and is not in this public portfolio.
 
-## Rules this page is written under
+## Rules this site is written under
 
-The portfolio has a standing discipline that the marketing copy inherits:
+1. **No outcome claims.** Never "saves you $X", "improves your health", "faster approval". Behaviour and capability only.
+2. **No professional-role claims.** No "certified", "diagnoses", "advises", "represents you" as a positive claim. Each app page states the line it does not cross. OmniDent must not use a blanket "does not diagnose" sentence — its published policy withdrew that wording on 24 August 2026.
+3. **No fabricated numbers.** No user counts, no market sizes, no ratings — nothing that isn't verifiable.
+4. **Availability stated honestly.** All ten apps are in development. When an app ships, set `store_url` in `src/apps.json` and rebuild.
 
-1. **No outcome claims.** Never "saves you $X", "improves your health", "faster approval".
-   Behaviour and capability only.
-2. **No professional-role claims.** No "certified", "diagnoses", "advises", "represents you".
-   Each app card states the line it does not cross.
-3. **No fabricated numbers.** No user counts, no market sizes, no ratings — nothing that
-   isn't verifiable.
-4. **Availability stated honestly.** All ten apps are in development. The page says so on every
-   card and again in the closing note; nothing implies an App Store listing that doesn't exist.
-
-When an app ships, change its `.status` badge and add the App Store link — leave the rest of
-the discipline intact.
+Contact is `admin@prameya.legal`. That inbox is not a mailing list.
 
 ## Design
 
-No fonts, scripts, or assets are fetched from third parties, so the page cannot leak a visitor's
-IP to anyone but GitHub. Colours are each app's real accent from the portfolio design tokens
-(`OHBrand`), so the site and the App Store screenshots read as one product line.
+No fonts, scripts, or assets are fetched from third parties, so a visit does not leak an IP to anyone but GitHub (and destinations the visitor chooses to open). Colours are each app's real accent from the portfolio design tokens (`OHBrand`).
+
+Privacy policies are a **separate** site: <https://prameyallc.github.io/privacy/>. This repo must not publish a `privacy/` directory.

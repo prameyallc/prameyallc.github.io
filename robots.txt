@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prameyallc.github.io/sitemap.xml

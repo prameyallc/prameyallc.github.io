@@ -5,110 +5,28 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Prameya — Expert knowledge for everyone</title>
 <meta name="description" content="A portfolio of on-device apps that put professional-grade knowledge — clinical, legal, financial, technical — into ordinary hands. No accounts. No servers. Sources you can check.">
+<link rel="canonical" href="https://prameyallc.github.io/">
 <meta property="og:title" content="Prameya — Expert knowledge for everyone">
-<meta property="og:description" content="Ten apps that hand you what a professional knows, on a device that keeps it to itself.">
+<meta property="og:description" content="A portfolio of on-device apps that put professional-grade knowledge — clinical, legal, financial, technical — into ordinary hands. No accounts. No servers. Sources you can check.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://prameyallc.github.io/">
+<meta name="theme-color" content="#0B0B0E">
 <link rel="icon" href="assets/icons/OmniSalub.png">
-<style>
-  :root{
-    --bg:#0B0B0E; --bg2:#131318; --card:#17171D; --line:#26262F;
-    --ink:#F2F3F6; --dim:#9A9CA8; --faint:#63656F;
-    --sp-s:12px; --sp-m:16px; --sp-l:24px; --sp-xl:32px; --sp-xxl:48px;
-    --r-sheet:16px;
-    --max:1140px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--bg); color:var(--ink);
-    font:400 17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing:antialiased; overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--sp-l)}
-
-  nav{position:sticky;top:0;z-index:50;background:rgba(11,11,14,.82);
-      backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .brand{font-weight:700;letter-spacing:-.02em;font-size:19px}
-  .brand span{color:#4DA3F0}
-  .navlinks{display:flex;gap:var(--sp-l);font-size:15px;color:var(--dim)}
-  .navlinks a:hover{color:var(--ink)}
-  @media(max-width:640px){.navlinks{display:none}}
-
-  header{padding:96px 0 72px;position:relative;overflow:hidden}
-  header::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:70vh;
-    background:radial-gradient(ellipse at 30% 0%,rgba(77,163,240,.20),transparent 60%),
-               radial-gradient(ellipse at 75% 20%,rgba(176,48,138,.13),transparent 55%);
-    pointer-events:none}
-  .eyebrow{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--dim);border:1px solid var(--line);border-radius:100px;padding:6px 14px;margin-bottom:var(--sp-l)}
-  h1{font-size:clamp(38px,6.4vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:700;max-width:16ch}
-  h1 em{font-style:normal;background:linear-gradient(100deg,#4DA3F0,#40D9F2 45%,#B0308A);
-    -webkit-background-clip:text;background-clip:text;color:transparent}
-  .lede{margin-top:var(--sp-l);font-size:clamp(17px,2.1vw,21px);color:var(--dim);max-width:60ch;line-height:1.62}
-  .cta{margin-top:var(--sp-xl);display:flex;gap:var(--sp-s);flex-wrap:wrap}
-  .btn{display:inline-block;padding:12px 22px;border-radius:100px;font-size:15px;font-weight:600;
-       border:1px solid var(--line);transition:.18s}
-  .btn.primary{background:var(--ink);color:#0B0B0E;border-color:var(--ink)}
-  .btn.primary:hover{opacity:.88}
-  .btn.ghost:hover{border-color:var(--dim);background:var(--bg2)}
-
-  section{padding:76px 0;border-top:1px solid var(--line)}
-  .kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:var(--sp-s)}
-  h2{font-size:clamp(27px,3.6vw,38px);letter-spacing:-.028em;line-height:1.16;font-weight:700}
-  .sub{margin-top:var(--sp-m);color:var(--dim);max-width:66ch;font-size:17px}
-
-  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--sp-m);margin-top:var(--sp-xl)}
-  .p{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sheet);padding:var(--sp-l)}
-  .p h3{font-size:17px;margin-bottom:6px;letter-spacing:-.01em}
-  .p p{font-size:15px;color:var(--dim);line-height:1.55}
-
-  .group{margin-top:var(--sp-xxl)}
-  .group-head{display:flex;align-items:baseline;gap:var(--sp-s);flex-wrap:wrap;margin-bottom:var(--sp-l);
-    padding-bottom:var(--sp-s);border-bottom:1px solid var(--line)}
-  .group-head h3{font-size:20px;letter-spacing:-.02em}
-  .group-head span{font-size:14px;color:var(--faint)}
-
-  .apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--sp-m)}
-  .app{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sheet);
-       padding:var(--sp-l);position:relative;overflow:hidden;transition:.2s;display:block}
-  .app::after{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--a);opacity:.85}
-  .app:hover{transform:translateY(-2px);border-color:#33333E;background:#1A1A21}
-  .app-top{display:flex;align-items:center;gap:var(--sp-s);margin-bottom:var(--sp-m)}
-  .app-top img{width:46px;height:46px;border-radius:11px;flex:none;box-shadow:0 2px 10px rgba(0,0,0,.4)}
-  .app-name{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.2}
-  .app-for{font-size:13px;color:var(--a);font-weight:600;letter-spacing:.01em}
-  .app p{font-size:15px;color:var(--dim);line-height:1.58}
-  .app ul{list-style:none;margin-top:var(--sp-m);display:flex;flex-wrap:wrap;gap:6px}
-  .app li{font-size:12.5px;color:var(--dim);background:#1F1F27;border:1px solid var(--line);
-    border-radius:100px;padding:4px 11px}
-  .status{display:inline-block;margin-bottom:var(--sp-m);font-size:11px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--faint);border:1px solid var(--line);border-radius:100px;padding:3px 9px}
-
-  .vision blockquote{margin-top:var(--sp-l);font-size:clamp(21px,3vw,29px);line-height:1.4;
-    letter-spacing:-.02em;max-width:22ch;font-weight:600}
-  .vision .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--sp-xl);margin-top:var(--sp-xl)}
-  .vision p{color:var(--dim);font-size:16px;line-height:1.66}
-  .vision strong{color:var(--ink);font-weight:600}
-
-  footer{border-top:1px solid var(--line);padding:var(--sp-xl) 0 var(--sp-xxl);color:var(--faint);font-size:14px}
-  footer .wrap{display:flex;justify-content:space-between;gap:var(--sp-m);flex-wrap:wrap}
-  footer a{color:var(--dim)} footer a:hover{color:var(--ink)}
-  .note{margin-top:var(--sp-xl);font-size:13px;color:var(--faint);max-width:74ch;line-height:1.65;
-    border-top:1px solid var(--line);padding-top:var(--sp-m)}
-</style>
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@context": "https://schema.org", "@type": "Organization", "name": "Prameya LLC", "url": "https://prameyallc.github.io/", "email": "admin@prameya.legal", "sameAs": ["https://github.com/prameyallc", "https://x.com/PrameyaLLC"]}, {"@type": "ItemList", "name": "Prameya apps", "numberOfItems": 10, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "OmniSalub", "url": "https://prameyallc.github.io/apps/omnisalub/"}, {"@type": "ListItem", "position": 2, "name": "OmniDent", "url": "https://prameyallc.github.io/apps/omnident/"}, {"@type": "ListItem", "position": 3, "name": "OmniDerm", "url": "https://prameyallc.github.io/apps/omniderm/"}, {"@type": "ListItem", "position": 4, "name": "OmniRx", "url": "https://prameyallc.github.io/apps/omnirx/"}, {"@type": "ListItem", "position": 5, "name": "OmniLex", "url": "https://prameyallc.github.io/apps/omnilex/"}, {"@type": "ListItem", "position": 6, "name": "OmniBuild", "url": "https://prameyallc.github.io/apps/omnibuild/"}, {"@type": "ListItem", "position": 7, "name": "OmniWealth", "url": "https://prameyallc.github.io/apps/omniwealth/"}, {"@type": "ListItem", "position": 8, "name": "OmniMath", "url": "https://prameyallc.github.io/apps/omnimath/"}, {"@type": "ListItem", "position": 9, "name": "OmniAero", "url": "https://prameyallc.github.io/apps/omniaero/"}, {"@type": "ListItem", "position": 10, "name": "OmniPhysics", "url": "https://prameyallc.github.io/apps/omniphysics/"}]}]}</script>
 </head>
 <body>
-
-<nav><div class="wrap">
-  <div class="brand">Prameya<span>.</span></div>
-  <div class="navlinks">
-    <a href="#how">How they work</a><a href="#apps">Apps</a><a href="#vision">Vision</a>
-  </div>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site" aria-label="Primary"><div class="wrap">
+  <a class="brand" href="./" aria-current="page">Prameya<span>.</span></a>
+  <div class="navlinks nav-desktop"><a href="apps/">Apps</a><a href="standard/">Standard</a><a href="about/">About</a><a href="privacy-model/">Privacy</a><a href="contact/">Contact</a></div>
+  <details class="nav-mobile">
+    <summary>Menu</summary>
+    <div class="navlinks"><a href="apps/">Apps</a><a href="standard/">Standard</a><a href="about/">About</a><a href="privacy-model/">Privacy</a><a href="contact/">Contact</a></div>
+  </details>
 </div></nav>
-
-<header><div class="wrap">
+<main id="main">
+<header class="hero"><div class="wrap">
   <span class="eyebrow">Prameya LLC</span>
   <h1>Expert knowledge, <em>for everyone</em>.</h1>
   <p class="lede">
@@ -117,8 +35,9 @@
     language, with its sources, running entirely on your own device.
   </p>
   <div class="cta">
-    <a class="btn primary" href="#apps">See the portfolio</a>
-    <a class="btn ghost" href="#how">How they're built</a>
+    <a class="btn primary" href="apps/">See the portfolio</a>
+    <a class="btn ghost" href="standard/">How they're built</a>
+    <a class="btn ghost" href="mailto:admin@prameya.legal?subject=Prameya">Write to us</a>
   </div>
 </div></header>
 
@@ -130,7 +49,8 @@
   <div class="principles">
     <div class="p"><h3>Runs on your device</h3>
       <p>No account, no server, no analytics. The models run locally. What you record simply stays
-         where you made it.</p></div>
+         where you made it. Narrow exceptions — model-file downloads on three apps — are described
+         on the <a class="inline" href="privacy-model/">privacy model</a> page.</p></div>
     <div class="p"><h3>Every claim has a source</h3>
       <p>Where an app states something professional, it cites where that came from — and where a
          source is missing, it says so instead of filling the gap.</p></div>
@@ -148,123 +68,87 @@
   <h2>Ten apps. One idea.</h2>
   <p class="sub">Each takes a field where expertise is expensive and asks the same question: what does
     the professional actually know — and how much of it can you simply be handed?</p>
-
   <div class="group">
     <div class="group-head"><h3>Health &amp; the body</h3><span>What a good practice knows about you, kept by you.</span></div>
-    <div class="apps">
-
-      <div class="app" style="--a:#4DA3F0">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniSalub.png" alt="OmniSalub icon">
-          <div><div class="app-name">OmniSalub</div><div class="app-for">For people managing a condition</div></div></div>
-        <p>The record a clinic keeps about you — readings, history, what to raise next visit — kept on
-           your phone instead of behind a portal login. Walk into the appointment prepared rather than
-           trying to remember.</p>
-        <ul><li>Readings from your own cuff</li><li>Visit pack</li><li>Imaging history</li><li>iPhone · Mac · Watch</li></ul>
-      </div>
-
-      <div class="app" style="--a:#037C84">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniDent.png" alt="OmniDent icon">
-          <div><div class="app-name">OmniDent</div><div class="app-for">For households</div></div></div>
-        <p>The daily habits a hygienist actually asks about, tracked simply — with your own photo
-           history over time, and the questions worth raising at the next appointment.</p>
-        <ul><li>Daily routine</li><li>Photo journal</li><li>Family profiles</li></ul>
-      </div>
-
-      <div class="app" style="--a:#C2622F">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniDerm.png" alt="OmniDerm icon">
-          <div><div class="app-name">OmniDerm</div><div class="app-for">For anyone watching a change</div></div></div>
-        <p>A private journal for your skin. Photograph the same spot across months and keep the series
-           together, in your own words. The app records what you noticed — it never tells you what it is.</p>
-        <ul><li>Photo timeline</li><li>Your own notes</li><li>Visit prep</li></ul>
-      </div>
-
-      <div class="app" style="--a:#6D5AE0">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniRx.png" alt="OmniRx icon">
-          <div><div class="app-name">OmniRx</div><div class="app-for">For anyone on a prescription</div></div></div>
-        <p>What a class of medicine is for, in plain language drawn from published labelling — plus a
-           simple daily check and refill dates, so you reach the pharmacy counter knowing what to ask.</p>
-        <ul><li>Plain-language reference</li><li>Daily check</li><li>Refill dates</li></ul>
-      </div>
-
-    </div>
+    <div class="apps"><a class="app" style="--a:#4DA3F0" href="apps/omnisalub/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniSalub.png" alt="OmniSalub icon" width="46" height="46">
+    <div><div class="app-name">OmniSalub</div><div class="app-for">For people managing a condition</div></div></div>
+  <p>The record a clinic keeps about you — readings, history, what to raise next visit — kept on your phone instead of behind a portal login. Walk into the appointment prepared rather than trying to remember.</p>
+  
+  <span class="more">Learn more →</span>
+</a><a class="app" style="--a:#037C84" href="apps/omnident/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniDent.png" alt="OmniDent icon" width="46" height="46">
+    <div><div class="app-name">OmniDent</div><div class="app-for">For households</div></div></div>
+  <p>The daily habits a hygienist actually asks about, tracked simply — with your own photo history over time, and the questions worth raising at the next appointment.</p>
+  
+  <span class="more">Learn more →</span>
+</a><a class="app" style="--a:#C2622F" href="apps/omniderm/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniDerm.png" alt="OmniDerm icon" width="46" height="46">
+    <div><div class="app-name">OmniDerm</div><div class="app-for">For anyone watching a change</div></div></div>
+  <p>A private journal for your skin. Photograph the same spot across months and keep the series together, in your own words. The app records what you noticed — it never tells you what it is.</p>
+  
+  <span class="more">Learn more →</span>
+</a><a class="app" style="--a:#6D5AE0" href="apps/omnirx/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniRx.png" alt="OmniRx icon" width="46" height="46">
+    <div><div class="app-name">OmniRx</div><div class="app-for">For anyone on a prescription</div></div></div>
+  <p>What a class of medicine is for, in plain language drawn from published labelling — plus a simple daily check and refill dates, so you reach the pharmacy counter knowing what to ask.</p>
+  
+  <span class="more">Learn more →</span>
+</a></div>
   </div>
-
-  <div class="group">
+<div class="group">
     <div class="group-head"><h3>Professional knowledge</h3><span>Where an hour of advice costs more than a year of software.</span></div>
-    <div class="apps">
-
-      <div class="app" style="--a:#4A6FB5">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniLex.png" alt="OmniLex icon">
-          <div><div class="app-name">OmniLex</div><div class="app-for">For people facing a legal process</div></div></div>
-        <p>The text of the law already belongs to everyone — it is simply unreadable. OmniLex puts
-           public legal codes into plain language with every passage cited, so you arrive at a
-           consultation already knowing the shape of your question.</p>
-        <ul><li>Public codes, cited</li><li>Plain-language guides</li><li>Private document vault</li></ul>
-      </div>
-
-      <div class="app" style="--a:#8A5A2B">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniBuild.png" alt="OmniBuild icon">
-          <div><div class="app-name">OmniBuild</div><div class="app-for">For landowners and homeowners</div></div></div>
-        <p>Building means permits, utility connections, inspections and trades — a maze that is mostly
-           procedure, not expertise. OmniBuild maps what applies to your project, with the public
-           standards cited, and is clear about which parts genuinely need a licensed professional.</p>
-        <ul><li>Permits &amp; utilities</li><li>OSHA · ADA · EPA reference</li><li>Project log</li></ul>
-      </div>
-
-      <div class="app" style="--a:#816B22">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniWealth.png" alt="OmniWealth icon">
-          <div><div class="app-name">OmniWealth</div><div class="app-for">For people learning how money works</div></div></div>
-        <p>How money concepts actually work, explained with sources you can check, plus tools to run
-           your own numbers. It never recommends a product or an allocation — that isn't the gap it fills.</p>
-        <ul><li>Cited learn library</li><li>Your own scenarios</li><li>No bank connection, ever</li></ul>
-      </div>
-
-
-    </div>
+    <div class="apps"><a class="app" style="--a:#4A6FB5" href="apps/omnilex/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniLex.png" alt="OmniLex icon" width="46" height="46">
+    <div><div class="app-name">OmniLex</div><div class="app-for">For people facing a legal process</div></div></div>
+  <p>The text of the law already belongs to everyone — it is simply unreadable. OmniLex puts public legal codes into plain language with every passage cited, so you arrive at a consultation already knowing the shape of your question.</p>
+  
+  <span class="more">Learn more →</span>
+</a><a class="app" style="--a:#8A5A2B" href="apps/omnibuild/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniBuild.png" alt="OmniBuild icon" width="46" height="46">
+    <div><div class="app-name">OmniBuild</div><div class="app-for">For landowners and homeowners</div></div></div>
+  <p>Building means permits, utility connections, inspections and trades — a maze that is mostly procedure, not expertise. OmniBuild maps what applies to your project, with the public standards cited, and is clear about which parts genuinely need a licensed professional.</p>
+  
+  <span class="more">Learn more →</span>
+</a><a class="app" style="--a:#816B22" href="apps/omniwealth/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniWealth.png" alt="OmniWealth icon" width="46" height="46">
+    <div><div class="app-name">OmniWealth</div><div class="app-for">For people learning how money works</div></div></div>
+  <p>How money concepts actually work, explained with sources you can check, plus tools to run your own numbers. It never recommends a product or an allocation — that isn&#x27;t the gap it fills.</p>
+  
+  <span class="more">Learn more →</span>
+</a></div>
   </div>
-
-  <div class="group">
-    <div class="group-head"><h3>Learning</h3><span>Subjects usually gated behind a tutor's hourly rate.</span></div>
-    <div class="apps">
-
-      <div class="app" style="--a:#B0308A">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniMathematics.png" alt="OmniMath icon">
-          <div><div class="app-name">OmniMath</div><div class="app-for">For the self-taught</div></div></div>
-        <p>Twenty-one chapters that build on each other, a cross-linked codex of concepts, and worked
-           proofs that never skip a line. What a good tutor really gives you is the step that was left
-           out — so none are.</p>
-        <ul><li>21 chapters</li><li>Interactive proofs</li><li>Works offline</li></ul>
-      </div>
-
-      <div class="app" style="--a:#1F6FB2">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniAero.png" alt="OmniAero icon">
-          <div><div class="app-name">OmniAero</div><div class="app-for">For student pilots</div></div></div>
-        <p>Ground school built around the FAA's own Airman Certification Standards — the twelve areas
-           of operation, each broken into what you must know, what can go wrong, and what you must do.
-           The regulation itself is always one tap away.</p>
-        <ul><li>Every ACS area</li><li>14 CFR in plain language</li><li>Go / no-go reasoning</li></ul>
-      </div>
-
-      <div class="app" style="--a:#40D9F2">
-        <span class="status">In development</span>
-        <div class="app-top"><img src="assets/icons/OmniPhysics.png" alt="OmniPhysics icon">
-          <div><div class="app-name">OmniPhysics</div><div class="app-for">For the curious</div></div></div>
-        <p>Physics you can experiment with rather than only read. Change a value in the sandbox and
-           watch what it does — then follow the reasoning, step by step, from mechanics through to
-           modern physics.</p>
-        <ul><li>Sandbox lab</li><li>Worked reasoning</li><li>Concept map</li></ul>
-      </div>
-
-    </div>
+<div class="group">
+    <div class="group-head"><h3>Learning</h3><span>Subjects usually gated behind a tutor&#x27;s hourly rate.</span></div>
+    <div class="apps"><a class="app" style="--a:#B0308A" href="apps/omnimath/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniMathematics.png" alt="OmniMath icon" width="46" height="46">
+    <div><div class="app-name">OmniMath</div><div class="app-for">For the self-taught</div></div></div>
+  <p>Twenty-one chapters that build on each other, a cross-linked codex of concepts, and worked proofs that never skip a line. What a good tutor really gives you is the step that was left out — so none are.</p>
+  
+  <span class="more">Learn more →</span>
+</a><a class="app" style="--a:#1F6FB2" href="apps/omniaero/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniAero.png" alt="OmniAero icon" width="46" height="46">
+    <div><div class="app-name">OmniAero</div><div class="app-for">For student pilots</div></div></div>
+  <p>Ground school built around the FAA&#x27;s own Airman Certification Standards — the twelve areas of operation, each broken into what you must know, what can go wrong, and what you must do. The regulation itself is always one tap away.</p>
+  
+  <span class="more">Learn more →</span>
+</a><a class="app" style="--a:#40D9F2" href="apps/omniphysics/">
+  <span class="status">In development</span>
+  <div class="app-top"><img src="assets/icons/OmniPhysics.png" alt="OmniPhysics icon" width="46" height="46">
+    <div><div class="app-name">OmniPhysics</div><div class="app-for">For the curious</div></div></div>
+  <p>Physics you can experiment with rather than only read. Change a value in the sandbox and watch what it does — then follow the reasoning, step by step, from mechanics through to modern physics.</p>
+  
+  <span class="more">Learn more →</span>
+</a></div>
   </div>
 </div></section>
 
@@ -290,13 +174,26 @@
   </div>
   <p class="note">All ten apps are in active development and are not yet available on the App Store.
     Nothing on this page is medical, legal, financial or engineering advice. None of these apps
-    diagnoses a condition, represents you in a legal matter, or recommends an investment.</p>
+    represents you in a legal matter or recommends an investment. None of them is a substitute
+    for a licensed professional.</p>
 </div></section>
-
-<footer><div class="wrap">
+</main>
+<footer class="site"><div class="wrap">
   <div>© 2026 Prameya LLC</div>
-  <div><a href="https://github.com/prameyallc">GitHub</a></div>
-</div></footer>
-
+  <nav aria-label="Footer">
+    <a href="https://github.com/prameyallc">GitHub</a>
+    <a href="https://x.com/PrameyaLLC">X @PrameyaLLC</a>
+    <a href="mailto:admin@prameya.legal">admin@prameya.legal</a>
+    <a href="privacy-model/">Privacy</a>
+    <a href="https://prameyallc.github.io/privacy/">App policies</a>
+    <a href="resources/">Resources</a>
+    <a href="contact/">Contact</a>
+  </nav>
+</div>
+<div class="wrap"><p class="fine">All ten apps are in active development and are not yet available on the App Store.
+Nothing on this site is medical, legal, financial or engineering advice. None of these apps
+represents you in a legal matter or recommends an investment. None of them is a substitute
+for a licensed professional.</p></div>
+</footer>
 </body>
 </html>
