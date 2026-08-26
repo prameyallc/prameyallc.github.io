@@ -28,6 +28,7 @@ HF_APPS = {"omnisalub", "omnident", "omnilex"}
 
 NAV = [
     ("apps/", "Apps"),
+    ("pricing/", "Pricing"),
     ("standard/", "Standard"),
     ("about/", "About"),
     ("privacy-model/", "Privacy"),
@@ -174,6 +175,57 @@ def chips(items: list[str]) -> str:
     if not items:
         return ""
     return '<ul class="chips">' + "".join(f"<li>{esc(item)}</li>" for item in items) + "</ul>"
+
+
+def format_price(price: float) -> str:
+    """Format price with 2 decimal places or as integer if whole number."""
+    if price == int(price):
+        return f"${int(price)}"
+    return f"${price:.2f}"
+
+
+def pricing_table(app: dict) -> str:
+    """Generate pricing tier table HTML for an app."""
+    if "pricing" not in app:
+        return ""
+
+    pricing = app["pricing"]
+    free = pricing.get("free_tier", {})
+    paid = pricing.get("paid_app", {})
+    pro = pricing.get("pro_subscription", {})
+
+    free_features = "".join(f"<li>{esc(f)}</li>" for f in free.get("includes", []))
+    paid_features = "".join(f"<li>{esc(f)}</li>" for f in paid.get("includes", []))
+    pro_features = "".join(f"<li>{esc(f)}</li>" for f in pro.get("includes", []))
+
+    paid_price = format_price(paid.get("price_usd", 0))
+    pro_monthly = format_price(pro.get("price_monthly_usd", 0))
+    pro_yearly = format_price(pro.get("price_yearly_usd", 0))
+
+    return f"""<div class="pricing-tiers">
+  <div class="kicker">Pricing</div>
+  <h2>Three ways to use {esc(app['name'])}</h2>
+  <div class="tier-grid">
+    <div class="tier">
+      <h3>Free</h3>
+      <div class="tier-price">$0</div>
+      <ul class="tier-features">{free_features}</ul>
+    </div>
+    <div class="tier featured">
+      <h3>Full App</h3>
+      <div class="tier-price">{paid_price}</div>
+      <div class="tier-note">One-time purchase</div>
+      <ul class="tier-features">{paid_features}</ul>
+    </div>
+    <div class="tier">
+      <h3>Pro</h3>
+      <div class="tier-price">{pro_monthly}/mo</div>
+      <div class="tier-note">or {pro_yearly}/year</div>
+      <ul class="tier-features">{pro_features}</ul>
+    </div>
+  </div>
+  <p class="pricing-note">The reference library stays free. Personal features are a one-time purchase. Pro features are an optional in-app purchase.</p>
+</div>"""
 
 
 def app_card(app: dict, depth: int, *, compact: bool) -> str:
@@ -394,6 +446,7 @@ def app_page_body(app: dict, catalog: dict, depth: int) -> str:
     <p>{esc(app['hard_line'])}</p>
   </div>
   {hf}
+  {pricing_table(app)}
   <figure class="shot" style="--a:{esc(app['accent'])}">
     <img src="{p}assets/icons/{esc(app['icon'])}" alt="">
     <figcaption>Screenshots will appear here when a public build is ready.</figcaption>
@@ -460,6 +513,7 @@ def load_fragment(name: str, depth: int, catalog: dict) -> str:
         text.replace("{{prefix}}", prefix(depth))
         .replace("{{home}}", href(depth, ""))
         .replace("{{apps}}", href(depth, "apps/"))
+        .replace("{{pricing}}", href(depth, "pricing/"))
         .replace("{{standard}}", href(depth, "standard/"))
         .replace("{{about}}", href(depth, "about/"))
         .replace("{{privacy}}", href(depth, "privacy-model/"))
@@ -541,6 +595,9 @@ def build() -> None:
         )
 
     static = [
+        ("pricing/index.html", 1, "pricing", "Pricing — Prameya",
+         "Three ways to access expert knowledge: free reference library, one-time app purchase, or optional Pro subscription. The knowledge layer stays free.",
+         "/pricing/", "pricing.html"),
         ("standard/index.html", 1, "standard", "The standard — Prameya",
          "Four rules every Prameya app follows: on-device, sourced, a free knowledge layer, and a hard line at professional judgement.",
          "/standard/", "standard.html"),

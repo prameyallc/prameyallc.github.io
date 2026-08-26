@@ -37,7 +37,24 @@
       "hard_line": "OmniSalub does not diagnose, treat, or replace a clinician. It keeps your own record so you can walk into an appointment prepared.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnisalub/",
       "health_data_url": "https://prameyallc.github.io/privacy/omnisalub/health-data/",
-      "meta_description": "OmniSalub keeps readings, history and visit questions on your device. In development. Not a diagnosis, not a clinic, not a substitute for a clinician."
+      "meta_description": "OmniSalub keeps readings, history and visit questions on your device. In development. Not a diagnosis, not a clinic, not a substitute for a clinician.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Reference library", "Basic visit prep", "Limited history"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 4.99,
+          "includes": ["Unlimited readings", "Complete history", "AI model downloads", "All platforms", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 2.99,
+          "price_yearly_usd": 19.99,
+          "includes": ["Export to PDF", "Advanced analytics", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omnident",
@@ -56,7 +73,24 @@
       "hard_line": "OmniDent is not a substitute for a dentist, and it has no FDA authorization. Do not act on chat or photo-note text — ask a dentist.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnident/",
       "health_data_url": "https://prameyallc.github.io/privacy/omnident/health-data/",
-      "meta_description": "OmniDent tracks daily dental habits, a photo journal and visit questions on your device. In development. Not a substitute for a dentist."
+      "meta_description": "OmniDent tracks daily dental habits, a photo journal and visit questions on your device. In development. Not a substitute for a dentist.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Basic routine tracking", "Dental health reference", "Visit prep guide"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 3.99,
+          "includes": ["Unlimited photo journal", "Family profiles", "AI model downloads", "Complete history", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 1.99,
+          "price_yearly_usd": 14.99,
+          "includes": ["Export reports", "Appointment reminders", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omniderm",
@@ -75,7 +109,24 @@
       "hard_line": "OmniDerm never tells you what a mark is. It records what you noticed — photographs and your own notes — so you can keep a private series over time.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniderm/",
       "health_data_url": "https://prameyallc.github.io/privacy/omniderm/health-data/",
-      "meta_description": "OmniDerm is a private skin journal: your photographs, your notes, over time. In development. It never tells you what a mark is."
+      "meta_description": "OmniDerm is a private skin journal: your photographs, your notes, over time. In development. It never tells you what a mark is.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Skin health reference", "Basic note-taking", "Limited timeline"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 3.99,
+          "includes": ["Unlimited photo timeline", "Complete journal history", "Private notes", "Export capability", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 1.99,
+          "price_yearly_usd": 14.99,
+          "includes": ["Advanced timeline views", "Cloud backup", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omnirx",
@@ -94,7 +145,24 @@
       "hard_line": "OmniRx is not medical advice. It does not diagnose, calculate doses, check interactions, or identify medicines from photographs.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnirx/",
       "health_data_url": "https://prameyallc.github.io/privacy/omnirx/health-data/",
-      "meta_description": "OmniRx explains published medicine labelling in plain language and keeps a daily check and refill dates on your device. In development. Not medical advice."
+      "meta_description": "OmniRx explains published medicine labelling in plain language and keeps a daily check and refill dates on your device. In development. Not medical advice.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Medicine reference library", "Basic refill tracking", "Plain-language labeling"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 2.99,
+          "includes": ["Unlimited medications", "Daily check tracking", "Complete history", "Refill reminders", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 1.99,
+          "price_yearly_usd": 12.99,
+          "includes": ["Export medication list", "Advanced reminders", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omnilex",
@@ -113,7 +181,24 @@
       "hard_line": "OmniLex does not represent you, give legal advice, or file anything on your behalf. It puts public legal codes into plain language with every passage cited.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnilex/",
       "health_data_url": null,
-      "meta_description": "OmniLex puts public legal codes into plain language with citations, on your device. In development. It does not represent you."
+      "meta_description": "OmniLex puts public legal codes into plain language with citations, on your device. In development. It does not represent you.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Legal code reference", "Basic plain-language guides", "Limited citations"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 9.99,
+          "includes": ["Complete legal library", "AI model downloads", "Document vault", "Unlimited queries", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 39.99,
+          "includes": ["Advanced legal research", "Export capabilities", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omnibuild",
@@ -132,7 +217,24 @@
       "hard_line": "OmniBuild is not contracting, engineering, architectural, or code-compliance advice, and it is not a substitute for a licensed professional.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnibuild/",
       "health_data_url": null,
-      "meta_description": "OmniBuild maps permits, utilities and public construction standards, and is clear where a licensed professional is required. In development."
+      "meta_description": "OmniBuild maps permits, utilities and public construction standards, and is clear where a licensed professional is required. In development.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Building code reference", "Basic permit guide", "Standards library"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 14.99,
+          "includes": ["Complete project tracking", "Full standards library", "Inspection checklists", "Unlimited projects", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 7.99,
+          "price_yearly_usd": 59.99,
+          "includes": ["Advanced project management", "Export documentation", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omniwealth",
@@ -151,7 +253,24 @@
       "hard_line": "OmniWealth never recommends a product or an allocation, and it never connects to a bank.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniwealth/",
       "health_data_url": null,
-      "meta_description": "OmniWealth explains money concepts with sources and lets you run your own numbers. In development. No product recommendation. No bank connection."
+      "meta_description": "OmniWealth explains money concepts with sources and lets you run your own numbers. In development. No product recommendation. No bank connection.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Financial concept library", "Basic calculators", "Cited sources"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 7.99,
+          "includes": ["Complete financial library", "Unlimited scenarios", "Advanced calculators", "Personal tracking", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 3.99,
+          "price_yearly_usd": 29.99,
+          "includes": ["Export reports", "Advanced modeling", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omnimath",
@@ -170,7 +289,24 @@
       "hard_line": "OmniMath is a course, not a credential and not a tutor who can certify you.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnimath/",
       "health_data_url": null,
-      "meta_description": "OmniMath is twenty-one chapters, a concept codex and worked proofs that never skip a line. Published as OmniMathematics. In development. Works offline."
+      "meta_description": "OmniMath is twenty-one chapters, a concept codex and worked proofs that never skip a line. Published as OmniMathematics. In development. Works offline.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["First 5 chapters", "Basic concept codex", "Sample proofs"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 9.99,
+          "includes": ["All 21 chapters", "Complete concept codex", "All worked proofs", "Interactive exercises", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 3.99,
+          "price_yearly_usd": 29.99,
+          "includes": ["Advanced problem sets", "Progress tracking", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omniaero",
@@ -189,7 +325,24 @@
       "hard_line": "OmniAero is ground school on this device. It is not flight instruction, not an endorsement, and not a substitute for a certified flight instructor or an examiner.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniaero/",
       "health_data_url": null,
-      "meta_description": "OmniAero is ACS ground school on your device, with 14 CFR one tap away. In development. Not flight instruction and not an endorsement."
+      "meta_description": "OmniAero is ACS ground school on your device, with 14 CFR one tap away. In development. Not flight instruction and not an endorsement.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["ACS overview", "Basic 14 CFR reference", "Sample areas of operation"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 19.99,
+          "includes": ["All 12 ACS areas", "Complete 14 CFR library", "Go/no-go scenarios", "Study tracking", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 39.99,
+          "includes": ["Practice tests", "Progress analytics", "Priority support"]
+        }
+      }
     },
     {
       "slug": "omniphysics",
@@ -208,7 +361,24 @@
       "hard_line": "OmniPhysics is an educational sandbox. It does not replace a laboratory, a degree, or an instructor.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniphysics/",
       "health_data_url": null,
-      "meta_description": "OmniPhysics is an interactive physics sandbox with worked reasoning, on your device. In development. Not a substitute for a laboratory or an instructor."
+      "meta_description": "OmniPhysics is an interactive physics sandbox with worked reasoning, on your device. In development. Not a substitute for a laboratory or an instructor.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": ["Basic sandbox", "Classical mechanics", "Sample experiments"]
+        },
+        "paid_app": {
+          "name": "Full App",
+          "price_usd": 6.99,
+          "includes": ["Complete physics sandbox", "All topic areas", "Advanced simulations", "Concept map", "Offline access"]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 2.99,
+          "price_yearly_usd": 24.99,
+          "includes": ["Custom experiments", "Export data", "Priority support"]
+        }
+      }
     }
   ]
 }
