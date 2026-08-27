@@ -25,20 +25,19 @@ python3 -m unittest tests.test_site -v
 
 Do not hand-edit generated HTML.
 
-## The ten apps
+## The eleven apps
 
 **Health & the body** — OmniSalub · OmniDent · OmniDerm · OmniRx  
 **Professional knowledge** — OmniLex · OmniBuild · OmniWealth  
+**Operating discipline** — OmniOps  
 **Learning** — OmniMath · OmniAero · OmniPhysics
-
-OmniOps has a privacy policy on the [privacy hub](https://prameyallc.github.io/privacy/) and is not in this public portfolio.
 
 ## Rules this site is written under
 
 1. **No outcome claims.** Never "saves you $X", "improves your health", "faster approval". Behaviour and capability only.
 2. **No professional-role claims.** No "certified", "diagnoses", "advises", "represents you" as a positive claim. Each app page states the line it does not cross. OmniDent must not use a blanket "does not diagnose" sentence — its published policy withdrew that wording on 24 August 2026.
 3. **No fabricated numbers.** No user counts, no market sizes, no ratings — nothing that isn't verifiable.
-4. **Availability stated honestly.** All ten apps are in development. When an app ships, set `store_url` in `src/apps.json` and rebuild.
+4. **Availability stated honestly.** All eleven apps are in development. When an app ships, set `store_url` in `src/apps.json` and rebuild.
 
 Contact is `admin@prameya.legal`. That inbox is not a mailing list.
 

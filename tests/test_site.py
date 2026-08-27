@@ -28,6 +28,7 @@ EXPECTED_SLUGS = [
     "omnilex",
     "omnibuild",
     "omniwealth",
+    "omniops",
     "omnimath",
     "omniaero",
     "omniphysics",
@@ -105,13 +106,24 @@ def html_files() -> list[Path]:
 
 
 class CatalogTests(unittest.TestCase):
-    def test_catalog_lists_exactly_the_ten_public_apps(self) -> None:
+    def test_catalog_lists_exactly_the_eleven_public_apps(self) -> None:
         data = load_apps()
         slugs = [app["slug"] for app in data["apps"]]
         self.assertEqual(slugs, EXPECTED_SLUGS)
         self.assertTrue(all(app["status"] == "in_development" for app in data["apps"]))
         self.assertTrue(all(not app.get("store_url") for app in data["apps"]))
-        self.assertNotIn("omniops", slugs)
+        self.assertIn("omniops", slugs)
+
+    def test_pricing_is_free_plus_pro_not_full_app(self) -> None:
+        data = load_apps()
+        for app in data["apps"]:
+            pricing = app["pricing"]
+            self.assertNotIn("paid_app", pricing, msg=app["slug"])
+            pro = pricing["pro_subscription"]
+            self.assertIn("price_monthly_usd", pro, msg=app["slug"])
+            self.assertIn("price_yearly_usd", pro, msg=app["slug"])
+            self.assertIn("price_lifetime_usd", pro, msg=app["slug"])
+            self.assertTrue(pricing["free_tier"]["includes"], msg=app["slug"])
 
     def test_every_app_has_a_hard_line_and_privacy_url(self) -> None:
         data = load_apps()
@@ -172,8 +184,15 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIn("OmniSalub", text)
         self.assertIn("Hugging Face", text)
 
-    def test_no_omniops_product_page(self) -> None:
-        self.assertFalse((ROOT / "apps" / "omniops").exists())
+    def test_omniops_has_a_product_page(self) -> None:
+        self.assertTrue((ROOT / "apps" / "omniops" / "index.html").is_file())
+
+    def test_built_html_does_not_sell_full_app_or_cloud_backup(self) -> None:
+        for path in html_files():
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn("Full App", text, msg=str(path))
+            self.assertNotIn("Cloud backup", text, msg=str(path))
+            self.assertNotIn("First 5 chapters", text, msg=str(path))
 
     def test_omnident_does_not_make_a_blanket_no_diagnose_claim(self) -> None:
         """Privacy policy 24 Aug 2026 withdrew blanket 'does not diagnose' for OmniDent."""

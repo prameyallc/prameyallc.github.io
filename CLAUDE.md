@@ -19,7 +19,7 @@ python3 -m unittest tests.test_site -v
 ### The Generator Pattern
 
 `src/build_site.py` is a stdlib-only Python generator that:
-1. Reads `src/apps.json` (the canonical catalog of all ten apps)
+1. Reads `src/apps.json` (the canonical catalog of all eleven apps)
 2. Reads page fragments from `src/pages/*.html`
 3. Writes complete HTML files to the repo root
 4. Outputs `sitemap.xml`, `robots.txt`, and `.nojekyll`
@@ -34,17 +34,16 @@ The builder uses **depth-relative paths** — each page knows how many `../` it 
 - Marketing copy (audience, summary, detail, features, platforms)
 - The "hard line" each app does not cross
 - Privacy policy URLs
-- **Pricing structure** (free_tier, paid_app, pro_subscription)
+- **Pricing structure** (free_tier, pro_subscription with monthly / yearly / lifetime)
 
-Apps are grouped into three categories (health, professional, learning). The ten public apps are listed in `EXPECTED_SLUGS` in the test file. **OmniOps is excluded** — it has a privacy policy but is not a public portfolio app.
+Apps are grouped into four categories (health, professional, operator, learning). The eleven public apps are listed in `EXPECTED_SLUGS` in the test file. OmniOps is in the catalog.
 
 ### Pricing Model
 
-Each app has a three-tier pricing structure in `apps.json`:
+Each app has a two-layer pricing structure in `apps.json`:
 
-1. **Free tier** — Full access to the knowledge layer (reference libraries, guides, sources). Respects the "knowledge layer is free" principle.
-2. **Paid app** — One-time purchase ($2.99-$19.99 depending on complexity). Unlocks personal tracking, unlimited usage, offline models, complete history.
-3. **Pro subscription** — Optional IAP ($1.99-$7.99/month or annual). Adds export, analytics, cloud backup, priority support.
+1. **Free tier** — Full access to the knowledge layer (reference libraries, guides, sources) plus the user's own records and raw export. Respects the "knowledge layer is free" principle.
+2. **Pro** — Optional IAP: monthly, annual, and lifetime of the same tools (formatted export, history depth, domain tools). No cloud backup SKU. No separate one-time "Full App."
 
 The `pricing_table()` function in `build_site.py` generates pricing cards for each app page. The `/pricing/` page explains the overall model.
 
