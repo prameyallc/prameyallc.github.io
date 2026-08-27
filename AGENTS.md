@@ -14,7 +14,7 @@ Do not hand-edit generated HTML. The next build will overwrite it.
 1. No outcome claims (“saves you $X”, “improves health”, “faster approval”).
 2. No professional-role claims (“diagnoses”, “advises”, “represents you”, “certified”) unless they appear only as a negation, and never as a blanket OmniDent “does not diagnose” line.
 3. No fabricated numbers (users, ratings, market sizes).
-4. Honest availability. All ten public apps are in development until `store_url` is a real App Store URL. Never “Download now.” Never an Apple badge CDN.
+4. Honest availability. All eleven public apps are in development until `store_url` is a real App Store URL. Never “Download now.” Never an Apple badge CDN.
 
 Copy source of truth for capabilities is the landing-card text in `src/apps.json`, which was taken from the previous `index.html`. Do **not** import privacy-hub taglines (“dental photo analysis and coaching”, “legal AI for professionals”).
 
@@ -24,7 +24,7 @@ Privacy-policy facts that constrain marketing:
 - Hugging Face model-file downloads in the shipping story are OmniLex, OmniDent, and OmniSalub only. Quote the privacy hub; do not paraphrase it stronger or weaker.
 - OmniDerm’s shipping build does not assess a skin photograph. Journal JPEGs stay on device and are not analysed.
 - OmniRx’s shipping build does not download a model and does not take photographs.
-- OmniOps has a policy on the privacy hub. It is not a public portfolio app on this site.
+- OmniOps is a public portfolio app (operator journal). It does not certify, audit, or total avoided cost.
 
 ## Four principles
 
@@ -50,7 +50,7 @@ In `src/apps.json`:
 2. `"store_url": "https://apps.apple.com/…"` (real URL only)
 3. Rebuild. Badge becomes “On the App Store”; a text App Store link appears.
 
-Do not add OmniOps unless product reverses the landing-page removal.
+OmniOps is in the public catalog (`src/apps.json` group `operator`). Do not remove it to “match an older ten-app landing.”
 
 ## Design tokens
 

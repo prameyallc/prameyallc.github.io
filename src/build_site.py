@@ -164,7 +164,7 @@ def render_footer(depth: int) -> str:
     <a href="{href(depth, 'contact/')}">Contact</a>
   </nav>
 </div>
-<div class="wrap"><p class="fine">All ten apps are in active development and are not yet available on the App Store.
+<div class="wrap"><p class="fine">All eleven apps are in active development and are not yet available on the App Store.
 Nothing on this site is medical, legal, financial or engineering advice. None of these apps
 represents you in a legal matter or recommends an investment. None of them is a substitute
 for a licensed professional.</p></div>
@@ -191,20 +191,18 @@ def pricing_table(app: dict) -> str:
 
     pricing = app["pricing"]
     free = pricing.get("free_tier", {})
-    paid = pricing.get("paid_app", {})
     pro = pricing.get("pro_subscription", {})
 
     free_features = "".join(f"<li>{esc(f)}</li>" for f in free.get("includes", []))
-    paid_features = "".join(f"<li>{esc(f)}</li>" for f in paid.get("includes", []))
     pro_features = "".join(f"<li>{esc(f)}</li>" for f in pro.get("includes", []))
 
-    paid_price = format_price(paid.get("price_usd", 0))
     pro_monthly = format_price(pro.get("price_monthly_usd", 0))
     pro_yearly = format_price(pro.get("price_yearly_usd", 0))
+    pro_life = format_price(pro.get("price_lifetime_usd", 0))
 
     return f"""<div class="pricing-tiers">
   <div class="kicker">Pricing</div>
-  <h2>Three ways to use {esc(app['name'])}</h2>
+  <h2>Free knowledge. Optional Pro tools.</h2>
   <div class="tier-grid">
     <div class="tier">
       <h3>Free</h3>
@@ -212,19 +210,13 @@ def pricing_table(app: dict) -> str:
       <ul class="tier-features">{free_features}</ul>
     </div>
     <div class="tier featured">
-      <h3>Full App</h3>
-      <div class="tier-price">{paid_price}</div>
-      <div class="tier-note">One-time purchase</div>
-      <ul class="tier-features">{paid_features}</ul>
-    </div>
-    <div class="tier">
       <h3>Pro</h3>
       <div class="tier-price">{pro_monthly}/mo</div>
-      <div class="tier-note">or {pro_yearly}/year</div>
+      <div class="tier-note">{pro_yearly}/year · {pro_life} lifetime</div>
       <ul class="tier-features">{pro_features}</ul>
     </div>
   </div>
-  <p class="pricing-note">The reference library stays free. Personal features are a one-time purchase. Pro features are an optional in-app purchase.</p>
+  <p class="pricing-note">The reference library stays free. Pro is monthly, annual, or lifetime — the same tools either way. 7-day trial on monthly and annual. Family Sharing on. Cancel in Settings.</p>
 </div>"""
 
 
@@ -370,7 +362,7 @@ def home_body(catalog: dict) -> str:
       themselves.</p>
     </div>
   </div>
-  <p class="note">All ten apps are in active development and are not yet available on the App Store.
+  <p class="note">All eleven apps are in active development and are not yet available on the App Store.
     Nothing on this page is medical, legal, financial or engineering advice. None of these apps
     represents you in a legal matter or recommends an investment. None of them is a substitute
     for a licensed professional.</p>
@@ -380,7 +372,7 @@ def home_body(catalog: dict) -> str:
 def apps_index_body(catalog: dict) -> str:
     return f"""<header class="page-hero"><div class="wrap">
   <div class="kicker">The portfolio</div>
-  <h1>Ten apps. One idea.</h1>
+  <h1>Eleven apps. One idea.</h1>
   <p class="lede">Each takes a field where expertise is expensive and asks the same question: what does
     the professional actually know — and how much of it can you simply be handed?</p>
 </div></header>

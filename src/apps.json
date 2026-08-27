@@ -4,19 +4,40 @@
       "id": "health",
       "name": "Health & the body",
       "blurb": "What a good practice knows about you, kept by you.",
-      "slugs": ["omnisalub", "omnident", "omniderm", "omnirx"]
+      "slugs": [
+        "omnisalub",
+        "omnident",
+        "omniderm",
+        "omnirx"
+      ]
     },
     {
       "id": "professional",
       "name": "Professional knowledge",
       "blurb": "Where an hour of advice costs more than a year of software.",
-      "slugs": ["omnilex", "omnibuild", "omniwealth"]
+      "slugs": [
+        "omnilex",
+        "omnibuild",
+        "omniwealth"
+      ]
+    },
+    {
+      "id": "operator",
+      "name": "Operating discipline",
+      "blurb": "Write the decision down. Review it on a cadence.",
+      "slugs": [
+        "omniops"
+      ]
     },
     {
       "id": "learning",
       "name": "Learning",
       "blurb": "Subjects usually gated behind a tutor's hourly rate.",
-      "slugs": ["omnimath", "omniaero", "omniphysics"]
+      "slugs": [
+        "omnimath",
+        "omniaero",
+        "omniphysics"
+      ]
     }
   ],
   "apps": [
@@ -30,9 +51,17 @@
       "audience": "For people managing a condition",
       "status": "in_development",
       "store_url": null,
-      "platforms": ["iPhone", "Mac", "Watch"],
-      "features": ["Readings from your own cuff", "Visit pack", "Imaging history"],
-      "summary": "The record a clinic keeps about you — readings, history, what to raise next visit — kept on your phone instead of behind a portal login. Walk into the appointment prepared rather than trying to remember.",
+      "platforms": [
+        "iPhone",
+        "Mac",
+        "Watch"
+      ],
+      "features": [
+        "Readings from your own cuff",
+        "Visit pack",
+        "Imaging history"
+      ],
+      "summary": "The record a clinic keeps about you \u2014 readings, history, what to raise next visit \u2014 kept on your phone instead of behind a portal login. Walk into the appointment prepared rather than trying to remember.",
       "detail": "OmniSalub is a place to keep the readings you take, the history you already know, and the questions worth raising next time. It runs on your device. It does not connect you to a clinic and it does not speak for a clinician.",
       "hard_line": "OmniSalub does not diagnose, treat, or replace a clinician. It keeps your own record so you can walk into an appointment prepared.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnisalub/",
@@ -41,18 +70,23 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Reference library", "Basic visit prep", "Limited history"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 4.99,
-          "includes": ["Unlimited readings", "Complete history", "AI model downloads", "All platforms", "Offline access"]
+          "includes": [
+            "Reference library",
+            "Readings you enter",
+            "90-day history",
+            "Raw export of your record"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 2.99,
-          "price_yearly_usd": 19.99,
-          "includes": ["Export to PDF", "Advanced analytics", "Priority support"]
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 29.99,
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Visit pack",
+            "Unlimited history",
+            "Formatted PDF / CSV export"
+          ]
         }
       }
     },
@@ -67,28 +101,37 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Daily routine", "Photo journal", "Family profiles"],
-      "summary": "The daily habits a hygienist actually asks about, tracked simply — with your own photo history over time, and the questions worth raising at the next appointment.",
+      "features": [
+        "Daily routine",
+        "Photo journal",
+        "Family profiles"
+      ],
+      "summary": "The daily habits a hygienist actually asks about, tracked simply \u2014 with your own photo history over time, and the questions worth raising at the next appointment.",
       "detail": "OmniDent is a household record: the routine, the photographs you chose to keep, and the questions for the next visit. It has no FDA authorization. Do not act on chat or photo-note text. Ask a dentist.",
-      "hard_line": "OmniDent is not a substitute for a dentist, and it has no FDA authorization. Do not act on chat or photo-note text — ask a dentist.",
+      "hard_line": "OmniDent is not a substitute for a dentist, and it has no FDA authorization. Do not act on chat or photo-note text \u2014 ask a dentist.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnident/",
       "health_data_url": "https://prameyallc.github.io/privacy/omnident/health-data/",
       "meta_description": "OmniDent tracks daily dental habits, a photo journal and visit questions on your device. In development. Not a substitute for a dentist.",
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Basic routine tracking", "Dental health reference", "Visit prep guide"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 3.99,
-          "includes": ["Unlimited photo journal", "Family profiles", "AI model downloads", "Complete history", "Offline access"]
+          "includes": [
+            "Habit checklist",
+            "Dental health reference",
+            "Visit-prep outline",
+            "Raw export of your photos and notes"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 1.99,
-          "price_yearly_usd": 14.99,
-          "includes": ["Export reports", "Appointment reminders", "Priority support"]
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 29.99,
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Full photo history",
+            "Reminder cadence",
+            "Printable visit sheet"
+          ]
         }
       }
     },
@@ -103,28 +146,36 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Photo timeline", "Your own notes", "Visit prep"],
-      "summary": "A private journal for your skin. Photograph the same spot across months and keep the series together, in your own words. The app records what you noticed — it never tells you what it is.",
+      "features": [
+        "Photo timeline",
+        "Your own notes",
+        "Visit prep"
+      ],
+      "summary": "A private journal for your skin. Photograph the same spot across months and keep the series together, in your own words. The app records what you noticed \u2014 it never tells you what it is.",
       "detail": "OmniDerm is a journal you keep: photographs of the same spot, notes in your own words, and a record you can take to an appointment. It does not name a mark and it does not tell you whether to see a clinician.",
-      "hard_line": "OmniDerm never tells you what a mark is. It records what you noticed — photographs and your own notes — so you can keep a private series over time.",
+      "hard_line": "OmniDerm never tells you what a mark is. It records what you noticed \u2014 photographs and your own notes \u2014 so you can keep a private series over time.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniderm/",
       "health_data_url": "https://prameyallc.github.io/privacy/omniderm/health-data/",
       "meta_description": "OmniDerm is a private skin journal: your photographs, your notes, over time. In development. It never tells you what a mark is.",
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Skin health reference", "Basic note-taking", "Limited timeline"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 3.99,
-          "includes": ["Unlimited photo timeline", "Complete journal history", "Private notes", "Export capability", "Offline access"]
+          "includes": [
+            "Your photographs and captions",
+            "Skin-health reference library",
+            "The journal never names a mark"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 1.99,
-          "price_yearly_usd": 14.99,
-          "includes": ["Advanced timeline views", "Cloud backup", "Priority support"]
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 29.99,
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Same-area compare overlay",
+            "Unlimited journal history",
+            "Formatted export pack"
+          ]
         }
       }
     },
@@ -139,8 +190,12 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Plain-language reference", "Daily check", "Refill dates"],
-      "summary": "What a class of medicine is for, in plain language drawn from published labelling — plus a simple daily check and refill dates, so you reach the pharmacy counter knowing what to ask.",
+      "features": [
+        "Plain-language reference",
+        "Daily check",
+        "Refill dates"
+      ],
+      "summary": "What a class of medicine is for, in plain language drawn from published labelling \u2014 plus a simple daily check and refill dates, so you reach the pharmacy counter knowing what to ask.",
       "detail": "OmniRx explains published labelling in ordinary language and lets you keep a simple daily check and refill dates. It does not take the place of a pharmacist or a prescriber.",
       "hard_line": "OmniRx is not medical advice. It does not diagnose, calculate doses, check interactions, or identify medicines from photographs.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnirx/",
@@ -149,18 +204,23 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Medicine reference library", "Basic refill tracking", "Plain-language labeling"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 2.99,
-          "includes": ["Unlimited medications", "Daily check tracking", "Complete history", "Refill reminders", "Offline access"]
+          "includes": [
+            "Full published-label library",
+            "Daily check",
+            "Refill date field",
+            "Raw export of your list"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 1.99,
-          "price_yearly_usd": 12.99,
-          "includes": ["Export medication list", "Advanced reminders", "Priority support"]
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 29.99,
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Multi-medication schedule",
+            "Reminder depth",
+            "Pharmacist conversation PDF"
+          ]
         }
       }
     },
@@ -171,12 +231,16 @@
       "icon": "OmniLex.png",
       "accent": "#4A6FB5",
       "group": "professional",
-      "audience": "For people facing a legal process",
+      "audience": "For solo and small-firm attorneys",
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Public codes, cited", "Plain-language guides", "Private document vault"],
-      "summary": "The text of the law already belongs to everyone — it is simply unreadable. OmniLex puts public legal codes into plain language with every passage cited, so you arrive at a consultation already knowing the shape of your question.",
+      "features": [
+        "Public codes, cited",
+        "Plain-language guides",
+        "Private document vault"
+      ],
+      "summary": "The text of the law already belongs to everyone \u2014 it is simply unreadable. OmniLex puts public legal codes into plain language with every passage cited, so you arrive at a consultation already knowing the shape of your question.",
       "detail": "OmniLex is a way to read public legal text with the citation attached. It is preparation for a conversation with a lawyer, not a substitute for one.",
       "hard_line": "OmniLex does not represent you, give legal advice, or file anything on your behalf. It puts public legal codes into plain language with every passage cited.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnilex/",
@@ -185,18 +249,22 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Legal code reference", "Basic plain-language guides", "Limited citations"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 9.99,
-          "includes": ["Complete legal library", "AI model downloads", "Document vault", "Unlimited queries", "Offline access"]
+          "includes": [
+            "Cited public legal corpus",
+            "Plain-language guides",
+            "Import and read your own documents"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 4.99,
-          "price_yearly_usd": 39.99,
-          "includes": ["Advanced legal research", "Export capabilities", "Priority support"]
+          "price_monthly_usd": 7.99,
+          "price_yearly_usd": 49.99,
+          "price_lifetime_usd": 129.99,
+          "includes": [
+            "Unlimited vault",
+            "On-device search",
+            "PDF with a disclaimer on every page"
+          ]
         }
       }
     },
@@ -211,8 +279,12 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Permits & utilities", "OSHA · ADA · EPA reference", "Project log"],
-      "summary": "Building means permits, utility connections, inspections and trades — a maze that is mostly procedure, not expertise. OmniBuild maps what applies to your project, with the public standards cited, and is clear about which parts genuinely need a licensed professional.",
+      "features": [
+        "Permits & utilities",
+        "OSHA \u00b7 ADA \u00b7 EPA reference",
+        "Project log"
+      ],
+      "summary": "Building means permits, utility connections, inspections and trades \u2014 a maze that is mostly procedure, not expertise. OmniBuild maps what applies to your project, with the public standards cited, and is clear about which parts genuinely need a licensed professional.",
       "detail": "OmniBuild is a map of procedure: permits, utilities, inspections, trades, and the public standards that sit behind them. Where a licence is required, it says so.",
       "hard_line": "OmniBuild is not contracting, engineering, architectural, or code-compliance advice, and it is not a substitute for a licensed professional.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnibuild/",
@@ -221,18 +293,23 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Building code reference", "Basic permit guide", "Standards library"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 14.99,
-          "includes": ["Complete project tracking", "Full standards library", "Inspection checklists", "Unlimited projects", "Offline access"]
+          "includes": [
+            "Federal and state public standards",
+            "Licensed-professional flags",
+            "Project notes",
+            "Raw export"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 7.99,
-          "price_yearly_usd": 59.99,
-          "includes": ["Advanced project management", "Export documentation", "Priority support"]
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 29.99,
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Unlimited projects",
+            "Inspection checklist packs",
+            "Permit-counter PDF"
+          ]
         }
       }
     },
@@ -247,8 +324,12 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Cited learn library", "Your own scenarios", "No bank connection, ever"],
-      "summary": "How money concepts actually work, explained with sources you can check, plus tools to run your own numbers. It never recommends a product or an allocation — that isn't the gap it fills.",
+      "features": [
+        "Cited learn library",
+        "Your own scenarios",
+        "No bank connection, ever"
+      ],
+      "summary": "How money concepts actually work, explained with sources you can check, plus tools to run your own numbers. It never recommends a product or an allocation \u2014 that isn't the gap it fills.",
       "detail": "OmniWealth is a cited library of how money concepts work, and a place to run numbers you type yourself. It has no bank or brokerage connection, and it does not pick a product for you.",
       "hard_line": "OmniWealth never recommends a product or an allocation, and it never connects to a bank.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniwealth/",
@@ -257,18 +338,66 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Financial concept library", "Basic calculators", "Cited sources"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 7.99,
-          "includes": ["Complete financial library", "Unlimited scenarios", "Advanced calculators", "Personal tracking", "Offline access"]
+          "includes": [
+            "Full cited concept library",
+            "Calculators on numbers you type",
+            "No product recommendation"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 3.99,
+          "price_monthly_usd": 4.99,
           "price_yearly_usd": 29.99,
-          "includes": ["Export reports", "Advanced modeling", "Priority support"]
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Saved scenarios",
+            "Envelope tracking",
+            "Worksheet export"
+          ]
+        }
+      }
+    },
+    {
+      "slug": "omniops",
+      "name": "OmniOps",
+      "legal_name": "OmniOps",
+      "icon": "OmniOps.png",
+      "accent": "#3F6B54",
+      "group": "operator",
+      "audience": "For the solo operator",
+      "status": "in_development",
+      "store_url": null,
+      "platforms": [],
+      "features": [
+        "Four logs",
+        "Review cadence",
+        "On this device"
+      ],
+      "summary": "Write the decision down, review it on a cadence, keep the habit \u2014 without buying a consultant.",
+      "detail": "OmniOps is an operator journal: work, decisions, reflections and habits, kept on this device. It does not certify, audit, or total a dollar you did not spend.",
+      "hard_line": "OmniOps does not certify, audit, or grade a practice, and it never totals avoided cost. It is a journal and a cadence, not a consultant.",
+      "privacy_url": "https://prameyallc.github.io/privacy/omniops/",
+      "health_data_url": null,
+      "meta_description": "OmniOps is an on-device operator journal with a review cadence. In development. Not a consultant and not an ROI calculator.",
+      "pricing": {
+        "free_tier": {
+          "name": "Free",
+          "includes": [
+            "All four logs, unlimited entries",
+            "Streak and consistency score",
+            "Raw JSON export"
+          ]
+        },
+        "pro_subscription": {
+          "name": "Pro",
+          "price_monthly_usd": 5.99,
+          "price_yearly_usd": 39.99,
+          "price_lifetime_usd": 99.99,
+          "includes": [
+            "Review analytics",
+            "Custom cadences",
+            "Formatted review PDF"
+          ]
         }
       }
     },
@@ -283,8 +412,12 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["21 chapters", "Interactive proofs", "Works offline"],
-      "summary": "Twenty-one chapters that build on each other, a cross-linked codex of concepts, and worked proofs that never skip a line. What a good tutor really gives you is the step that was left out — so none are.",
+      "features": [
+        "21 chapters",
+        "Interactive proofs",
+        "Works offline"
+      ],
+      "summary": "Twenty-one chapters that build on each other, a cross-linked codex of concepts, and worked proofs that never skip a line. What a good tutor really gives you is the step that was left out \u2014 so none are.",
       "detail": "OmniMath (published as OmniMathematics) is a course you can work through without a network: chapters in order, a codex of concepts, and proofs that keep every step on the page.",
       "hard_line": "OmniMath is a course, not a credential and not a tutor who can certify you.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnimath/",
@@ -293,18 +426,22 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["First 5 chapters", "Basic concept codex", "Sample proofs"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 9.99,
-          "includes": ["All 21 chapters", "Complete concept codex", "All worked proofs", "Interactive exercises", "Offline access"]
+          "includes": [
+            "All 21 chapters",
+            "Concept codex",
+            "Proofs that do not skip a line"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 3.99,
+          "price_monthly_usd": 4.99,
           "price_yearly_usd": 29.99,
-          "includes": ["Advanced problem sets", "Progress tracking", "Priority support"]
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Extra drills",
+            "Lab interactives",
+            "Export of your work"
+          ]
         }
       }
     },
@@ -319,8 +456,12 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Every ACS area", "14 CFR in plain language", "Go / no-go reasoning"],
-      "summary": "Ground school built around the FAA's own Airman Certification Standards — the twelve areas of operation, each broken into what you must know, what can go wrong, and what you must do. The regulation itself is always one tap away.",
+      "features": [
+        "Every ACS area",
+        "14 CFR in plain language",
+        "Go / no-go reasoning"
+      ],
+      "summary": "Ground school built around the FAA's own Airman Certification Standards \u2014 the twelve areas of operation, each broken into what you must know, what can go wrong, and what you must do. The regulation itself is always one tap away.",
       "detail": "OmniAero is ACS ground school on this device: the areas of operation, the knowledge, the risks, the procedures, and the text of 14 CFR in language you can actually read. It does not fly the aeroplane and it does not sign a logbook.",
       "hard_line": "OmniAero is ground school on this device. It is not flight instruction, not an endorsement, and not a substitute for a certified flight instructor or an examiner.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniaero/",
@@ -329,18 +470,22 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["ACS overview", "Basic 14 CFR reference", "Sample areas of operation"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 19.99,
-          "includes": ["All 12 ACS areas", "Complete 14 CFR library", "Go/no-go scenarios", "Study tracking", "Offline access"]
+          "includes": [
+            "All ACS areas of operation",
+            "14 CFR in plain language",
+            "Study and prep logs"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 4.99,
+          "price_monthly_usd": 5.99,
           "price_yearly_usd": 39.99,
-          "includes": ["Practice tests", "Progress analytics", "Priority support"]
+          "price_lifetime_usd": 99.99,
+          "includes": [
+            "Drill generator",
+            "Missed-item review",
+            "Oral-prep packs"
+          ]
         }
       }
     },
@@ -355,8 +500,12 @@
       "status": "in_development",
       "store_url": null,
       "platforms": [],
-      "features": ["Sandbox lab", "Worked reasoning", "Concept map"],
-      "summary": "Physics you can experiment with rather than only read. Change a value in the sandbox and watch what it does — then follow the reasoning, step by step, from mechanics through to modern physics.",
+      "features": [
+        "Sandbox lab",
+        "Worked reasoning",
+        "Concept map"
+      ],
+      "summary": "Physics you can experiment with rather than only read. Change a value in the sandbox and watch what it does \u2014 then follow the reasoning, step by step, from mechanics through to modern physics.",
       "detail": "OmniPhysics is a sandbox and a set of worked explanations. You change a value, you watch what happens, and you can follow the reasoning that sits under it.",
       "hard_line": "OmniPhysics is an educational sandbox. It does not replace a laboratory, a degree, or an instructor.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniphysics/",
@@ -365,18 +514,22 @@
       "pricing": {
         "free_tier": {
           "name": "Free",
-          "includes": ["Basic sandbox", "Classical mechanics", "Sample experiments"]
-        },
-        "paid_app": {
-          "name": "Full App",
-          "price_usd": 6.99,
-          "includes": ["Complete physics sandbox", "All topic areas", "Advanced simulations", "Concept map", "Offline access"]
+          "includes": [
+            "Worked reasoning",
+            "One sandbox at a time",
+            "Concept map"
+          ]
         },
         "pro_subscription": {
           "name": "Pro",
-          "price_monthly_usd": 2.99,
-          "price_yearly_usd": 24.99,
-          "includes": ["Custom experiments", "Export data", "Priority support"]
+          "price_monthly_usd": 4.99,
+          "price_yearly_usd": 29.99,
+          "price_lifetime_usd": 79.99,
+          "includes": [
+            "Unlocked sandbox set",
+            "Wider parameter ranges",
+            "Lab-note export"
+          ]
         }
       }
     }

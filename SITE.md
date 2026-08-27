@@ -9,7 +9,7 @@ Sources: `src/` · Generated HTML is committed for GitHub Pages.
 |---|---|
 | `/` | Home |
 | `/apps/` | Portfolio |
-| `/apps/<slug>/` | App page (ten public apps) |
+| `/apps/<slug>/` | App page (eleven public apps) |
 | `/standard/` | Four rules |
 | `/about/` | Company |
 | `/privacy-model/` | Architecture + links to the privacy hub |
