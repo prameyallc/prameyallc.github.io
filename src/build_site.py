@@ -66,16 +66,81 @@ def group_for(catalog: dict, group_id: str) -> dict:
     raise KeyError(group_id)
 
 
+def is_available(app: dict) -> bool:
+    """On sale: `status` is "available" AND `store_url` is set. Never one without the other."""
+    return bool(app.get("store_url")) and app.get("status") == "available"
+
+
+def is_in_review(app: dict) -> bool:
+    """Submitted to App Review and not on sale (`status` "in_review", no store link yet)."""
+    return not is_available(app) and app.get("status") == "in_review"
+
+
 def status_label(app: dict) -> str:
-    if app.get("store_url") and app.get("status") == "available":
+    if is_available(app):
         return "On the App Store"
+    if is_in_review(app):
+        return "In App Review"
     return "In development"
 
 
 def status_class(app: dict) -> str:
-    if app.get("store_url") and app.get("status") == "available":
+    if is_available(app):
         return "status available"
     return "status"
+
+
+NUMBER_WORDS = {
+    1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
+    7: "seven", 8: "eight", 9: "nine", 10: "ten", 11: "eleven", 12: "twelve",
+}
+
+
+def count_word(n: int) -> str:
+    return NUMBER_WORDS.get(n, str(n))
+
+
+def display_name(app: dict) -> str:
+    if app["name"] != app["legal_name"]:
+        return f"{app['name']} ({app['legal_name']})"
+    return app["name"]
+
+
+def join_names(names: list[str]) -> str:
+    if len(names) <= 2:
+        return " and ".join(names)
+    return ", ".join(names[:-1]) + " and " + names[-1]
+
+
+def availability_sentence(catalog: dict) -> str:
+    """Where every app stands, computed from the catalog.
+
+    ⛔ SITE-WIDE COPY MUST STAY TRUE FOR EVERY APP. The footer, home page, FAQ, About, Pricing and
+    one-pagers used to say "All eleven apps are in active development and are not yet available on
+    the App Store" in prose. It stopped being true when OmniMathematics went to App Review, and a
+    reviewer who opened the Marketing URL read that the app they were reviewing was unfinished.
+    Say it from `status` instead, so changing the catalog changes every page.
+    """
+    apps = catalog["apps"]
+    available = [display_name(a) for a in apps if is_available(a)]
+    review = [display_name(a) for a in apps if is_in_review(a)]
+    others = len(apps) - len(available) - len(review)
+    clauses = []
+    if available:
+        clauses.append(f"{join_names(available)} {'is' if len(available) == 1 else 'are'} on the App Store")
+    if review:
+        clauses.append(f"{join_names(review)} {'is' if len(review) == 1 else 'are'} in App Review")
+    if others:
+        if clauses:
+            clauses.append("the other app is in development" if others == 1 else "the other apps are in development")
+        else:
+            clauses.append(f"all {count_word(others)} apps are in development")
+    sentence = "; ".join(clauses)
+    return sentence[:1].upper() + sentence[1:] + "."
+
+
+def store_answer(catalog: dict) -> str:
+    return "Some are." if any(is_available(a) for a in catalog["apps"]) else "Not yet."
 
 
 def mailto(subject: str) -> str:
@@ -125,8 +190,12 @@ def jsonld_app(app: dict) -> dict:
         "url": f"{BASE_URL}/apps/{app['slug']}/",
         "creator": jsonld_organization(),
         "description": app["meta_description"],
-        "creativeWorkStatus": "Incomplete",
     }
+    # Only an app still being built is "Incomplete"; one in App Review or on sale is not.
+    if is_available(app):
+        node["creativeWorkStatus"] = "Published"
+    elif not is_in_review(app):
+        node["creativeWorkStatus"] = "Incomplete"
     return {"@context": "https://schema.org", "@graph": [jsonld_organization(), node]}
 
 
@@ -164,7 +233,7 @@ def render_footer(depth: int) -> str:
     <a href="{href(depth, 'contact/')}">Contact</a>
   </nav>
 </div>
-<div class="wrap"><p class="fine">All eleven apps are in active development and are not yet available on the App Store.
+<div class="wrap"><p class="fine">Each app's page shows its status, and links to the App Store once that app is available there.
 Nothing on this site is medical, legal, financial or engineering advice. None of these apps
 represents you in a legal matter or recommends an investment. None of them is a substitute
 for a licensed professional.</p></div>
@@ -200,9 +269,19 @@ def pricing_table(app: dict) -> str:
     pro_yearly = format_price(pro.get("price_yearly_usd", 0))
     pro_life = format_price(pro.get("price_lifetime_usd", 0))
 
+    headline = pricing.get("headline", "Free knowledge. Optional Pro tools.")
+    note = pricing.get(
+        "note",
+        "The reference library stays free. Pro is monthly, annual, or lifetime — the same tools "
+        "either way. 7-day trial on monthly and annual. Family Sharing on. Cancel in Settings.",
+    )
+    if not is_available(app) and not is_in_review(app):
+        # An app that has not been submitted can still change its prices and trial.
+        note += " Planned pricing; it can change before release."
+
     return f"""<div class="pricing-tiers">
   <div class="kicker">Pricing</div>
-  <h2>Free knowledge. Optional Pro tools.</h2>
+  <h2>{esc(headline)}</h2>
   <div class="tier-grid">
     <div class="tier">
       <h3>Free</h3>
@@ -216,7 +295,7 @@ def pricing_table(app: dict) -> str:
       <ul class="tier-features">{pro_features}</ul>
     </div>
   </div>
-  <p class="pricing-note">The reference library stays free. Pro is monthly, annual, or lifetime — the same tools either way. 7-day trial on monthly and annual. Family Sharing on. Cancel in Settings.</p>
+  <p class="pricing-note">{esc(note)}</p>
 </div>"""
 
 
@@ -320,7 +399,7 @@ def home_body(catalog: dict) -> str:
   <div class="principles">
     <div class="p"><h3>Runs on your device</h3>
       <p>No account, no server, no analytics. The models run locally. What you record simply stays
-         where you made it. Narrow exceptions — model-file downloads on three apps — are described
+         where you made it. Narrow exceptions — optional model-file downloads in some apps — are described
          on the <a class="inline" href="{href(0, 'privacy-model/')}">privacy model</a> page.</p></div>
     <div class="p"><h3>Every claim has a source</h3>
       <p>Where an app states something professional, it cites where that came from — and where a
@@ -336,7 +415,7 @@ def home_body(catalog: dict) -> str:
 
 <section id="apps"><div class="wrap">
   <div class="kicker">The portfolio</div>
-  <h2>Ten apps. One idea.</h2>
+  <h2>{count_word(len(catalog['apps'])).capitalize()} apps. One idea.</h2>
   <p class="sub">Each takes a field where expertise is expensive and asks the same question: what does
     the professional actually know — and how much of it can you simply be handed?</p>
   {groups_grid(catalog, 0, compact=True)}
@@ -362,7 +441,7 @@ def home_body(catalog: dict) -> str:
       themselves.</p>
     </div>
   </div>
-  <p class="note">All eleven apps are in active development and are not yet available on the App Store.
+  <p class="note">{esc(availability_sentence(catalog))}
     Nothing on this page is medical, legal, financial or engineering advice. None of these apps
     represents you in a legal matter or recommends an investment. None of them is a substitute
     for a licensed professional.</p>
@@ -372,7 +451,7 @@ def home_body(catalog: dict) -> str:
 def apps_index_body(catalog: dict) -> str:
     return f"""<header class="page-hero"><div class="wrap">
   <div class="kicker">The portfolio</div>
-  <h1>Eleven apps. One idea.</h1>
+  <h1>{count_word(len(catalog['apps'])).capitalize()} apps. One idea.</h1>
   <p class="lede">Each takes a field where expertise is expensive and asks the same question: what does
     the professional actually know — and how much of it can you simply be handed?</p>
 </div></header>
@@ -392,6 +471,13 @@ def app_page_body(app: dict, catalog: dict, depth: int) -> str:
     if app.get("store_url"):
         store = f'<a class="btn primary" href="{esc(app["store_url"])}">View on the App Store</a>'
 
+    shot = ""
+    if not is_available(app) and not is_in_review(app):
+        shot = f"""<figure class="shot" style="--a:{esc(app['accent'])}">
+    <img src="{p}assets/icons/{esc(app['icon'])}" alt="">
+    <figcaption>Screenshots will appear here when a public build is ready.</figcaption>
+  </figure>"""
+
     platforms = chips(app.get("platforms") or [])
     features = chips(app["features"])
     legal = ""
@@ -405,7 +491,10 @@ def app_page_body(app: dict, catalog: dict, depth: int) -> str:
         )
 
     hf = ""
-    if app["slug"] in HF_APPS:
+    if app.get("model_download"):
+        # An app whose download is not "tap install in Settings" states it in its own words.
+        hf = f"""<p>{esc(app['model_download'])} The <a class="inline" href="{esc(app['privacy_url'])}">privacy policy</a> is the source for that sentence.</p>"""
+    elif app["slug"] in HF_APPS:
         hf = f"""<p>This app can download AI model weights from Hugging Face when you tap to install
         them in Settings. That request is for a model file; it does not send your content anywhere.
         The <a class="inline" href="{esc(app['privacy_url'])}">privacy policy</a> is the source for that sentence.</p>"""
@@ -439,10 +528,7 @@ def app_page_body(app: dict, catalog: dict, depth: int) -> str:
   </div>
   {hf}
   {pricing_table(app)}
-  <figure class="shot" style="--a:{esc(app['accent'])}">
-    <img src="{p}assets/icons/{esc(app['icon'])}" alt="">
-    <figcaption>Screenshots will appear here when a public build is ready.</figcaption>
-  </figure>
+  {shot}
   <p>Availability is posted on this page when an App Store link exists. Writing to us does not
   add you to a mailing list — that inbox is read by a person.</p>
 </div></section>
@@ -525,6 +611,11 @@ def load_fragment(name: str, depth: int, catalog: dict) -> str:
         .replace("{{swatches}}", brand_swatches(catalog))
         .replace("{{icons}}", icon_grid(catalog, depth))
         .replace("{{portfolio_rows}}", portfolio_rows(catalog))
+        .replace("{{availability}}", esc(availability_sentence(catalog)))
+        .replace("{{store_answer}}", store_answer(catalog))
+        .replace("{{app_count}}", count_word(len(catalog["apps"])))
+        .replace("{{App_count}}", count_word(len(catalog["apps"])).capitalize())
+        .replace("{{app_names}}", esc(join_names([a["name"] for a in catalog["apps"]])))
     )
 
 
@@ -567,7 +658,7 @@ def build() -> None:
     emit(
         "apps/index.html",
         "Apps — Prameya",
-        "Ten on-device knowledge apps from Prameya LLC. All currently in development.",
+        f"{count_word(len(catalog['apps'])).capitalize()} on-device knowledge apps from Prameya LLC. {availability_sentence(catalog)}",
         "/apps/",
         1,
         "apps",
@@ -588,7 +679,7 @@ def build() -> None:
 
     static = [
         ("pricing/index.html", 1, "pricing", "Pricing — Prameya",
-         "Three ways to access expert knowledge: free reference library, one-time app purchase, or optional Pro subscription. The knowledge layer stays free.",
+         "The knowledge layer stays free. Optional Pro differs by app and is sold monthly, annually or as a one-time lifetime purchase.",
          "/pricing/", "pricing.html"),
         ("standard/index.html", 1, "standard", "The standard — Prameya",
          "Four rules every Prameya app follows: on-device, sourced, a free knowledge layer, and a hard line at professional judgement.",
@@ -615,7 +706,7 @@ def build() -> None:
          "A one-page summary of Prameya LLC: mission, four rules, contact.",
          "/resources/one-pagers/company/", "one-pager-company.html"),
         ("resources/one-pagers/portfolio/index.html", 3, "resources", "Portfolio one-pager — Prameya",
-         "A one-page summary of the ten Prameya apps currently in development.",
+         f"A one-page summary of the {count_word(len(catalog['apps']))} Prameya apps.",
          "/resources/one-pagers/portfolio/", "one-pager-portfolio.html"),
     ]
     for rel_path, depth, current, title, description, canon, fragment in static:

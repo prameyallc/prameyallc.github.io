@@ -110,7 +110,10 @@ class CatalogTests(unittest.TestCase):
         data = load_apps()
         slugs = [app["slug"] for app in data["apps"]]
         self.assertEqual(slugs, EXPECTED_SLUGS)
-        self.assertTrue(all(app["status"] == "in_development" for app in data["apps"]))
+        statuses = {app["slug"]: app["status"] for app in data["apps"]}
+        # OmniMathematics is with App Review (September 2026); nothing is on sale yet.
+        self.assertEqual(statuses.pop("omnimath"), "in_review")
+        self.assertTrue(all(status == "in_development" for status in statuses.values()), statuses)
         self.assertTrue(all(not app.get("store_url") for app in data["apps"]))
         self.assertIn("omniops", slugs)
 
@@ -152,7 +155,15 @@ class BuiltSiteTests(unittest.TestCase):
         for app in data["apps"]:
             text = (ROOT / "apps" / app["slug"] / "index.html").read_text(encoding="utf-8")
             self.assertIn(app["hard_line"], text, msg=app["slug"])
-            self.assertIn("In development", text, msg=app["slug"])
+            badge = re.search(r'<header class="page-hero">.*?<span class="status[^"]*">([^<]+)</span>', text, re.S)
+            self.assertIsNotNone(badge, msg=app["slug"])
+            expected = {"in_review": "In App Review", "available": "On the App Store"}.get(app["status"], "In development")
+            self.assertEqual(badge.group(1), expected, msg=app["slug"])
+            if app["status"] == "in_development":
+                self.assertIn("Planned pricing; it can change before release.", text, msg=app["slug"])
+            else:
+                self.assertNotIn("Planned pricing", text, msg=app["slug"])
+                self.assertNotIn("Screenshots will appear here", text, msg=app["slug"])
             self.assertIn(app["privacy_url"], text, msg=app["slug"])
             self.assertIn("Write to us about", text, msg=app["slug"])
             self.assertIn("mailto:admin@prameya.legal", text, msg=app["slug"])
@@ -183,6 +194,8 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIn("OmniDent", text)
         self.assertIn("OmniSalub", text)
         self.assertIn("Hugging Face", text)
+        self.assertIn("OmniMathematics when you choose to download its optional Ask model", text)
+        self.assertNotIn("do not download weights in the shipping build", text)
 
     def test_omniops_has_a_product_page(self) -> None:
         self.assertTrue((ROOT / "apps" / "omniops" / "index.html").is_file())
@@ -245,6 +258,47 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertIn('name="description"', text)
         self.assertEqual(len(titles), len(set(titles)))
         self.assertEqual(len(canonicals), len(set(canonicals)))
+
+    def test_omnimath_page_says_only_what_the_submitted_app_does(self) -> None:
+        """OmniMathematics 1.0 (24): 20 chapters in 6 parts, not a course, Pro is the study report only."""
+        text = (ROOT / "apps" / "omnimath" / "index.html").read_text(encoding="utf-8")
+        lower = text.lower()
+        for stale in ("21 chapters", "twenty-one", "is a course", "extra drills", "lab interactives",
+                      "export of your work", "screenshots will appear here", "in development.",
+                      '"creativeworkstatus": "incomplete"'):
+            self.assertNotIn(stale, lower, msg=stale)
+        for fact in ("20 chapters in 6 parts", "All 20 story-tour chapters", "Export my marks, as a raw file",
+                     "Hugging Face", "Download (about 350 MB)", "7-day free trial for eligible new subscribers",
+                     "OmniMathematics is not a course, a credential or a tutor"):
+            self.assertIn(fact, text, msg=fact)
+        pro = re.search(r'<div class="tier featured">.*?<ul class="tier-features">(.*?)</ul>', text, re.S)
+        self.assertIsNotNone(pro)
+        self.assertEqual(re.findall(r"<li>([^<]+)</li>", pro.group(1)), ["A formatted study report of your marks"])
+
+    def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
+        sentence = "OmniMath (OmniMathematics) is in App Review; the other apps are in development."
+        for path in html_files():
+            text = path.read_text(encoding="utf-8")
+            for stale in ("in active development", "All eleven apps are", "not yet available on the App Store",
+                          "No App Store links yet", "currently in development", "All ten are", "Ten apps",
+                          "all in development", "All in development"):
+                self.assertNotIn(stale, text, msg=f"{path}: {stale}")
+            self.assertIn("links to the App Store once that app is available there", text, msg=str(path))
+        for page in ("index.html", "pricing/index.html", "about/index.html", "resources/faq/index.html",
+                     "resources/one-pagers/company/index.html", "resources/one-pagers/portfolio/index.html"):
+            self.assertIn(sentence, (ROOT / page).read_text(encoding="utf-8"), msg=page)
+        faq = (ROOT / "resources" / "faq" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("OmniMathematics can download its optional Ask model when you choose to", faq)
+
+    def test_pricing_page_is_true_of_omnimathematics_and_marks_planned_prices(self) -> None:
+        text = (ROOT / "pricing" / "index.html").read_text(encoding="utf-8")
+        for stale in ("Domain tools (visit pack, drills, sandbox, cadence)", "Formatted PDF / CSV export",
+                      "Unlimited history and project depth", "Your own logs, photos, and documents",
+                      "one-time app purchase"):
+            self.assertNotIn(stale, text, msg=stale)
+        self.assertIn("OmniMathematics: one feature, the formatted study report of your marks", text)
+        self.assertIn("7-day free trial for eligible new subscribers", text)
+        self.assertIn("planned and can change before it is submitted", text)
 
     def test_nojekyll_is_present(self) -> None:
         self.assertTrue((ROOT / ".nojekyll").is_file())

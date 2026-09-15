@@ -57,7 +57,7 @@ Hardcoded in `src/build_site.py`:
 - `BASE_URL`: Currently `https://prameyallc.github.io`, will become `https://prameya.legal` on domain cutover
 - `PRIVACY_HUB`: Separate site at `/privacy/` (different repo)
 - `EMAIL`: `admin@prameya.legal`
-- `HF_APPS`: The three apps that download Hugging Face model files (omnisalub, omnident, omnilex)
+- `HF_APPS`: The three apps whose page carries the generic Hugging Face install sentence (omnisalub, omnident, omnilex). OmniMathematics states its optional Ask-model download in its own words through `model_download` in `apps.json`
 
 Each app has its own accent color from the OHBrand design system, stored in `apps.json` and applied via CSS custom properties.
 
@@ -68,7 +68,7 @@ The test suite enforces **four non-negotiable rules** that gate all copy:
 1. **No outcome claims** — Never "saves you $X", "improves health", "faster approval"
 2. **No professional-role claims** — Never "diagnoses", "advises", "represents you" unless explicitly negated
 3. **No fabricated numbers** — No user counts, ratings, market sizes
-4. **Honest availability** — All apps are `in_development` until `store_url` is a real App Store URL
+4. **Honest availability** — An app is `in_development` until submitted, `in_review` while App Review has it (OmniMathematics), and `available` only with a real App Store `store_url`; site-wide availability sentences are computed from these statuses
 
 ### OmniDent Special Case
 
@@ -92,7 +92,7 @@ If a test fails, the build is broken and must not be pushed.
 
 ## Changing App Status
 
-When an app ships:
+When an app is submitted to App Review, set `"status": "in_review"` (keep `store_url` null) and rebuild. When an app ships:
 1. Set `"status": "available"` in `src/apps.json`
 2. Set `"store_url"` to the real `https://apps.apple.com/…` URL
 3. Run `python3 src/build_site.py`

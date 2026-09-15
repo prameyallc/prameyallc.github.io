@@ -408,28 +408,34 @@
       "icon": "OmniMathematics.png",
       "accent": "#B0308A",
       "group": "learning",
-      "audience": "For the self-taught",
-      "status": "in_development",
+      "audience": "For students and self-learners",
+      "status": "in_review",
       "store_url": null,
-      "platforms": [],
+      "platforms": ["iPhone", "iPad", "Apple Watch"],
       "features": [
-        "21 chapters",
-        "Interactive proofs",
+        "20 chapters in 6 parts",
+        "Sourced topic packs",
+        "Interactives",
         "Works offline"
       ],
-      "summary": "Twenty-one chapters that build on each other, a cross-linked codex of concepts, and worked proofs that never skip a line. What a good tutor really gives you is the step that was left out \u2014 so none are.",
-      "detail": "OmniMath (published as OmniMathematics) is a course you can work through without a network: chapters in order, a codex of concepts, and proofs that keep every step on the page.",
-      "hard_line": "OmniMath is a course, not a credential and not a tutor who can certify you.",
+      "summary": "Discrete math for computer science, and the math around it: topic packs with a cited source under each idea, a Codex of concepts, interactives, and a story tour of twenty chapters in six parts. No account, and no network needed to study.",
+      "detail": "OmniMathematics is a learning app for iPhone and iPad, with an Apple Watch app. Everything you study ships inside the app, and your marks stay on your device and, if you are signed in to iCloud, in your own iCloud. Ask answers from the Codex and the topic packs; an optional on-device model, downloaded only if you choose, can rephrase an answer and labels it as generated.",
+      "hard_line": "OmniMathematics is not a course, a credential or a tutor who can certify you. Check anything you will be graded on against your course text.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnimath/",
       "health_data_url": null,
-      "meta_description": "OmniMath is twenty-one chapters, a concept codex and worked proofs that never skip a line. Published as OmniMathematics. In development. Works offline.",
+      "model_download": "OmniMathematics can download an optional on-device Ask model (about 350 MB) from Hugging Face, only after you choose \u201cDownload (about 350 MB)\u201d in Ask or turn on \u201cOn-device Ask model\u201d in Settings. That request is for a model file; it does not send your questions or your marks anywhere.",
+      "meta_description": "OmniMath is a discrete-math learning app for computer science: sourced topic packs, a Codex of concepts, interactives and twenty story-tour chapters. Published as OmniMathematics. Works offline.",
       "pricing": {
+        "headline": "Free knowledge. One optional Pro feature.",
+        "note": "Topic packs, the Codex, all twenty chapters, the interactives, Ask and the raw export of your marks stay free. Pro is one feature, the formatted study report, sold monthly, annually or once as Lifetime. Monthly and annual include a 7-day free trial for eligible new subscribers. Family Sharing is on. Cancel in Settings.",
         "free_tier": {
           "name": "Free",
           "includes": [
-            "All 21 chapters",
-            "Concept codex",
-            "Proofs that do not skip a line"
+            "Every topic pack and the Codex",
+            "All 20 story-tour chapters",
+            "All interactives",
+            "Ask, and the optional on-device model",
+            "Export my marks, as a raw file"
           ]
         },
         "pro_subscription": {
@@ -438,9 +444,7 @@
           "price_yearly_usd": 29.99,
           "price_lifetime_usd": 79.99,
           "includes": [
-            "Extra drills",
-            "Lab interactives",
-            "Export of your work"
+            "A formatted study report of your marks"
           ]
         }
       }
