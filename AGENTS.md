@@ -14,7 +14,7 @@ Do not hand-edit generated HTML. The next build will overwrite it.
 1. No outcome claims (“saves you $X”, “improves health”, “faster approval”).
 2. No professional-role claims (“diagnoses”, “advises”, “represents you”, “certified”) unless they appear only as a negation, and never as a blanket OmniDent “does not diagnose” line.
 3. No fabricated numbers (users, ratings, market sizes).
-4. Honest availability. An app is “In development” until it is submitted, “In App Review” while a submission is with Apple, and “On the App Store” only when `store_url` is a real App Store URL (see the status protocol). Never “Download now.” Never an Apple badge CDN. Site-wide copy must stay true for every app: availability sentences are computed from `src/apps.json`, never typed as “all eleven are in development”.
+4. Honest availability. An app is “In development” until it is submitted, “Submitted to App Review” once a submission has gone to Apple, and “On the App Store” only when `store_url` is a real App Store URL (see the status protocol). Never “Download now.” Never an Apple badge CDN. Site-wide copy must stay true for every app: availability sentences are computed from `src/apps.json`, never typed as “all eleven are in development”.
 
 Copy source of truth for capabilities is the landing-card text in `src/apps.json`, which was taken from the previous `index.html`. Do **not** import privacy-hub taglines (“dental photo analysis and coaching”, “legal AI for professionals”).
 
@@ -47,7 +47,7 @@ Mailto, not a list. Prefill `mailto:admin@prameya.legal?subject=…`. Do not pro
 `status` in `src/apps.json` takes one of three values. The footer, home page, FAQ, About, Pricing and one-pager availability sentences are computed from it, so change the catalog, not the prose.
 
 - `"in_development"` — not submitted. Badge “In development”; the app page keeps the screenshot placeholder and marks its prices as planned.
-- `"in_review"` — submitted to App Review and not on sale; `store_url` stays `null`. Badge “In App Review”; no screenshot placeholder, no “planned” note. OmniMathematics has been `in_review` since its first submission in September 2026.
+- `"in_review"` — submitted to App Review and not on sale; `store_url` stays `null`. Badge “Submitted to App Review”; no screenshot placeholder, no “planned” note. The site cannot see Apple's review state, so the badge says only what stays true through a review, a rejection and a reply. Before publishing a change to `in_review`, read `asc versions list --app <Apple ID>` and confirm the version has been submitted (for example `WAITING_FOR_REVIEW`, `IN_REVIEW` or `REJECTED` after a submission). OmniMathematics has been `in_review` since its first submission in September 2026.
 - `"available"` — on sale:
   1. `"status": "available"`
   2. `"store_url": "https://apps.apple.com/…"` (real URL only)

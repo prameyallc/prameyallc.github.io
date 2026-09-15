@@ -157,7 +157,8 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertIn(app["hard_line"], text, msg=app["slug"])
             badge = re.search(r'<header class="page-hero">.*?<span class="status[^"]*">([^<]+)</span>', text, re.S)
             self.assertIsNotNone(badge, msg=app["slug"])
-            expected = {"in_review": "In App Review", "available": "On the App Store"}.get(app["status"], "In development")
+            expected = {"in_review": "Submitted to App Review", "available": "On the App Store"}.get(app["status"], "In development")
+            self.assertNotIn(">In App Review<", text, msg=f"{app['slug']}: the site cannot see Apple's review state")
             self.assertEqual(badge.group(1), expected, msg=app["slug"])
             if app["status"] == "in_development":
                 self.assertIn("Planned pricing; it can change before release.", text, msg=app["slug"])
@@ -276,7 +277,7 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertEqual(re.findall(r"<li>([^<]+)</li>", pro.group(1)), ["A formatted study report of your marks"])
 
     def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
-        sentence = "OmniMath (OmniMathematics) is in App Review; the other apps are in development."
+        sentence = "OmniMath (OmniMathematics) has been submitted to App Review; the other apps are in development."
         for path in html_files():
             text = path.read_text(encoding="utf-8")
             for stale in ("in active development", "All eleven apps are", "not yet available on the App Store",

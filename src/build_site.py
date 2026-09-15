@@ -80,7 +80,10 @@ def status_label(app: dict) -> str:
     if is_available(app):
         return "On the App Store"
     if is_in_review(app):
-        return "In App Review"
+        # ⛔ "SUBMITTED", NOT "IN APP REVIEW" (OmniMathematics App Review round 1, 2026-09-15). The site cannot
+        #    see Apple's state: OmniMathematics 1.0 read REJECTED on App Store Connect while this badge said
+        #    "In App Review". "Submitted to App Review" stays true through a review, a rejection and a reply.
+        return "Submitted to App Review"
     return "In development"
 
 
@@ -129,7 +132,7 @@ def availability_sentence(catalog: dict) -> str:
     if available:
         clauses.append(f"{join_names(available)} {'is' if len(available) == 1 else 'are'} on the App Store")
     if review:
-        clauses.append(f"{join_names(review)} {'is' if len(review) == 1 else 'are'} in App Review")
+        clauses.append(f"{join_names(review)} {'has' if len(review) == 1 else 'have'} been submitted to App Review")
     if others:
         if clauses:
             clauses.append("the other app is in development" if others == 1 else "the other apps are in development")

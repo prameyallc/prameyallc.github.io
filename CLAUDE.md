@@ -68,7 +68,7 @@ The test suite enforces **four non-negotiable rules** that gate all copy:
 1. **No outcome claims** — Never "saves you $X", "improves health", "faster approval"
 2. **No professional-role claims** — Never "diagnoses", "advises", "represents you" unless explicitly negated
 3. **No fabricated numbers** — No user counts, ratings, market sizes
-4. **Honest availability** — An app is `in_development` until submitted, `in_review` while App Review has it (OmniMathematics), and `available` only with a real App Store `store_url`; site-wide availability sentences are computed from these statuses
+4. **Honest availability** — An app is `in_development` until submitted, `in_review` once submitted to App Review, shown as “Submitted to App Review” (OmniMathematics), and `available` only with a real App Store `store_url`; site-wide availability sentences are computed from these statuses
 
 ### OmniDent Special Case
 
@@ -92,7 +92,7 @@ If a test fails, the build is broken and must not be pushed.
 
 ## Changing App Status
 
-When an app is submitted to App Review, set `"status": "in_review"` (keep `store_url` null) and rebuild. When an app ships:
+When an app is submitted to App Review, set `"status": "in_review"` (keep `store_url` null) and rebuild; the badge reads “Submitted to App Review”. Read `asc versions list --app <Apple ID>` before publishing that change. When an app ships:
 1. Set `"status": "available"` in `src/apps.json`
 2. Set `"store_url"` to the real `https://apps.apple.com/…` URL
 3. Run `python3 src/build_site.py`
