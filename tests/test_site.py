@@ -274,12 +274,17 @@ class BuiltSiteTests(unittest.TestCase):
         lower = text.lower()
         for stale in ("21 chapters", "twenty-one", "is a course", "extra drills", "lab interactives",
                       "export of your work", "screenshots will appear here", "in development.",
-                      '"creativeworkstatus": "incomplete"'):
+                      '"creativeworkstatus": "incomplete"',
+                      # build 24 (2026-09-15): the Ask model is a per-device catalog and the Codex is Concepts
+                      "350 mb", "qwen", "codex"):
             self.assertNotIn(stale, lower, msg=stale)
         for fact in ("20 chapters in 6 parts", "All 20 story-tour chapters", "Export my marks, as a raw file",
-                     "Hugging Face", "Download (about 350 MB)", "7-day free trial for eligible new subscribers",
+                     "Hugging Face", "MiniCPM5 2B", "openbmb/MiniCPM5-2B-MLX", "about 1.4 GB",
+                     "Gemma 4 E2B", "mlx-community/gemma-4-E2B-it-qat-4bit", "about 4.4 GB",
+                     "8 GB", "12 GB or more", "6 GB or less", "On-device Ask model", "Concepts",
+                     "7-day free trial for eligible new subscribers",
                      "OmniMathematics is not a course, a credential or a tutor"):
-            self.assertIn(fact, text, msg=fact)
+            self.assertIn(fact, html.unescape(text), msg=fact)
         pro = re.search(r'<div class="tier featured">.*?<ul class="tier-features">(.*?)</ul>', text, re.S)
         self.assertIsNotNone(pro)
         self.assertEqual(re.findall(r"<li>([^<]+)</li>", pro.group(1)), ["A formatted study report of your marks"])

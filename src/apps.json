@@ -418,20 +418,20 @@
         "Interactives",
         "Study offline"
       ],
-      "summary": "Discrete math for computer science, and the math around it: topic packs with a cited source under each idea, a Codex of concepts, interactives, and a story tour of twenty chapters in six parts. No account, and no network needed to study.",
-      "detail": "OmniMathematics is a learning app for iPhone and iPad, with an Apple Watch app. Everything you study ships inside the app, and your marks stay on your device and, if you are signed in to iCloud, in your own iCloud. Ask answers from the Codex and the topic packs; an optional on-device model, downloaded only if you choose, can rephrase an answer and labels it as generated.",
+      "summary": "Discrete math for computer science, and the math around it: topic packs with a cited source under each idea, Concepts (a built-in reference), interactives, and a story tour of twenty chapters in six parts. No account, and no network needed to study.",
+      "detail": "OmniMathematics is a learning app for iPhone and iPad, with an Apple Watch app. Everything you study ships inside the app, and your marks stay on your device and, if you are signed in to iCloud, in your own iCloud. Ask answers from Concepts and the topic packs; on an iPhone or iPad with 8 GB of memory or more, an optional on-device model, downloaded only if you choose, can rephrase an answer and labels it as generated. Devices with 6 GB or less answer from Concepts and the packs.",
       "hard_line": "OmniMathematics is not a course, a credential or a tutor who can certify you. Check anything you will be graded on against your course text.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnimath/",
       "health_data_url": null,
-      "model_download": "OmniMathematics can download an optional on-device Ask model (about 350 MB) from Hugging Face, only after you choose \u201cDownload (about 350 MB)\u201d in Ask or turn on \u201cOn-device Ask model\u201d in Settings. That request is for a model file; it does not send your questions or your marks anywhere.",
-      "meta_description": "OmniMath is a discrete-math learning app for computer science: sourced topic packs, a Codex of concepts, interactives and twenty story-tour chapters. Published as OmniMathematics. Study offline.",
+      "model_download": "OmniMathematics can download an optional on-device Ask model from Hugging Face, only after you choose \u201cDownload\u201d in Ask or turn on \u201cOn-device Ask model\u201d in Settings. Which model is offered depends on the device's memory: an iPhone or iPad with 8 GB is offered MiniCPM5 2B (openbmb/MiniCPM5-2B-MLX, about 1.4 GB); 12 GB or more, Gemma 4 E2B (mlx-community/gemma-4-E2B-it-qat-4bit, about 4.4 GB); 6 GB or less, and devices without Metal 3, are offered no download and Ask answers from Concepts and the packs. The button names the model and its size. That request is for a model file; it does not send your questions or your marks anywhere.",
+      "meta_description": "OmniMath is a discrete-math learning app for computer science: sourced topic packs, Concepts (a built-in reference), interactives and twenty story-tour chapters. Published as OmniMathematics. Study offline.",
       "pricing": {
         "headline": "Free knowledge. One optional Pro feature.",
-        "note": "Topic packs, the Codex, all twenty chapters, the interactives, Ask and the raw export of your marks stay free. Pro is one feature, the formatted study report, sold monthly, annually or once as Lifetime. Monthly and annual include a 7-day free trial for eligible new subscribers. Family Sharing is on. Cancel in iOS Settings ▸ your name ▸ Subscriptions at least 24 hours before the period ends.",
+        "note": "Topic packs, Concepts, all twenty chapters, the interactives, Ask and the raw export of your marks stay free. Pro is one feature, the formatted study report, sold monthly, annually or once as Lifetime. Monthly and annual include a 7-day free trial for eligible new subscribers. Family Sharing is on. Cancel in iOS Settings ▸ your name ▸ Subscriptions at least 24 hours before the period ends.",
         "free_tier": {
           "name": "Free",
           "includes": [
-            "Every topic pack and the Codex",
+            "Every topic pack and Concepts",
             "All 20 story-tour chapters",
             "All interactives",
             "Ask, and the optional on-device model",
