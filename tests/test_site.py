@@ -9,6 +9,7 @@ before it is published.
 from __future__ import annotations
 
 import json
+import html
 import re
 import unittest
 from html.parser import HTMLParser
@@ -72,6 +73,10 @@ FORBIDDEN_ROLE_CLAIMS = [
     r"\badvises\b",
     r"\brepresents you\b",
 ]
+
+
+HUB_MODEL_SENTENCE = ("Some apps can download an optional AI model file from Hugging Face, and only after you choose to; "
+                      "each app's own policy says whether it does and when.")
 
 
 class HrefCollector(HTMLParser):
@@ -188,15 +193,18 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIn("do not add you to a mailing list", text.lower())
         self.assertIn("Do not send photographs of your skin", text)
 
-    def test_privacy_model_links_the_existing_hub_and_names_model_downloads(self) -> None:
+    def test_privacy_model_links_the_existing_hub_and_quotes_its_model_download_sentence(self) -> None:
+        """The hub stopped naming apps (2026-09-15): the list was unverified. Quote the hub; name no app in that sentence."""
         text = (ROOT / "privacy-model" / "index.html").read_text(encoding="utf-8")
         self.assertIn("https://prameyallc.github.io/privacy/", text)
-        self.assertIn("OmniLex", text)
-        self.assertIn("OmniDent", text)
-        self.assertIn("OmniSalub", text)
         self.assertIn("Hugging Face", text)
-        self.assertIn("OmniMathematics when you choose to download its optional Ask model", text)
+        self.assertIn(HUB_MODEL_SENTENCE, html.unescape(text))
         self.assertNotIn("do not download weights in the shipping build", text)
+        quote = re.search(r"<blockquote>(.*?)</blockquote>", text, re.S)
+        self.assertIsNotNone(quote)
+        self.assertNotRegex(quote.group(1), r"Omni[A-Z]", msg="the quoted hub paragraph must not list apps")
+        for stale in ("OmniLex, OmniDent and OmniSalub", "OmniMathematics when you choose to download its optional Ask model"):
+            self.assertNotIn(stale, text, msg=stale)
 
     def test_omniops_has_a_product_page(self) -> None:
         self.assertTrue((ROOT / "apps" / "omniops" / "index.html").is_file())
@@ -288,8 +296,9 @@ class BuiltSiteTests(unittest.TestCase):
         for page in ("index.html", "pricing/index.html", "about/index.html", "resources/faq/index.html",
                      "resources/one-pagers/company/index.html", "resources/one-pagers/portfolio/index.html"):
             self.assertIn(sentence, (ROOT / page).read_text(encoding="utf-8"), msg=page)
-        faq = (ROOT / "resources" / "faq" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("OmniMathematics can download its optional Ask model when you choose to", faq)
+        faq = html.unescape((ROOT / "resources" / "faq" / "index.html").read_text(encoding="utf-8"))
+        self.assertIn(HUB_MODEL_SENTENCE, faq)
+        self.assertNotIn("OmniLex, OmniDent and OmniSalub can download", faq)
 
     def test_pricing_page_is_true_of_omnimathematics_and_marks_planned_prices(self) -> None:
         text = (ROOT / "pricing" / "index.html").read_text(encoding="utf-8")
@@ -300,6 +309,16 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIn("OmniMathematics: one feature, the formatted study report of your marks", text)
         self.assertIn("7-day free trial for eligible new subscribers", text)
         self.assertIn("planned and can change before it is submitted", text)
+
+    def test_no_page_tells_a_subscriber_to_cancel_in_the_apps_own_settings(self) -> None:
+        """"Cancel in Settings." reads as the app's Settings tab, which cannot cancel; the binary names the iOS path."""
+        for path in html_files():
+            text = html.unescape(path.read_text(encoding="utf-8"))
+            self.assertNotIn("Cancel in Settings.", text, msg=str(path))
+        omnimath = html.unescape((ROOT / "apps" / "omnimath" / "index.html").read_text(encoding="utf-8"))
+        self.assertIn("Cancel in iOS Settings ▸ your name ▸ Subscriptions at least 24 hours before the period ends.", omnimath)
+        self.assertIn("Study offline", omnimath)
+        self.assertNotIn("Works offline", omnimath)
 
     def test_nojekyll_is_present(self) -> None:
         self.assertTrue((ROOT / ".nojekyll").is_file())

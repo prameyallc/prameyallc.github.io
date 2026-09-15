@@ -276,7 +276,7 @@ def pricing_table(app: dict) -> str:
     note = pricing.get(
         "note",
         "The reference library stays free. Pro is monthly, annual, or lifetime — the same tools "
-        "either way. 7-day trial on monthly and annual. Family Sharing on. Cancel in Settings.",
+        "either way. 7-day trial on monthly and annual. Family Sharing on. Cancel in iOS Settings ▸ your name ▸ Subscriptions.",
     )
     if not is_available(app) and not is_in_review(app):
         # An app that has not been submitted can still change its prices and trial.
