@@ -9,6 +9,7 @@ before it is published.
 from __future__ import annotations
 
 import json
+import html
 import re
 import unittest
 from html.parser import HTMLParser
@@ -74,6 +75,10 @@ FORBIDDEN_ROLE_CLAIMS = [
 ]
 
 
+HUB_MODEL_SENTENCE = ("Some apps can download an optional AI model file from Hugging Face, and only after you choose to; "
+                      "each app's own policy says whether it does and when.")
+
+
 class HrefCollector(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
@@ -110,7 +115,10 @@ class CatalogTests(unittest.TestCase):
         data = load_apps()
         slugs = [app["slug"] for app in data["apps"]]
         self.assertEqual(slugs, EXPECTED_SLUGS)
-        self.assertTrue(all(app["status"] == "in_development" for app in data["apps"]))
+        statuses = {app["slug"]: app["status"] for app in data["apps"]}
+        # OmniMathematics is with App Review (September 2026); nothing is on sale yet.
+        self.assertEqual(statuses.pop("omnimath"), "in_review")
+        self.assertTrue(all(status == "in_development" for status in statuses.values()), statuses)
         self.assertTrue(all(not app.get("store_url") for app in data["apps"]))
         self.assertIn("omniops", slugs)
 
@@ -152,7 +160,16 @@ class BuiltSiteTests(unittest.TestCase):
         for app in data["apps"]:
             text = (ROOT / "apps" / app["slug"] / "index.html").read_text(encoding="utf-8")
             self.assertIn(app["hard_line"], text, msg=app["slug"])
-            self.assertIn("In development", text, msg=app["slug"])
+            badge = re.search(r'<header class="page-hero">.*?<span class="status[^"]*">([^<]+)</span>', text, re.S)
+            self.assertIsNotNone(badge, msg=app["slug"])
+            expected = {"in_review": "Submitted to App Review", "available": "On the App Store"}.get(app["status"], "In development")
+            self.assertNotIn(">In App Review<", text, msg=f"{app['slug']}: the site cannot see Apple's review state")
+            self.assertEqual(badge.group(1), expected, msg=app["slug"])
+            if app["status"] == "in_development":
+                self.assertIn("Planned pricing; it can change before release.", text, msg=app["slug"])
+            else:
+                self.assertNotIn("Planned pricing", text, msg=app["slug"])
+                self.assertNotIn("Screenshots will appear here", text, msg=app["slug"])
             self.assertIn(app["privacy_url"], text, msg=app["slug"])
             self.assertIn("Write to us about", text, msg=app["slug"])
             self.assertIn("mailto:admin@prameya.legal", text, msg=app["slug"])
@@ -176,13 +193,18 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIn("do not add you to a mailing list", text.lower())
         self.assertIn("Do not send photographs of your skin", text)
 
-    def test_privacy_model_links_the_existing_hub_and_names_model_downloads(self) -> None:
+    def test_privacy_model_links_the_existing_hub_and_quotes_its_model_download_sentence(self) -> None:
+        """The hub stopped naming apps (2026-09-15): the list was unverified. Quote the hub; name no app in that sentence."""
         text = (ROOT / "privacy-model" / "index.html").read_text(encoding="utf-8")
         self.assertIn("https://prameyallc.github.io/privacy/", text)
-        self.assertIn("OmniLex", text)
-        self.assertIn("OmniDent", text)
-        self.assertIn("OmniSalub", text)
         self.assertIn("Hugging Face", text)
+        self.assertIn(HUB_MODEL_SENTENCE, html.unescape(text))
+        self.assertNotIn("do not download weights in the shipping build", text)
+        quote = re.search(r"<blockquote>(.*?)</blockquote>", text, re.S)
+        self.assertIsNotNone(quote)
+        self.assertNotRegex(quote.group(1), r"Omni[A-Z]", msg="the quoted hub paragraph must not list apps")
+        for stale in ("OmniLex, OmniDent and OmniSalub", "OmniMathematics when you choose to download its optional Ask model"):
+            self.assertNotIn(stale, text, msg=stale)
 
     def test_omniops_has_a_product_page(self) -> None:
         self.assertTrue((ROOT / "apps" / "omniops" / "index.html").is_file())
@@ -245,6 +267,63 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertIn('name="description"', text)
         self.assertEqual(len(titles), len(set(titles)))
         self.assertEqual(len(canonicals), len(set(canonicals)))
+
+    def test_omnimath_page_says_only_what_the_submitted_app_does(self) -> None:
+        """OmniMathematics 1.0 (24): 20 chapters in 6 parts, not a course, Pro is the study report only."""
+        text = (ROOT / "apps" / "omnimath" / "index.html").read_text(encoding="utf-8")
+        lower = text.lower()
+        for stale in ("21 chapters", "twenty-one", "is a course", "extra drills", "lab interactives",
+                      "export of your work", "screenshots will appear here", "in development.",
+                      '"creativeworkstatus": "incomplete"',
+                      # build 24 (2026-09-15): the Ask model is a per-device catalog and the Codex is Concepts
+                      "350 mb", "qwen", "codex"):
+            self.assertNotIn(stale, lower, msg=stale)
+        for fact in ("20 chapters in 6 parts", "All 20 story-tour chapters", "Export my marks, as a raw file",
+                     "Hugging Face", "MiniCPM5 2B", "openbmb/MiniCPM5-2B-MLX", "about 1.4 GB",
+                     "Gemma 4 E2B", "mlx-community/gemma-4-E2B-it-qat-4bit", "about 4.4 GB",
+                     "8 GB", "12 GB or more", "6 GB or less", "On-device Ask model", "Concepts",
+                     "7-day free trial for eligible new subscribers",
+                     "OmniMathematics is not a course, a credential or a tutor"):
+            self.assertIn(fact, html.unescape(text), msg=fact)
+        pro = re.search(r'<div class="tier featured">.*?<ul class="tier-features">(.*?)</ul>', text, re.S)
+        self.assertIsNotNone(pro)
+        self.assertEqual(re.findall(r"<li>([^<]+)</li>", pro.group(1)), ["A formatted study report of your marks"])
+
+    def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
+        sentence = "OmniMath (OmniMathematics) has been submitted to App Review; the other apps are in development."
+        for path in html_files():
+            text = path.read_text(encoding="utf-8")
+            for stale in ("in active development", "All eleven apps are", "not yet available on the App Store",
+                          "No App Store links yet", "currently in development", "All ten are", "Ten apps",
+                          "all in development", "All in development"):
+                self.assertNotIn(stale, text, msg=f"{path}: {stale}")
+            self.assertIn("links to the App Store once that app is available there", text, msg=str(path))
+        for page in ("index.html", "pricing/index.html", "about/index.html", "resources/faq/index.html",
+                     "resources/one-pagers/company/index.html", "resources/one-pagers/portfolio/index.html"):
+            self.assertIn(sentence, (ROOT / page).read_text(encoding="utf-8"), msg=page)
+        faq = html.unescape((ROOT / "resources" / "faq" / "index.html").read_text(encoding="utf-8"))
+        self.assertIn(HUB_MODEL_SENTENCE, faq)
+        self.assertNotIn("OmniLex, OmniDent and OmniSalub can download", faq)
+
+    def test_pricing_page_is_true_of_omnimathematics_and_marks_planned_prices(self) -> None:
+        text = (ROOT / "pricing" / "index.html").read_text(encoding="utf-8")
+        for stale in ("Domain tools (visit pack, drills, sandbox, cadence)", "Formatted PDF / CSV export",
+                      "Unlimited history and project depth", "Your own logs, photos, and documents",
+                      "one-time app purchase"):
+            self.assertNotIn(stale, text, msg=stale)
+        self.assertIn("OmniMathematics: one feature, the formatted study report of your marks", text)
+        self.assertIn("7-day free trial for eligible new subscribers", text)
+        self.assertIn("planned and can change before it is submitted", text)
+
+    def test_no_page_tells_a_subscriber_to_cancel_in_the_apps_own_settings(self) -> None:
+        """"Cancel in Settings." reads as the app's Settings tab, which cannot cancel; the binary names the iOS path."""
+        for path in html_files():
+            text = html.unescape(path.read_text(encoding="utf-8"))
+            self.assertNotIn("Cancel in Settings.", text, msg=str(path))
+        omnimath = html.unescape((ROOT / "apps" / "omnimath" / "index.html").read_text(encoding="utf-8"))
+        self.assertIn("Cancel in iOS Settings ▸ your name ▸ Subscriptions at least 24 hours before the period ends.", omnimath)
+        self.assertIn("Study offline", omnimath)
+        self.assertNotIn("Works offline", omnimath)
 
     def test_nojekyll_is_present(self) -> None:
         self.assertTrue((ROOT / ".nojekyll").is_file())

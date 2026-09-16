@@ -37,7 +37,7 @@ Do not hand-edit generated HTML.
 1. **No outcome claims.** Never "saves you $X", "improves your health", "faster approval". Behaviour and capability only.
 2. **No professional-role claims.** No "certified", "diagnoses", "advises", "represents you" as a positive claim. Each app page states the line it does not cross. OmniDent must not use a blanket "does not diagnose" sentence — its published policy withdrew that wording on 24 August 2026.
 3. **No fabricated numbers.** No user counts, no market sizes, no ratings — nothing that isn't verifiable.
-4. **Availability stated honestly.** All eleven apps are in development. When an app ships, set `store_url` in `src/apps.json` and rebuild.
+4. **Availability stated honestly.** Each app's `status` in `src/apps.json` is `in_development`, `in_review` (submitted to App Review, not on sale) or `available` (with a real `store_url`); see the status protocol in `AGENTS.md`. Site-wide availability sentences are computed from it. Rebuild after changing it.
 
 Contact is `admin@prameya.legal`. That inbox is not a mailing list.
 

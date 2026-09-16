@@ -33,7 +33,9 @@ Sources: `src/` · Generated HTML is committed for GitHub Pages.
 3. `python3 src/build_site.py`
 4. `python3 -m unittest tests.test_site -v`
 
-## Change status when an app ships
+## Change status when an app is submitted or ships
+
+When an app is submitted to App Review, set `status` to `in_review` (keep `store_url` null) and rebuild; the badge reads “Submitted to App Review”. Read `asc versions list --app <Apple ID>` before publishing that change. When it ships:
 
 1. Set `status` to `available` and `store_url` to the real App Store URL.
 2. Rebuild. Do not change the hard line, features, or summaries unless the shipping app actually changed — and then check the privacy policy first.
