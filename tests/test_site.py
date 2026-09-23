@@ -31,7 +31,7 @@ EXPECTED_SLUGS = [
     "omniwealth",
     "omniops",
     "omnimath",
-    "omniaero",
+    "omniavia",
     "omniphysics",
 ]
 
