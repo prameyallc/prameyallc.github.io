@@ -35,7 +35,7 @@
       "blurb": "Subjects usually gated behind a tutor's hourly rate.",
       "slugs": [
         "omnimath",
-        "omniaero",
+        "omniavia",
         "omniphysics"
       ]
     }
@@ -450,10 +450,10 @@
       }
     },
     {
-      "slug": "omniaero",
-      "name": "OmniAero",
-      "legal_name": "OmniAero",
-      "icon": "OmniAero.png",
+      "slug": "omniavia",
+      "name": "OmniAvia",
+      "legal_name": "OmniAvia",
+      "icon": "OmniAvia.png",
       "accent": "#1F6FB2",
       "group": "learning",
       "audience": "For student pilots",
@@ -466,11 +466,11 @@
         "Go / no-go reasoning"
       ],
       "summary": "Ground school built around the FAA's own Airman Certification Standards \u2014 the twelve areas of operation, each broken into what you must know, what can go wrong, and what you must do. The regulation itself is always one tap away.",
-      "detail": "OmniAero is ACS ground school on this device: the areas of operation, the knowledge, the risks, the procedures, and the text of 14 CFR in language you can actually read. It does not fly the aeroplane and it does not sign a logbook.",
-      "hard_line": "OmniAero is ground school on this device. It is not flight instruction, not an endorsement, and not a substitute for a certified flight instructor or an examiner.",
-      "privacy_url": "https://prameyallc.github.io/privacy/omniaero/",
+      "detail": "OmniAvia is ACS ground school on this device: the areas of operation, the knowledge, the risks, the procedures, and the text of 14 CFR in language you can actually read. It does not fly the aeroplane and it does not sign a logbook.",
+      "hard_line": "OmniAvia is ground school on this device. It is not flight instruction, not an endorsement, and not a substitute for a certified flight instructor or an examiner.",
+      "privacy_url": "https://prameyallc.github.io/privacy/omniavia/",
       "health_data_url": null,
-      "meta_description": "OmniAero is ACS ground school on your device, with 14 CFR one tap away. In development. Not flight instruction and not an endorsement.",
+      "meta_description": "OmniAvia is ACS ground school on your device, with 14 CFR one tap away. In development. Not flight instruction and not an endorsement.",
       "pricing": {
         "free_tier": {
           "name": "Free",
