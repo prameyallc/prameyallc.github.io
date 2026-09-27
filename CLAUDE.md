@@ -68,7 +68,7 @@ The test suite enforces **four non-negotiable rules** that gate all copy:
 1. **No outcome claims** — Never "saves you $X", "improves health", "faster approval"
 2. **No professional-role claims** — Never "diagnoses", "advises", "represents you" unless explicitly negated
 3. **No fabricated numbers** — No user counts, ratings, market sizes
-4. **Honest availability** — An app is `in_development` until submitted, `in_review` once submitted to App Review, shown as “Submitted to App Review” (OmniMathematics), and `available` only with a real App Store `store_url`; site-wide availability sentences are computed from these statuses
+4. **Honest availability** — An app is `in_development` until submitted, `in_review` once submitted to App Review, shown as “Submitted to App Review” (OmniMathematics, OmniAvia), and `available` only with a real App Store `store_url`; site-wide availability sentences are computed from these statuses
 
 ### OmniDent Special Case
 

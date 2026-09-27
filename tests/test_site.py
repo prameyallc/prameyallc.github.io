@@ -116,8 +116,10 @@ class CatalogTests(unittest.TestCase):
         slugs = [app["slug"] for app in data["apps"]]
         self.assertEqual(slugs, EXPECTED_SLUGS)
         statuses = {app["slug"]: app["status"] for app in data["apps"]}
-        # OmniMathematics is with App Review (September 2026); nothing is on sale yet.
+        # OmniMathematics (September 2026) and OmniAvia (26 September 2026) have been submitted to App Review;
+        # nothing is on sale yet.
         self.assertEqual(statuses.pop("omnimath"), "in_review")
+        self.assertEqual(statuses.pop("omniavia"), "in_review")
         self.assertTrue(all(status == "in_development" for status in statuses.values()), statuses)
         self.assertTrue(all(not app.get("store_url") for app in data["apps"]))
         self.assertIn("omniops", slugs)
@@ -289,8 +291,29 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIsNotNone(pro)
         self.assertEqual(re.findall(r"<li>([^<]+)</li>", pro.group(1)), ["A formatted study report of your marks"])
 
+    def test_omniavia_page_says_only_what_the_submitted_app_does(self) -> None:
+        """OmniAvia 1.0: ground study and reference. Never a go/no-go, and not "In development" once submitted."""
+        text = html.unescape((ROOT / "apps" / "omniavia" / "index.html").read_text(encoding="utf-8"))
+        for stale in ("Go / no-go reasoning", "go/no-go reasoning", "Planned pricing", "Screenshots will appear here",
+                      "In development."):
+            self.assertNotIn(stale, text, msg=stale)
+        # The badge is this app's; the related-app cards further down carry their own.
+        hero = re.search(r'<header class="page-hero">.*?</header>', text, re.S)
+        self.assertIsNotNone(hero)
+        self.assertIn('<span class="status">Submitted to App Review</span>', hero.group(0))
+        self.assertNotIn("In development", hero.group(0))
+        for fact in ("A source under every item", "iPhone", "Apple Watch",
+                     "it never makes a go/no-go, airworthiness or fitness-to-fly decision",
+                     "Formatted study PDF"):
+            self.assertIn(fact, text, msg=fact)
+        chips = [item for block in re.findall(r'<ul class="chips">(.*?)</ul>', text, re.S)
+                 for item in re.findall(r"<li>([^<]+)</li>", block)]
+        self.assertIn("A source under every item", chips)
+        self.assertFalse([c for c in chips if "no-go" in c.lower()], chips)
+
     def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
-        sentence = "OmniMath (OmniMathematics) has been submitted to App Review; the other apps are in development."
+        sentence = ("OmniMath (OmniMathematics) and OmniAvia have been submitted to App Review; "
+                    "the other apps are in development.")
         for path in html_files():
             text = path.read_text(encoding="utf-8")
             for stale in ("in active development", "All eleven apps are", "not yet available on the App Store",
