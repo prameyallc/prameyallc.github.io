@@ -128,6 +128,8 @@ def availability_sentence(catalog: dict) -> str:
     available = [display_name(a) for a in apps if is_available(a)]
     review = [display_name(a) for a in apps if is_in_review(a)]
     others = len(apps) - len(available) - len(review)
+    if review and len(review) == len(apps):
+        return f"All {count_word(len(apps))} apps have been submitted to App Review."
     clauses = []
     if available:
         clauses.append(f"{join_names(available)} {'is' if len(available) == 1 else 'are'} on the App Store")
@@ -140,6 +142,14 @@ def availability_sentence(catalog: dict) -> str:
             clauses.append(f"all {count_word(others)} apps are in development")
     sentence = "; ".join(clauses)
     return sentence[:1].upper() + sentence[1:] + "."
+
+
+def planned_prices_note(catalog: dict) -> str:
+    """Only an app that has not been submitted still has planned prices; say so only while one exists."""
+    if any(not is_available(a) and not is_in_review(a) for a in catalog["apps"]):
+        return (" For an app that is still in development, the prices and any free trial are planned "
+                "and can change before it is submitted.")
+    return ""
 
 
 def store_answer(catalog: dict) -> str:
@@ -615,6 +625,7 @@ def load_fragment(name: str, depth: int, catalog: dict) -> str:
         .replace("{{icons}}", icon_grid(catalog, depth))
         .replace("{{portfolio_rows}}", portfolio_rows(catalog))
         .replace("{{availability}}", esc(availability_sentence(catalog)))
+        .replace("{{planned_prices}}", esc(planned_prices_note(catalog)))
         .replace("{{store_answer}}", store_answer(catalog))
         .replace("{{app_count}}", count_word(len(catalog["apps"])))
         .replace("{{App_count}}", count_word(len(catalog["apps"])).capitalize())

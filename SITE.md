@@ -24,7 +24,7 @@ Sources: `src/` · Generated HTML is committed for GitHub Pages.
 
 **Not in this repo:** `/privacy/` — served by `prameyallc/privacy`.
 
-**Not a product page:** OmniOps.
+**Slugs never change:** OmniCadence (formerly OmniOps) stays at `/apps/omniops/` and OmniMathematics at `/apps/omnimath/`.
 
 ## Add an app
 

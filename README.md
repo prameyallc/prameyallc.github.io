@@ -29,8 +29,8 @@ Do not hand-edit generated HTML.
 
 **Health & the body** — OmniSalub · OmniDent · OmniDerm · OmniRx  
 **Professional knowledge** — OmniLex · OmniBuild · OmniWealth  
-**Operating discipline** — OmniOps  
-**Learning** — OmniMath · OmniAvia · OmniPhysics
+**Operating discipline** — OmniCadence  
+**Learning** — OmniMathematics · OmniAvia · OmniPhysics
 
 ## Rules this site is written under
 
