@@ -457,20 +457,24 @@
       "accent": "#1F6FB2",
       "group": "learning",
       "audience": "For student pilots",
-      "status": "in_development",
+      "status": "in_review",
       "store_url": null,
-      "platforms": [],
+      "platforms": [
+        "iPhone",
+        "iPad",
+        "Apple Watch"
+      ],
       "features": [
         "Every ACS area",
         "14 CFR in plain language",
-        "Go / no-go reasoning"
+        "A source under every item"
       ],
       "summary": "Ground school built around the FAA's own Airman Certification Standards \u2014 the twelve areas of operation, each broken into what you must know, what can go wrong, and what you must do. The regulation itself is always one tap away.",
-      "detail": "OmniAvia is ACS ground school on this device: the areas of operation, the knowledge, the risks, the procedures, and the text of 14 CFR in language you can actually read. It does not fly the aeroplane and it does not sign a logbook.",
-      "hard_line": "OmniAvia is ground school on this device. It is not flight instruction, not an endorsement, and not a substitute for a certified flight instructor or an examiner.",
+      "detail": "OmniAvia is ground study and reference for iPhone and iPad, with an Apple Watch app. Its lesson packs, from the ACS, FAA handbooks, the AIM and 14 CFR, ship inside the app, with the official source under every item. You log your own study, sim or flight sessions and pre-flight preparation; they stay on your device and, if you are signed in to iCloud, in your own iCloud. Where Apple Intelligence is on, Ask answers on the device. It does not fly the aeroplane and it does not sign a logbook.",
+      "hard_line": "OmniAvia is ground study and reference on this device. It is not flight instruction, not an endorsement, and not a substitute for a certified flight instructor or an examiner, and it never makes a go/no-go, airworthiness or fitness-to-fly decision.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniavia/",
       "health_data_url": null,
-      "meta_description": "OmniAvia is ACS ground school on your device, with 14 CFR one tap away. In development. Not flight instruction and not an endorsement.",
+      "meta_description": "OmniAvia is ACS ground study and reference on your device, with 14 CFR one tap away. Not flight instruction, not an endorsement, and never a go/no-go decision.",
       "pricing": {
         "free_tier": {
           "name": "Free",
@@ -488,7 +492,8 @@
           "includes": [
             "Drill generator",
             "Missed-item review",
-            "Oral-prep packs"
+            "Oral-prep packs",
+            "Formatted study PDF"
           ]
         }
       }
