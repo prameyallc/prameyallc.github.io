@@ -84,7 +84,7 @@
           "price_lifetime_usd": 79.99,
           "includes": [
             "Visit pack",
-            "Unlimited history",
+            "Full history on this device",
             "Formatted PDF / CSV export"
           ]
         }
@@ -172,9 +172,9 @@
           "price_yearly_usd": 29.99,
           "price_lifetime_usd": 79.99,
           "includes": [
-            "Same-area compare overlay",
-            "Unlimited journal history",
-            "Formatted export pack"
+            "Same-area compare of two dates",
+            "The whole journal series, with photographs",
+            "Formatted appointment pack"
           ]
         }
       }
@@ -192,22 +192,20 @@
       "platforms": [],
       "features": [
         "Plain-language reference",
-        "Daily check",
-        "Refill dates"
+        "Daily check"
       ],
-      "summary": "What a class of medicine is for, in plain language drawn from published labelling \u2014 plus a simple daily check and refill dates, so you reach the pharmacy counter knowing what to ask.",
-      "detail": "OmniRx explains published labelling in ordinary language and lets you keep a simple daily check and refill dates. It does not take the place of a pharmacist or a prescriber.",
+      "summary": "What a class of medicine is for, in plain language drawn from published labelling \u2014 plus a simple daily check, so you reach the pharmacy counter knowing what to ask.",
+      "detail": "OmniRx explains published labelling in ordinary language and lets you keep a simple daily check. It does not take the place of a pharmacist or a prescriber.",
       "hard_line": "OmniRx is not medical advice. It does not diagnose, calculate doses, check interactions, or identify medicines from photographs.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnirx/",
       "health_data_url": "https://prameyallc.github.io/privacy/omnirx/health-data/",
-      "meta_description": "OmniRx explains published medicine labelling in plain language and keeps a daily check and refill dates on your device. Submitted to App Review. Not medical advice.",
+      "meta_description": "OmniRx explains published medicine labelling in plain language and keeps a daily check on your device. Submitted to App Review. Not medical advice.",
       "pricing": {
         "free_tier": {
           "name": "Free",
           "includes": [
             "Full published-label library",
             "Daily check",
-            "Refill date field",
             "Raw export of your list"
           ]
         },
@@ -217,9 +215,7 @@
           "price_yearly_usd": 29.99,
           "price_lifetime_usd": 79.99,
           "includes": [
-            "Multi-medication schedule",
-            "Reminder depth",
-            "Pharmacist conversation PDF"
+            "Multi-medication schedule"
           ]
         }
       }
@@ -261,9 +257,8 @@
           "price_yearly_usd": 49.99,
           "price_lifetime_usd": 129.99,
           "includes": [
-            "Unlimited vault",
-            "On-device search",
-            "PDF with a disclaimer on every page"
+            "Search what you imported",
+            "Formatted PDF report, generated on your device"
           ]
         }
       }
@@ -306,8 +301,7 @@
           "price_yearly_usd": 29.99,
           "price_lifetime_usd": 79.99,
           "includes": [
-            "Unlimited projects",
-            "Inspection checklist packs",
+            "More than two projects",
             "Permit-counter PDF"
           ]
         }
@@ -351,7 +345,7 @@
           "price_lifetime_usd": 79.99,
           "includes": [
             "Saved scenarios",
-            "Envelope tracking",
+            "Envelopes",
             "Worksheet export"
           ]
         }
@@ -395,7 +389,7 @@
           "price_lifetime_usd": 99.99,
           "includes": [
             "Review analytics",
-            "Custom cadences",
+            "Review cadences you set",
             "Formatted review PDF"
           ]
         }
@@ -525,7 +519,7 @@
           "name": "Free",
           "includes": [
             "Worked reasoning",
-            "One sandbox at a time",
+            "The F = ma sandbox",
             "Concept map"
           ]
         },
@@ -537,7 +531,7 @@
           "includes": [
             "Unlocked sandbox set",
             "Wider parameter ranges",
-            "Lab-note export"
+            "Formatted lab notes"
           ]
         }
       }

@@ -344,6 +344,25 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIn("A source under every item", chips)
         self.assertFalse([c for c in chips if "no-go" in c.lower()], chips)
 
+    def test_pro_lists_sell_only_what_the_submitted_builds_sell(self) -> None:
+        """2026-09-27 audit against each app's paywall and Pro gates. These lines named things the
+        submitted builds do not sell (no checklists, no pharmacist PDF, no reminder tier, no
+        refill-date field, a vault that is uncapped on Free, a PDF disclaimer the export dropped)."""
+        withdrawn = {
+            "omnibuild": ["Inspection checklist packs", "Unlimited projects"],
+            "omnirx": ["Reminder depth", "Pharmacist conversation PDF", "Refill date", "refill dates"],
+            "omnilex": ["Unlimited vault", "disclaimer on every page"],
+            "omniderm": ["compare overlay"],
+        }
+        for slug, stale in withdrawn.items():
+            text = html.unescape((ROOT / "apps" / slug / "index.html").read_text(encoding="utf-8"))
+            for line in stale:
+                self.assertNotIn(line, text, msg=f"{slug}: {line}")
+        pro = {app["slug"]: app["pricing"]["pro_subscription"]["includes"] for app in load_apps()["apps"]}
+        self.assertEqual(pro["omnirx"], ["Multi-medication schedule"])
+        self.assertEqual(pro["omnilex"], ["Search what you imported", "Formatted PDF report, generated on your device"])
+        self.assertEqual(pro["omnibuild"], ["More than two projects", "Permit-counter PDF"])
+
     def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
         sentence = "All eleven apps have been submitted to App Review."
         for path in html_files():
