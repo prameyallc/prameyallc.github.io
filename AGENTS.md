@@ -24,7 +24,7 @@ Privacy-policy facts that constrain marketing:
 - Hugging Face model-file downloads: quote the privacy hub's sentence, “Some apps can download an optional AI model file from Hugging Face, and only after you choose to; each app's own policy says whether it does and when.” Do not list which apps download on site-wide pages; the hub stopped listing them on 2026-09-15 because the list was not verified. An app's own page may state its own download, as OmniMathematics does from `model_download` in `src/apps.json`. Do not paraphrase the hub stronger or weaker.
 - OmniDerm’s shipping build does not assess a skin photograph. Journal JPEGs stay on device and are not analysed.
 - OmniRx’s shipping build does not download a model and does not take photographs.
-- OmniOps is a public portfolio app (operator journal). It does not certify, audit, or total avoided cost.
+- OmniCadence (formerly OmniOps; slug `omniops`) is a public portfolio app (operator journal). It does not certify, audit, or total avoided cost.
 
 ## Four principles
 
@@ -47,7 +47,7 @@ Mailto, not a list. Prefill `mailto:admin@prameya.legal?subject=…`. Do not pro
 `status` in `src/apps.json` takes one of three values. The footer, home page, FAQ, About, Pricing and one-pager availability sentences are computed from it, so change the catalog, not the prose.
 
 - `"in_development"` — not submitted. Badge “In development”; the app page keeps the screenshot placeholder and marks its prices as planned.
-- `"in_review"` — submitted to App Review and not on sale; `store_url` stays `null`. Badge “Submitted to App Review”; no screenshot placeholder, no “planned” note. The site cannot see Apple's review state, so the badge says only what stays true through a review, a rejection and a reply. Before publishing a change to `in_review`, read `asc versions list --app <Apple ID>` and confirm the version has been submitted (for example `WAITING_FOR_REVIEW`, `IN_REVIEW` or `REJECTED` after a submission). OmniMathematics has been `in_review` since its first submission in September 2026. OmniAvia has been `in_review` since its iOS 1.0 submission of 26 September 2026 (`asc review history --app 6815145487`: submitted, then rejected under 2.1 Information Needed; the submission stays, so the badge stays true).
+- `"in_review"` — submitted to App Review and not on sale; `store_url` stays `null`. Badge “Submitted to App Review”; no screenshot placeholder, no “planned” note. The site cannot see Apple's review state, so the badge says only what stays true through a review, a rejection and a reply. Before publishing a change to `in_review`, read `asc versions list --app <Apple ID>` and confirm the version has been submitted (for example `WAITING_FOR_REVIEW`, `IN_REVIEW` or `REJECTED` after a submission). OmniMathematics has been `in_review` since its first submission in September 2026. OmniAvia has been `in_review` since its iOS 1.0 submission of 26 September 2026 (`asc review history --app 6815145487`: submitted, then rejected under 2.1 Information Needed; the submission stays, so the badge stays true). The other nine have been `in_review` since their iOS 1.0 submissions (`asc versions list`, 27 September 2026: `WAITING_FOR_REVIEW`).
 - `"available"` — on sale:
   1. `"status": "available"`
   2. `"store_url": "https://apps.apple.com/…"` (real URL only)
@@ -55,7 +55,11 @@ Mailto, not a list. Prefill `mailto:admin@prameya.legal?subject=…`. Do not pro
 
 If a submission is withdrawn, set the app back to `"in_development"`.
 
-OmniOps is in the public catalog (`src/apps.json` group `operator`). Do not remove it to “match an older ten-app landing.”
+OmniCadence (slug `omniops`) is in the public catalog (`src/apps.json` group `operator`). Do not remove it to “match an older ten-app landing.”
+
+## Names and slugs
+
+`name` and `legal_name` are the App Store names. Slugs never change, because the page URLs and the privacy URLs are built on them: OmniCadence stays at `/apps/omniops/` and OmniMathematics at `/apps/omnimath/`.
 
 ## Design tokens
 

@@ -75,6 +75,21 @@ FORBIDDEN_ROLE_CLAIMS = [
 ]
 
 
+STORE_NAMES = {
+    "omnisalub": "OmniSalub",
+    "omnident": "OmniDent",
+    "omniderm": "OmniDerm",
+    "omnirx": "OmniRx",
+    "omnilex": "OmniLex",
+    "omnibuild": "OmniBuild",
+    "omniwealth": "OmniWealth",
+    "omniops": "OmniCadence",
+    "omnimath": "OmniMathematics",
+    "omniavia": "OmniAvia",
+    "omniphysics": "OmniPhysics",
+}
+
+
 HUB_MODEL_SENTENCE = ("Some apps can download an optional AI model file from Hugging Face, and only after you choose to; "
                       "each app's own policy says whether it does and when.")
 
@@ -116,13 +131,21 @@ class CatalogTests(unittest.TestCase):
         slugs = [app["slug"] for app in data["apps"]]
         self.assertEqual(slugs, EXPECTED_SLUGS)
         statuses = {app["slug"]: app["status"] for app in data["apps"]}
-        # OmniMathematics (September 2026) and OmniAvia (26 September 2026) have been submitted to App Review;
-        # nothing is on sale yet.
-        self.assertEqual(statuses.pop("omnimath"), "in_review")
-        self.assertEqual(statuses.pop("omniavia"), "in_review")
-        self.assertTrue(all(status == "in_development" for status in statuses.values()), statuses)
+        # Every iOS 1.0 has been submitted to App Review: OmniMathematics (September 2026), OmniAvia (26 September
+        # 2026), and the other nine read WAITING_FOR_REVIEW on `asc versions list` (27 September 2026).
+        # Nothing is on sale yet.
+        self.assertTrue(all(status == "in_review" for status in statuses.values()), statuses)
         self.assertTrue(all(not app.get("store_url") for app in data["apps"]))
         self.assertIn("omniops", slugs)
+
+    def test_display_names_are_the_app_store_names_and_slugs_stay(self) -> None:
+        """OmniOps became OmniCadence (2026-09-06/07) and OmniMath is OmniMathematics on the store.
+        The slugs, and the privacy URLs built on them, stay so existing links keep working."""
+        data = {app["slug"]: app for app in load_apps()["apps"]}
+        for slug, name in STORE_NAMES.items():
+            self.assertEqual(data[slug]["name"], name, msg=slug)
+            self.assertEqual(data[slug]["legal_name"], name, msg=slug)
+            self.assertEqual(data[slug]["privacy_url"], f"https://prameyallc.github.io/privacy/{slug}/", msg=slug)
 
     def test_pricing_is_free_plus_pro_not_full_app(self) -> None:
         data = load_apps()
@@ -209,7 +232,17 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertNotIn(stale, text, msg=stale)
 
     def test_omniops_has_a_product_page(self) -> None:
-        self.assertTrue((ROOT / "apps" / "omniops" / "index.html").is_file())
+        """OmniCadence keeps the /apps/omniops/ URL it had as OmniOps."""
+        path = ROOT / "apps" / "omniops" / "index.html"
+        self.assertTrue(path.is_file())
+        self.assertIn("<h1>OmniCadence</h1>", path.read_text(encoding="utf-8"))
+
+    def test_built_html_uses_the_app_store_names(self) -> None:
+        """No page shows the old names. File names in src attributes (assets/icons/OmniOps.png) are not shown."""
+        for path in html_files():
+            text = re.sub(r'\ssrc="[^"]*"', "", path.read_text(encoding="utf-8"))
+            self.assertNotRegex(text, r"\bOmniOps\b", msg=str(path))
+            self.assertNotRegex(text, r"\bOmniMath\b", msg=str(path))
 
     def test_built_html_does_not_sell_full_app_or_cloud_backup(self) -> None:
         for path in html_files():
@@ -311,9 +344,27 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertIn("A source under every item", chips)
         self.assertFalse([c for c in chips if "no-go" in c.lower()], chips)
 
+    def test_pro_lists_sell_only_what_the_submitted_builds_sell(self) -> None:
+        """2026-09-27 audit against each app's paywall and Pro gates. These lines named things the
+        submitted builds do not sell (no checklists, no pharmacist PDF, no reminder tier, no
+        refill-date field, a vault that is uncapped on Free, a PDF disclaimer the export dropped)."""
+        withdrawn = {
+            "omnibuild": ["Inspection checklist packs", "Unlimited projects"],
+            "omnirx": ["Reminder depth", "Pharmacist conversation PDF", "Refill date", "refill dates"],
+            "omnilex": ["Unlimited vault", "disclaimer on every page"],
+            "omniderm": ["compare overlay"],
+        }
+        for slug, stale in withdrawn.items():
+            text = html.unescape((ROOT / "apps" / slug / "index.html").read_text(encoding="utf-8"))
+            for line in stale:
+                self.assertNotIn(line, text, msg=f"{slug}: {line}")
+        pro = {app["slug"]: app["pricing"]["pro_subscription"]["includes"] for app in load_apps()["apps"]}
+        self.assertEqual(pro["omnirx"], ["Multi-medication schedule"])
+        self.assertEqual(pro["omnilex"], ["Search what you imported", "Formatted PDF report, generated on your device"])
+        self.assertEqual(pro["omnibuild"], ["More than two projects", "Permit-counter PDF"])
+
     def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
-        sentence = ("OmniMath (OmniMathematics) and OmniAvia have been submitted to App Review; "
-                    "the other apps are in development.")
+        sentence = "All eleven apps have been submitted to App Review."
         for path in html_files():
             text = path.read_text(encoding="utf-8")
             for stale in ("in active development", "All eleven apps are", "not yet available on the App Store",
@@ -336,7 +387,12 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertNotIn(stale, text, msg=stale)
         self.assertIn("OmniMathematics: one feature, the formatted study report of your marks", text)
         self.assertIn("7-day free trial for eligible new subscribers", text)
-        self.assertIn("planned and can change before it is submitted", text)
+        # The planned-price caveat is computed: it shows only while some app has not been submitted.
+        if any(app["status"] == "in_development" for app in load_apps()["apps"]):
+            self.assertIn("planned and can change before it is submitted", text)
+        else:
+            self.assertNotIn("planned and can change", text)
+        self.assertIn("OmniAvia and OmniCadence: <strong>$5.99 / $39.99 / $99.99</strong>", text)
 
     def test_no_page_tells_a_subscriber_to_cancel_in_the_apps_own_settings(self) -> None:
         """"Cancel in Settings." reads as the app's Settings tab, which cannot cancel; the binary names the iOS path."""

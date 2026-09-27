@@ -36,7 +36,7 @@ The builder uses **depth-relative paths** — each page knows how many `../` it 
 - Privacy policy URLs
 - **Pricing structure** (free_tier, pro_subscription with monthly / yearly / lifetime)
 
-Apps are grouped into four categories (health, professional, operator, learning). The eleven public apps are listed in `EXPECTED_SLUGS` in the test file. OmniOps is in the catalog.
+Apps are grouped into four categories (health, professional, operator, learning). The eleven public apps are listed in `EXPECTED_SLUGS` in the test file. OmniCadence is in the catalog under its old slug `omniops`, and OmniMathematics under `omnimath`; slugs never change.
 
 ### Pricing Model
 
@@ -68,7 +68,7 @@ The test suite enforces **four non-negotiable rules** that gate all copy:
 1. **No outcome claims** — Never "saves you $X", "improves health", "faster approval"
 2. **No professional-role claims** — Never "diagnoses", "advises", "represents you" unless explicitly negated
 3. **No fabricated numbers** — No user counts, ratings, market sizes
-4. **Honest availability** — An app is `in_development` until submitted, `in_review` once submitted to App Review, shown as “Submitted to App Review” (OmniMathematics, OmniAvia), and `available` only with a real App Store `store_url`; site-wide availability sentences are computed from these statuses
+4. **Honest availability** — An app is `in_development` until submitted, `in_review` once submitted to App Review, shown as “Submitted to App Review” (all eleven as of 27 September 2026), and `available` only with a real App Store `store_url`; site-wide availability sentences are computed from these statuses
 
 ### OmniDent Special Case
 
@@ -81,7 +81,7 @@ This repo must **never create a `privacy/` directory**. Privacy policies are ser
 ## Test-Driven Copy
 
 The test suite (`tests/test_site.py`) is a contract test that reads both the source (`src/apps.json`) and the generated HTML to catch drift before publish. Tests verify:
-- The ten expected apps are present and OmniOps is absent
+- The eleven expected apps are present, under their App Store names (OmniCadence at `/apps/omniops/`)
 - Each app page includes its hard line, status, and privacy URL
 - No forbidden marketing phrases appear anywhere
 - External URLs stay inside the allowlist (GitHub, X, mailto, Apple, privacy hub, schema.org)
