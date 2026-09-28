@@ -432,9 +432,16 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertIn("OmniDent", text, msg=page)
             self.assertIn("optional Sign in with Apple", text, msg=page)
         privacy = html.unescape((ROOT / "privacy-model" / "index.html").read_text(encoding="utf-8"))
-        for fact in ("no feature needs it, and it does not change what syncs", "in the Keychain on that device",
+        for fact in ("no feature needs it, and neither does iCloud Sync",
+                     "Signing in turns OmniDent's iCloud Sync switch on and signing out turns it off",
+                     "you can also switch it yourself in Settings, and what syncs is the same either way",
+                     "in the Keychain on that device",
                      "None of it is sent to Prameya", "Delete Account & All Data"):
             self.assertIn(fact, privacy, msg=fact)
+        # 2026-09-27: "it does not change what syncs" left out that signing in turns the iCloud Sync
+        # switch on and signing out turns it off (OmniDent CloudSyncFeature.swift; the OmniDent
+        # policy's short version and section 5 say so from the same day).
+        self.assertNotIn("it does not change what syncs", privacy)
 
     def test_planning_documents_say_they_do_not_describe_the_shipped_apps(self) -> None:
         """These August 2026 plans are publicly fetchable and name withdrawn features and old app names."""
