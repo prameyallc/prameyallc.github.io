@@ -411,8 +411,9 @@ def home_body(catalog: dict) -> str:
     allowed to say to you.</p>
   <div class="principles">
     <div class="p"><h3>Runs on your device</h3>
-      <p>No account, no server, no analytics. The models run locally. What you record simply stays
-         where you made it. Narrow exceptions — optional model-file downloads in some apps — are described
+      <p>No app requires an account. No server, no analytics. The models run locally. What you record simply stays
+         where you made it. Narrow exceptions — optional model-file downloads in some apps, sync
+         through your own iCloud account in some, and an optional Sign in with Apple in OmniDent — are described
          on the <a class="inline" href="{href(0, 'privacy-model/')}">privacy model</a> page.</p></div>
     <div class="p"><h3>Every claim has a source</h3>
       <p>Where an app states something professional, it cites where that came from — and where a
@@ -662,7 +663,7 @@ def build() -> None:
     emit(
         "index.html",
         "Prameya — Expert knowledge for everyone",
-        "A portfolio of on-device apps that put professional-grade knowledge — clinical, legal, financial, technical — into ordinary hands. No accounts. No servers. Sources you can check.",
+        "A portfolio of on-device apps that put professional-grade knowledge — clinical, legal, financial, technical — into ordinary hands. No app requires an account. No servers. Sources you can check.",
         "/",
         0,
         "home",

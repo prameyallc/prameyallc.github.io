@@ -1,3 +1,8 @@
+> **Historical planning document, August 2026.** It records plans made before the apps shipped and does not
+> describe the shipped apps: some features, names, prices and tiers in it were changed or withdrawn. For what
+> each app does, read its page at https://prameyallc.github.io/apps/ and its privacy policy at
+> https://prameyallc.github.io/privacy/.
+
 # Knowledge Sources & Content Framework
 
 This document maps the body of knowledge for each Prameya app to commercial-friendly open sources: public domain materials, Creative Commons licensed content, government publications, and open educational resources (OER).
