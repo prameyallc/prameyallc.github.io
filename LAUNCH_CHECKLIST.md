@@ -1,3 +1,8 @@
+> **Historical planning document, August 2026.** It records plans made before the apps shipped and does not
+> describe the shipped apps: some features, names, prices and tiers in it were changed or withdrawn. For what
+> each app does, read its page at https://prameyallc.github.io/apps/ and its privacy policy at
+> https://prameyallc.github.io/privacy/.
+
 # Launch Checklist for Prameya LLC Site
 
 ## ✅ Completed

@@ -417,7 +417,33 @@ class BuiltSiteTests(unittest.TestCase):
                       "Raw export of what you recorded"):
             self.assertNotIn(stale, pricing, msg=stale)
         home = (ROOT / "index.html").read_text(encoding="utf-8")
-        self.assertRegex(home, r"optional model-file downloads in some apps, and sync\s+through your own iCloud account")
+        self.assertRegex(home, r"optional model-file downloads in some apps, sync\s+through your own iCloud account in some")
+
+    def test_account_claim_is_true_and_omnident_sign_in_is_named(self) -> None:
+        """OmniDent offers an optional Sign in with Apple (Keychain only, no server; its policy section 5),
+        so "No account" as a blanket is false. No app requires one; name the exception on /privacy-model/."""
+        for path in html_files():
+            text = path.read_text(encoding="utf-8")
+            for stale in ("No account, no server", "No accounts. No servers."):
+                self.assertNotIn(stale, text, msg=f"{path}: {stale}")
+        for page in ("index.html", "standard/index.html", "privacy-model/index.html"):
+            text = (ROOT / page).read_text(encoding="utf-8")
+            self.assertIn("No app requires an account.", text, msg=page)
+            self.assertIn("OmniDent", text, msg=page)
+            self.assertIn("optional Sign in with Apple", text, msg=page)
+        privacy = html.unescape((ROOT / "privacy-model" / "index.html").read_text(encoding="utf-8"))
+        for fact in ("no feature needs it, and it does not change what syncs", "in the Keychain on that device",
+                     "None of it is sent to Prameya", "Delete Account & All Data"):
+            self.assertIn(fact, privacy, msg=fact)
+
+    def test_planning_documents_say_they_do_not_describe_the_shipped_apps(self) -> None:
+        """These August 2026 plans are publicly fetchable and name withdrawn features and old app names."""
+        for name in ("KNOWLEDGE_SOURCES.md", "CONTENT_ARCHITECTURE.md", "LAUNCH_CHECKLIST.md"):
+            head = (ROOT / name).read_text(encoding="utf-8")[:600]
+            self.assertTrue(head.startswith("> **Historical planning document, August 2026.**"), msg=name)
+            self.assertIn("does not\n> describe the shipped apps", head, msg=name)
+            self.assertIn("https://prameyallc.github.io/apps/", head, msg=name)
+            self.assertIn("https://prameyallc.github.io/privacy/", head, msg=name)
 
     def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
         sentence = "All eleven apps have been submitted to App Review."
