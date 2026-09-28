@@ -360,8 +360,42 @@ class BuiltSiteTests(unittest.TestCase):
                 self.assertNotIn(line, text, msg=f"{slug}: {line}")
         pro = {app["slug"]: app["pricing"]["pro_subscription"]["includes"] for app in load_apps()["apps"]}
         self.assertEqual(pro["omnirx"], ["Multi-medication schedule"])
-        self.assertEqual(pro["omnilex"], ["Search what you imported", "Formatted PDF report, generated on your device"])
+        self.assertEqual(pro["omnilex"], ["On-device semantic search across what you imported",
+                                          "Reading-priority flags on clauses, for your own review",
+                                          "Formatted PDF report, generated on your device"])
         self.assertEqual(pro["omnibuild"], ["More than two projects", "Permit-counter PDF"])
+
+    def test_omniavia_pro_sells_oral_prep_sessions(self) -> None:
+        """2026-09-28 Connect claims audit: no "oral-prep pack" exists. OmniAvia Pro opens oral-prep
+        sessions (`AviaOralSessionView`); the app's paywall now says "Oral-prep sessions" too."""
+        pro = next(app for app in load_apps()["apps"] if app["slug"] == "omniavia")["pricing"]["pro_subscription"]
+        self.assertEqual(pro["includes"], ["Drill generator", "Missed-item review", "Oral-prep sessions",
+                                           "Formatted study PDF"])
+        text = html.unescape((ROOT / "apps" / "omniavia" / "index.html").read_text(encoding="utf-8"))
+        tier = re.search(r'<div class="tier featured">.*?<ul class="tier-features">(.*?)</ul>', text, re.S)
+        self.assertIsNotNone(tier)
+        self.assertIn("Oral-prep sessions", re.findall(r"<li>([^<]+)</li>", tier.group(1)))
+        for page in (ROOT / "apps" / "omniavia" / "index.html", ROOT / "pricing" / "index.html"):
+            self.assertNotIn("Oral-prep packs", page.read_text(encoding="utf-8"), msg=str(page))
+
+    def test_omnilex_pro_lines_match_what_ships(self) -> None:
+        """2026-09-28 Connect claims audit. OmniLex Pro on Connect is "On-device semantic search and
+        clause flags." Its paywall sells semantic search across what you imported, reading-priority
+        flags on clauses for your own review, and a formatted PDF report. Searching the vault is free,
+        so the plain "Search what you imported" line undersold the flags and oversold the search."""
+        text = html.unescape((ROOT / "apps" / "omnilex" / "index.html").read_text(encoding="utf-8"))
+        tier = re.search(r'<div class="tier featured">.*?<ul class="tier-features">(.*?)</ul>', text, re.S)
+        self.assertIsNotNone(tier)
+        self.assertEqual(re.findall(r"<li>([^<]+)</li>", tier.group(1)),
+                         ["On-device semantic search across what you imported",
+                          "Reading-priority flags on clauses, for your own review",
+                          "Formatted PDF report, generated on your device"])
+        own, sep, _ = text.partition('<div class="kicker">Also in')
+        self.assertTrue(sep)
+        self.assertNotIn("<li>Search what you imported</li>", own)
+        # The flags are for the reader's own review: never a risk score, a legal opinion or advice.
+        for claim in ("risk score", "legal opinion", "tells you whether", "advice on"):
+            self.assertNotIn(claim, own, msg=claim)
 
     def test_every_app_claim_matches_what_main_ships(self) -> None:
         """2026-09-27 audit of chips, summary, detail, hard line, meta description and free list against
