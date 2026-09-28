@@ -255,7 +255,8 @@
           "price_yearly_usd": 49.99,
           "price_lifetime_usd": 129.99,
           "includes": [
-            "Search what you imported",
+            "On-device semantic search across what you imported",
+            "Reading-priority flags on clauses, for your own review",
             "Formatted PDF report, generated on your device"
           ]
         }
@@ -484,7 +485,7 @@
           "includes": [
             "Drill generator",
             "Missed-item review",
-            "Oral-prep packs",
+            "Oral-prep sessions",
             "Formatted study PDF"
           ]
         }
