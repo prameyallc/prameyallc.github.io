@@ -53,20 +53,18 @@
       "store_url": null,
       "platforms": [
         "iPhone",
-        "Mac",
         "Watch"
       ],
       "features": [
         "Readings from your own cuff",
-        "Visit pack",
-        "Imaging history"
+        "Visit pack"
       ],
-      "summary": "The record a clinic keeps about you \u2014 readings, history, what to raise next visit \u2014 kept on your phone instead of behind a portal login. Walk into the appointment prepared rather than trying to remember.",
-      "detail": "OmniSalub is a place to keep the readings you take, the history you already know, and the questions worth raising next time. It runs on your device. It does not connect you to a clinic and it does not speak for a clinician.",
+      "summary": "Your own record \u2014 readings over time, what to raise next visit \u2014 kept on your phone instead of behind a portal login. Walk into the appointment prepared rather than trying to remember.",
+      "detail": "OmniSalub is a place to keep the readings you take and the questions worth raising next time. It runs on your device. It does not connect you to a clinic and it does not speak for a clinician.",
       "hard_line": "OmniSalub does not diagnose, treat, or replace a clinician. It keeps your own record so you can walk into an appointment prepared.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnisalub/",
       "health_data_url": "https://prameyallc.github.io/privacy/omnisalub/health-data/",
-      "meta_description": "OmniSalub keeps readings, history and visit questions on your device. Submitted to App Review. Not a diagnosis, not a clinic, not a substitute for a clinician.",
+      "meta_description": "OmniSalub keeps readings and visit questions on your device. Submitted to App Review. Not a diagnosis, not a clinic, not a substitute for a clinician.",
       "pricing": {
         "free_tier": {
           "name": "Free",
@@ -74,7 +72,7 @@
             "Reference library",
             "Readings you enter",
             "90-day history",
-            "Raw export of your record"
+            "Raw export of your readings and symptoms"
           ]
         },
         "pro_subscription": {
@@ -106,7 +104,7 @@
         "Photo journal",
         "Family profiles"
       ],
-      "summary": "The daily habits a hygienist actually asks about, tracked simply \u2014 with your own photo history over time, and the questions worth raising at the next appointment.",
+      "summary": "Daily dental habits, tracked simply \u2014 with your own photo history over time, and the questions worth raising at the next appointment.",
       "detail": "OmniDent is a household record: the routine, the photographs you chose to keep, and the questions for the next visit. It has no FDA authorization. Do not act on chat or photo-note text. Ask a dentist.",
       "hard_line": "OmniDent is not a substitute for a dentist, and it has no FDA authorization. Do not act on chat or photo-note text \u2014 ask a dentist.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnident/",
@@ -151,12 +149,12 @@
         "Your own notes",
         "Visit prep"
       ],
-      "summary": "A private journal for your skin. Photograph the same spot across months and keep the series together, in your own words. The app records what you noticed \u2014 it never tells you what it is.",
-      "detail": "OmniDerm is a journal you keep: photographs of the same spot, notes in your own words, and a record you can take to an appointment. It does not name a mark and it does not tell you whether to see a clinician.",
-      "hard_line": "OmniDerm never tells you what a mark is. It records what you noticed \u2014 photographs and your own notes \u2014 so you can keep a private series over time.",
+      "summary": "A private journal for your skin. Photograph the same spot across months and keep the series together, in your own words. The journal records what you noticed \u2014 it never tells you what it is.",
+      "detail": "OmniDerm is a journal you keep: photographs of the same spot, notes in your own words, and a record you can take to an appointment. It does not assess your photographs, and the journal never names a mark.",
+      "hard_line": "The OmniDerm journal never tells you what a mark is. It records what you noticed \u2014 photographs and your own notes \u2014 so you can keep a private series over time.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniderm/",
       "health_data_url": "https://prameyallc.github.io/privacy/omniderm/health-data/",
-      "meta_description": "OmniDerm is a private skin journal: your photographs, your notes, over time. Submitted to App Review. It never tells you what a mark is.",
+      "meta_description": "OmniDerm is a private skin journal: your photographs, your notes, over time. Submitted to App Review. The journal never names a mark.",
       "pricing": {
         "free_tier": {
           "name": "Free",
@@ -194,7 +192,7 @@
         "Plain-language reference",
         "Daily check"
       ],
-      "summary": "What a class of medicine is for, in plain language drawn from published labelling \u2014 plus a simple daily check, so you reach the pharmacy counter knowing what to ask.",
+      "summary": "What a medicine is for, in plain language drawn from published labelling \u2014 plus a simple daily check, so you reach the pharmacy counter knowing what to ask.",
       "detail": "OmniRx explains published labelling in ordinary language and lets you keep a simple daily check. It does not take the place of a pharmacist or a prescriber.",
       "hard_line": "OmniRx is not medical advice. It does not diagnose, calculate doses, check interactions, or identify medicines from photographs.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnirx/",
@@ -205,7 +203,7 @@
           "name": "Free",
           "includes": [
             "Full published-label library",
-            "Daily check",
+            "Daily check: one medicine, 30 logs",
             "Raw export of your list"
           ]
         },
@@ -236,9 +234,9 @@
         "Plain-language guides",
         "Private document vault"
       ],
-      "summary": "The text of the law already belongs to everyone \u2014 it is simply unreadable. OmniLex puts public legal codes into plain language with every passage cited, so you arrive at a consultation already knowing the shape of your question.",
-      "detail": "OmniLex is a way to read public legal text with the citation attached. It is preparation for a conversation with a lawyer, not a substitute for one.",
-      "hard_line": "OmniLex does not represent you, give legal advice, or file anything on your behalf. It puts public legal codes into plain language with every passage cited.",
+      "summary": "The text of the law already belongs to everyone \u2014 it is simply unreadable. OmniLex puts public legal codes into plain language, with a source under every Legal Reference sentence.",
+      "detail": "OmniLex is a way to read public legal text with the citation attached. It is not a lawyer, and not a substitute for one.",
+      "hard_line": "OmniLex does not represent you, give legal advice, or file anything on your behalf. It puts public legal codes into plain language, with a source under every Legal Reference sentence.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnilex/",
       "health_data_url": null,
       "meta_description": "OmniLex puts public legal codes into plain language with citations, on your device. Submitted to App Review. It does not represent you.",
@@ -275,21 +273,21 @@
       "store_url": null,
       "platforms": [],
       "features": [
-        "Permits & utilities",
+        "Permits & utility locates",
         "OSHA \u00b7 ADA \u00b7 EPA reference",
         "Project log"
       ],
-      "summary": "Building means permits, utility connections, inspections and trades \u2014 a maze that is mostly procedure, not expertise. OmniBuild maps what applies to your project, with the public standards cited, and is clear about which parts genuinely need a licensed professional.",
-      "detail": "OmniBuild is a map of procedure: permits, utilities, inspections, trades, and the public standards that sit behind them. Where a licence is required, it says so.",
+      "summary": "Building means permits, utility connections, inspections and trades \u2014 a maze that is mostly procedure, not expertise. OmniBuild explains how construction work is regulated, with the public standards cited, and is clear about which parts genuinely need a licensed professional.",
+      "detail": "OmniBuild is a cited reference: permits, utility locates, trades, and the public standards that sit behind them. It flags work that needs a licensed professional.",
       "hard_line": "OmniBuild is not contracting, engineering, architectural, or code-compliance advice, and it is not a substitute for a licensed professional.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnibuild/",
       "health_data_url": null,
-      "meta_description": "OmniBuild maps permits, utilities and public construction standards, and is clear where a licensed professional is required. Submitted to App Review.",
+      "meta_description": "OmniBuild explains public construction standards, with citations, and is clear where a licensed professional is required. Submitted to App Review.",
       "pricing": {
         "free_tier": {
           "name": "Free",
           "includes": [
-            "Federal and state public standards",
+            "Federal public standards, with state examples",
             "Licensed-professional flags",
             "Project notes",
             "Raw export"
@@ -324,7 +322,7 @@
         "No bank connection, ever"
       ],
       "summary": "How money concepts actually work, explained with sources you can check, plus tools to run your own numbers. It never recommends a product or an allocation \u2014 that isn't the gap it fills.",
-      "detail": "OmniWealth is a cited library of how money concepts work, and a place to run numbers you type yourself. It has no bank or brokerage connection, and it does not pick a product for you.",
+      "detail": "OmniWealth is a cited library of how money concepts work, and a place to run numbers you enter yourself. It has no bank or brokerage connection, and it does not pick a product for you.",
       "hard_line": "OmniWealth never recommends a product or an allocation, and it never connects to a bank.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniwealth/",
       "health_data_url": null,
@@ -334,7 +332,7 @@
           "name": "Free",
           "includes": [
             "Full cited concept library",
-            "Calculators on numbers you type",
+            "Calculators on numbers you enter",
             "No product recommendation"
           ]
         },
@@ -367,8 +365,8 @@
         "Review cadence",
         "On this device"
       ],
-      "summary": "Write the decision down, review it on a cadence, keep the habit \u2014 without buying a consultant.",
-      "detail": "OmniCadence is an operator journal: work, decisions, reflections and habits, kept on this device. It does not certify, audit, or total a dollar you did not spend.",
+      "summary": "Write the decision down, review it on a cadence, keep the habit \u2014 before you buy the advice.",
+      "detail": "OmniCadence is an operator journal: work, decisions, reflections and habits, kept on this device; iCloud sync of entry headlines is off until you turn it on. It does not certify, audit, or total a dollar you did not spend.",
       "hard_line": "OmniCadence does not certify, audit, or grade a practice, and it never totals avoided cost. It is a journal and a cadence, not a consultant.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniops/",
       "health_data_url": null,
@@ -413,12 +411,12 @@
         "Study offline"
       ],
       "summary": "Discrete math for computer science, and the math around it: topic packs with a cited source under each idea, Concepts (a built-in reference), interactives, and a story tour of twenty chapters in six parts. No account, and no network needed to study.",
-      "detail": "OmniMathematics is a learning app for iPhone and iPad, with an Apple Watch app. Everything you study ships inside the app, and your marks stay on your device and, if you are signed in to iCloud, in your own iCloud. Ask answers from Concepts and the topic packs; on an iPhone or iPad with 8 GB of memory or more, an optional on-device model, downloaded only if you choose, can rephrase an answer and labels it as generated. Devices with 6 GB or less answer from Concepts and the packs.",
+      "detail": "OmniMathematics is a learning app for iPhone and iPad, with an Apple Watch app. Everything you study ships inside the app, and your marks stay on your device and, if you are signed in to iCloud, in your own iCloud. Where Apple Intelligence is on and ready, it answers Ask on the device; where it is not, on an iPhone or iPad with 8 GB of memory or more, an optional on-device model, downloaded only if you choose, answers instead. Either way the answer is labelled as generated. Where no model answers, including devices with 6 GB or less, Ask shows the matching entry from Concepts and the packs.",
       "hard_line": "OmniMathematics is not a course, a credential or a tutor who can certify you. Check anything you will be graded on against your course text.",
       "privacy_url": "https://prameyallc.github.io/privacy/omnimath/",
       "health_data_url": null,
-      "model_download": "OmniMathematics can download an optional on-device Ask model from Hugging Face, only after you choose \u201cDownload\u201d in Ask or turn on \u201cOn-device Ask model\u201d in Settings. Which model is offered depends on the device's memory: an iPhone or iPad with 8 GB is offered MiniCPM5 2B (openbmb/MiniCPM5-2B-MLX, about 1.4 GB); 12 GB or more, Gemma 4 E2B (mlx-community/gemma-4-E2B-it-qat-4bit, about 4.4 GB), or MiniCPM5 2B instead when the memory check refuses Gemma 4 E2B, as a separate download you also choose; 6 GB or less, and devices without Metal 3, are offered no download and Ask answers from Concepts and the packs. The button names the model and its size. That request is for a model file; it does not send your questions or your marks anywhere.",
-      "meta_description": "OmniMathematics is a discrete-math learning app for computer science: sourced topic packs, Concepts (a built-in reference), interactives and twenty story-tour chapters. Study offline.",
+      "model_download": "OmniMathematics can download an optional on-device Ask model from Hugging Face, only where Apple Intelligence is not ready and only after you choose \u201cDownload\u201d in Ask or turn on \u201cOn-device Ask model\u201d in Settings. Which model is offered depends on the device's memory: an iPhone or iPad with 8 GB is offered MiniCPM5 2B (openbmb/MiniCPM5-2B-MLX, about 1.4 GB); 12 GB or more, Gemma 4 E2B (mlx-community/gemma-4-E2B-it-qat-4bit, about 4.4 GB), or MiniCPM5 2B instead when the memory check refuses Gemma 4 E2B, as a separate download you also choose; 6 GB or less, and devices without Metal 3, are offered no download and Ask answers from Concepts and the packs. The prompt names the model and its size. That request is for a model file; it does not send your questions or your marks anywhere.",
+      "meta_description": "OmniMathematics is a learning app for discrete math for computer science and the math around it: sourced topic packs, Concepts (a built-in reference), interactives and twenty story-tour chapters. Study offline.",
       "pricing": {
         "headline": "Free knowledge. One optional Pro feature.",
         "note": "Topic packs, Concepts, all twenty chapters, the interactives, Ask and the raw export of your marks stay free. Pro is one feature, the formatted study report, sold monthly, annually or once as Lifetime. Monthly and annual include a 7-day free trial for eligible new subscribers. Family Sharing is on. Cancel in iOS Settings ▸ your name ▸ Subscriptions at least 24 hours before the period ends.",
@@ -460,21 +458,21 @@
       ],
       "features": [
         "Every ACS area",
-        "14 CFR in plain language",
+        "Selected 14 CFR sections in plain language",
         "A source under every item"
       ],
-      "summary": "Ground school built around the FAA's own Airman Certification Standards \u2014 the twelve areas of operation, each broken into what you must know, what can go wrong, and what you must do. The regulation itself is always one tap away.",
+      "summary": "Ground school built around the FAA's own Airman Certification Standards \u2014 the twelve areas of operation, each broken into what you must know, what can go wrong, and what you must do. The source under each item is always one tap away.",
       "detail": "OmniAvia is ground study and reference for iPhone and iPad, with an Apple Watch app. Its lesson packs, from the ACS, FAA handbooks, the AIM and 14 CFR, ship inside the app, with the official source under every item. You log your own study, sim or flight sessions and pre-flight preparation; they stay on your device and, if you are signed in to iCloud, in your own iCloud. Where Apple Intelligence is on, Ask answers on the device. It does not fly the aeroplane and it does not sign a logbook.",
       "hard_line": "OmniAvia is ground study and reference on this device. It is not flight instruction, not an endorsement, and not a substitute for a certified flight instructor or an examiner, and it never makes a go/no-go, airworthiness or fitness-to-fly decision.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniavia/",
       "health_data_url": null,
-      "meta_description": "OmniAvia is ACS ground study and reference on your device, with 14 CFR one tap away. Not flight instruction, not an endorsement, and never a go/no-go decision.",
+      "meta_description": "OmniAvia is ACS ground study and reference on your device, with a source under every item. Not flight instruction, not an endorsement, and never a go/no-go decision.",
       "pricing": {
         "free_tier": {
           "name": "Free",
           "includes": [
             "All ACS areas of operation",
-            "14 CFR in plain language",
+            "Selected 14 CFR sections in plain language",
             "Study and prep logs"
           ]
         },
@@ -505,10 +503,9 @@
       "platforms": [],
       "features": [
         "Sandbox lab",
-        "Worked reasoning",
-        "Concept map"
+        "Worked reasoning"
       ],
-      "summary": "Physics you can experiment with rather than only read. Change a value in the sandbox and watch what it does \u2014 then follow the reasoning, step by step, from mechanics through to modern physics.",
+      "summary": "Physics you can experiment with rather than only read. Change a value in the sandbox and watch what it does \u2014 then follow the reasoning, from mechanics through to modern physics.",
       "detail": "OmniPhysics is a sandbox and a set of worked explanations. You change a value, you watch what happens, and you can follow the reasoning that sits under it.",
       "hard_line": "OmniPhysics is an educational sandbox. It does not replace a laboratory, a degree, or an instructor.",
       "privacy_url": "https://prameyallc.github.io/privacy/omniphysics/",
@@ -519,8 +516,7 @@
           "name": "Free",
           "includes": [
             "Worked reasoning",
-            "The F = ma sandbox",
-            "Concept map"
+            "The F = ma sandbox"
           ]
         },
         "pro_subscription": {

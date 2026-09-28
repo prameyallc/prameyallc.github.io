@@ -22,8 +22,8 @@ Privacy-policy facts that constrain marketing:
 
 - OmniDent (24 August 2026) withdrew a blanket “does not diagnose” claim because on-device chat is unfiltered. The OmniDent page must not restore that sentence.
 - Hugging Face model-file downloads: quote the privacy hub's sentence, “Some apps can download an optional AI model file from Hugging Face, and only after you choose to; each app's own policy says whether it does and when.” Do not list which apps download on site-wide pages; the hub stopped listing them on 2026-09-15 because the list was not verified. An app's own page may state its own download, as OmniMathematics does from `model_download` in `src/apps.json`. Do not paraphrase the hub stronger or weaker.
-- OmniDerm’s shipping build does not assess a skin photograph. Journal JPEGs stay on device and are not analysed.
-- OmniRx’s shipping build does not download a model and does not take photographs.
+- OmniDerm’s shipping build does not assess a skin photograph. Journal JPEGs stay on device and are not analysed. Its Ask output is not filtered and its free library says when to see a dermatologist, so scope “never names a mark” to the journal and do not say the app never tells you whether to see a clinician.
+- OmniRx’s shipping build does not take photographs. Its published policy discloses an optional Hugging Face Ask model download (offered only where Apple Intelligence cannot answer), so do not say OmniRx downloads no model.
 - OmniCadence (formerly OmniOps; slug `omniops`) is a public portfolio app (operator journal). It does not certify, audit, or total avoided cost.
 
 ## Four principles

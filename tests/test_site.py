@@ -363,6 +363,62 @@ class BuiltSiteTests(unittest.TestCase):
         self.assertEqual(pro["omnilex"], ["Search what you imported", "Formatted PDF report, generated on your device"])
         self.assertEqual(pro["omnibuild"], ["More than two projects", "Permit-counter PDF"])
 
+    def test_every_app_claim_matches_what_main_ships(self) -> None:
+        """2026-09-27 audit of chips, summary, detail, hard line, meta description and free list against
+        each app's main and published policy. These lines named things main does not do: an imaging
+        journal with no UI, a Mac build not submitted, a hygienist endorsement the app withdrew (D-05),
+        consumer consultation framing the OmniLex listing bans, a project-mapping OmniBuild does not
+        do, a Physics concept map that does not exist, Math Ask text from before D-1/D-2, and
+        "never"/"does not" lines that the apps' own content contradicts."""
+        withdrawn = {
+            "omnisalub": ["Imaging history", "The record a clinic keeps about you", "the history you already know",
+                          "Raw export of your record<"],
+            "omnident": ["hygienist"],
+            "omniderm": ["does not tell you whether to see a clinician", "It never tells you what a mark is",
+                         "OmniDerm never tells you what a mark is", "The app records what you noticed"],
+            "omnirx": ["a class of medicine"],
+            "omnilex": ["consultation", "preparation for a conversation with a lawyer", "every passage cited"],
+            "omnibuild": ["maps what applies to your project", "a map of procedure", "Where a licence is required",
+                          "OmniBuild maps permits", "Federal and state public standards"],
+            "omniwealth": ["numbers you type"],
+            "omniops": ["without buying a consultant"],
+            "omnimath": ["can rephrase an answer", "Ask answers from Concepts and the topic packs",
+                         "The button names the model", "is a discrete-math learning app"],
+            "omniavia": ["The regulation itself is always one tap away", "14 CFR one tap away"],
+            "omniphysics": ["Concept map", "concept map", "step by step"],
+        }
+        for slug, stale in withdrawn.items():
+            text = html.unescape((ROOT / "apps" / slug / "index.html").read_text(encoding="utf-8"))
+            # This app's own copy, meta description included; the related-app cards below carry other apps'.
+            own, sep, _ = text.partition('<div class="kicker">Also in')
+            self.assertTrue(sep, msg=slug)
+            for line in stale:
+                self.assertNotIn(line, own, msg=f"{slug}: {line}")
+        # Chips and list items are matched whole, so a reworded item cannot hide a withdrawn one.
+        data = {app["slug"]: app for app in load_apps()["apps"]}
+        self.assertNotIn("Mac", data["omnisalub"]["platforms"], "OmniSalub's Mac 1.0 has not been submitted")
+        self.assertNotIn("Imaging history", data["omnisalub"]["features"])
+        self.assertNotIn("Concept map", data["omniphysics"]["features"])
+        self.assertNotIn("Concept map", data["omniphysics"]["pricing"]["free_tier"]["includes"])
+        self.assertNotIn("Permits & utilities", data["omnibuild"]["features"])
+        self.assertNotIn("14 CFR in plain language", data["omniavia"]["features"])
+        self.assertNotIn("14 CFR in plain language", data["omniavia"]["pricing"]["free_tier"]["includes"])
+        self.assertNotIn("Daily check", data["omnirx"]["pricing"]["free_tier"]["includes"],
+                         "Free stops saving after 30 logs for one medicine")
+        # Site-wide pages that speak for an app.
+        privacy = html.unescape((ROOT / "privacy-model" / "index.html").read_text(encoding="utf-8"))
+        self.assertNotIn("does not download a model", privacy, "OmniRx's policy discloses an optional model download")
+        self.assertNotIn("the app never tells you what a mark is", privacy)
+        self.assertIn("sync preferences or records through your own iCloud account", privacy)
+        standard = (ROOT / "standard" / "index.html").read_text(encoding="utf-8")
+        self.assertNotRegex(standard, r"sync preferences\s+through your own iCloud")
+        pricing = html.unescape((ROOT / "pricing" / "index.html").read_text(encoding="utf-8"))
+        for stale in ("read and raw-export everything you entered", "can be read and raw-exported even if Pro lapses",
+                      "Raw export of what you recorded"):
+            self.assertNotIn(stale, pricing, msg=stale)
+        home = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertRegex(home, r"optional model-file downloads in some apps, and sync\s+through your own iCloud account")
+
     def test_site_wide_availability_copy_is_true_for_every_app(self) -> None:
         sentence = "All eleven apps have been submitted to App Review."
         for path in html_files():

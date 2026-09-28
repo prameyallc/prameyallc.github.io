@@ -412,7 +412,8 @@ def home_body(catalog: dict) -> str:
   <div class="principles">
     <div class="p"><h3>Runs on your device</h3>
       <p>No account, no server, no analytics. The models run locally. What you record simply stays
-         where you made it. Narrow exceptions — optional model-file downloads in some apps — are described
+         where you made it. Narrow exceptions — optional model-file downloads in some apps, and sync
+         through your own iCloud account in some — are described
          on the <a class="inline" href="{href(0, 'privacy-model/')}">privacy model</a> page.</p></div>
     <div class="p"><h3>Every claim has a source</h3>
       <p>Where an app states something professional, it cites where that came from — and where a
